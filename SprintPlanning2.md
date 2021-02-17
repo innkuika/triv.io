@@ -9,19 +9,19 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ## Previous Tasks (02.10.21)
 
 ### Donald Lieu
-* Page 2: UI: Create Game/Join Game Page
+* Making an instance of a game on iOS 
 >Link of commit/Description of Work
 ### Jessica Wu 
-* Page 3/3.5: UI: Single-Player/Bot Page + Spin Page
+* front-end wireframing 
 >Link of commit/Description of Work
 ### Manprit Heer
-* Page 4: UI: Winning Page/Game Stats
+* Firebase Schema
 >Link of commit/Description of Work
 ### Roberto Lozano
-* UI/Authentication: Log-In Screen
+* Researc on Authentication Log-In System
 >Link of commit/Description of Work
 ### Jessica Ma
-* UI: Pick 3 Categories (Before Start of Game)
+* Skeleton of app, push to Github
 >Link of commit/Description of Work
 
 
