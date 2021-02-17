@@ -6,18 +6,24 @@ Our app, triv.io is a CS Trivia App that allows users to play with their friends
 ## Triv.io Trello Board Link: 
 https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app-project
 
-
 ## Previous Tasks (02.10.21)
-* Donald: Making an instance of a game on iOS 
- >Link of commit/Description of Work
-* Jessica W: front-end wireframing
->Link of commit/Description of Work 
-* Manprit: Firebase Schema
+
+## Donald L
+* Page 2: UI: Create Game/Join Game Page
 >Link of commit/Description of Work
-* Roberto: Authenticate Log-In System
+## Jessica Wu 
+* Page 3/3.5: UI: Single-Player/Bot Page + Spin Page
 >Link of commit/Description of Work
-* Jessica M: Creates skeleton and push to Github
+## Manprit Heer
+* Page 4: UI: Winning Page/Game Stats
 >Link of commit/Description of Work
+## Roberto Lozano
+* UI/Authentication: Log-In Screen
+>Link of commit/Description of Work
+## Jessica M.
+* UI: Pick 3 Categories (Before Start of Game)
+>Link of commit/Description of Work
+
 
 ## **Current Tasks** (02.17.21)
 
