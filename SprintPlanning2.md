@@ -9,10 +9,15 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ## Previous Tasks (02.10.21)
 * Donald: Making an instance of a game on iOS 
-* Jessica W: front-end wireframing 
+ >Link of commit/Description of Work
+* Jessica W: front-end wireframing
+>Link of commit/Description of Work 
 * Manprit: Firebase Schema
+>Link of commit/Description of Work
 * Roberto: Authenticate Log-In System
+>Link of commit/Description of Work
 * Jessica M: Creates skeleton and push to Github
+>Link of commit/Description of Work
 
 ## **Current Tasks** (02.17.21)
 ### The team is now working on creating a solid MVP to push up on the app store. Wireframes are done, UI implementation in progress.
