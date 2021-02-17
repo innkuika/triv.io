@@ -9,16 +9,16 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ## Previous Tasks (02.10.21)
 
 ### Donald Lieu
-* Making an instance of a game on iOS 
+* Research on making an instance of a game on iOS 
 >Link of commit/Description of Work
 ### Jessica Wu 
-* front-end wireframing 
+* Front-end Wireframing 
 >Link of commit/Description of Work
 ### Manprit Heer
-* Firebase Schema
+* Creation of Rouguh Schema for Firebase
 >Link of commit/Description of Work
 ### Roberto Lozano
-* Researc on Authentication Log-In System
+* Research on Authentication Log-In System
 >Link of commit/Description of Work
 ### Jessica Ma
 * Skeleton of app, push to Github
