@@ -8,7 +8,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ## Previous Tasks (02.10.21)
 
-### Donald L
+### Donald Lieu
 * Page 2: UI: Create Game/Join Game Page
 >Link of commit/Description of Work
 ### Jessica Wu 
@@ -20,14 +20,14 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Roberto Lozano
 * UI/Authentication: Log-In Screen
 >Link of commit/Description of Work
-### Jessica M.
+### Jessica Ma
 * UI: Pick 3 Categories (Before Start of Game)
 >Link of commit/Description of Work
 
 
 ## **Current Tasks** (02.17.21)
 
-### Donald L
+### Donald Lieu
 * Page 2: UI: Create Game/Join Game Page
 >Link of commit/Description of Work
 ### Jessica Wu 
@@ -39,6 +39,6 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Roberto Lozano
 * UI/Authentication: Log-In Screen
 >Link of commit/Description of Work
-### Jessica M.
+### Jessica Ma
 * UI: Pick 3 Categories (Before Start of Game)
 >Link of commit/Description of Work
