@@ -20,14 +20,19 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 >Link of commit/Description of Work
 
 ## **Current Tasks** (02.17.21)
-### The team is now working on creating a solid MVP to push up on the app store. Wireframes are done, UI implementation in progress.
-* Donald: Page 2: UI: Create Game/Join Game Page
+
+## Donald L
+* Page 2: UI: Create Game/Join Game Page
 >Link of commit/Description of Work
-* Jessica W: Page 3/3.5: UI: Single-Player/Bot Page + Spin Page
+## Jessica Wu 
+* Page 3/3.5: UI: Single-Player/Bot Page + Spin Page
 >Link of commit/Description of Work
-* Manprit: Page 4: UI: Winning Page/Game Stats
+## Manprit Heer
+* Page 4: UI: Winning Page/Game Stats
 >Link of commit/Description of Work
-* Roberto: Page 1: UI/Authentication: Log-In Screen
+## Roberto Lozano
+* UI/Authentication: Log-In Screen
 >Link of commit/Description of Work
-* Jessica M: Page 5: UI: Pick 3 Categories (Before Start of Game)
+## Jessica M.
+* UI: Pick 3 Categories (Before Start of Game)
 >Link of commit/Description of Work
