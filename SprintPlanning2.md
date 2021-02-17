@@ -15,7 +15,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Front-end Wireframing 
 >Link of commit/Description of Work
 ### Manprit Heer
-* Creation of Rouguh Schema for Firebase
+* Creation of Rough Schema for Firebase
 >Link of commit/Description of Work
 ### Roberto Lozano
 * Research on Authentication Log-In System
