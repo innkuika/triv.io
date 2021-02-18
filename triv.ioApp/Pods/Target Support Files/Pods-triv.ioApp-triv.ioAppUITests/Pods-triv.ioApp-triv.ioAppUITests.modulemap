@@ -1,0 +1,6 @@
+framework module Pods_triv_ioApp_triv_ioAppUITests {
+  umbrella header "Pods-triv.ioApp-triv.ioAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

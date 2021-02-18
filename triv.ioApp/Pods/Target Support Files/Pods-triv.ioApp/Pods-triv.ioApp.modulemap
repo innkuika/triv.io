@@ -1,0 +1,6 @@
+framework module Pods_triv_ioApp {
+  umbrella header "Pods-triv.ioApp-umbrella.h"
+
+  export *
+  module * { export * }
+}

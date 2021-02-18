@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'triv.ioApp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for triv.ioApp
+	pod 'SwiftFortuneWheel'
+
+  target 'triv.ioAppTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'triv.ioAppUITests' do
+    # Pods for testing
+  end
+
+end
