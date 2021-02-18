@@ -13,7 +13,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 >Link of commit/Description of Work
 ### Jessica Wu 
 * Front-end Wireframing 
->Link of commit/Description of Work
+  * Used Figma for MVP wireframing. Discussed the wireframe with teammates and improved it based on feedback. See work at: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=0%3A1
 ### Manprit Heer
 * Creation of Rough Schema for Firebase
 >Link of commit/Description of Work
@@ -32,7 +32,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 >Link of commit/Description of Work
 ### Jessica Wu 
 * Page 3/3.5: UI: Single-Player/Bot Page + Spin Page
->Link of commit/Description of Work
+ * Did some research on existing libraries for fortune wheels and tried to implement one that meets the requirement of the app. Gathered some image assests that will be useful in later development.
+ * Links to commit: https://github.com/ECS189E/project-w21-triv-io/commit/51d8f3ab0d5d9c9669ca55d3c3c83d2993b1cd40, https://github.com/ECS189E/project-w21-triv-io/commit/e2ee54fe09ee1ad2d01f7c9652ec7adff563f353
+ * Note: the segue in the commit is purely for testing purpose and will (100 percent) not show up in the final product.
 ### Manprit Heer
 * Page 4: UI: Winning Page/Game Stats
 >Link of commit/Description of Work
