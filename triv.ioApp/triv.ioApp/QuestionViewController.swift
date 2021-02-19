@@ -40,27 +40,33 @@ class QuestionViewController: UIViewController {
     }
     
     @objc func answerButtonClickHandler(sender: UIButton) {
-        guard let key = key else { return }
-        guard let answer = sender.titleLabel?.text else { return }
+        DispatchQueue.global().async(execute: {
+            DispatchQueue.main.sync {
+                guard let key = self.key else { return }
+                guard let answer = sender.titleLabel?.text else { return }
         
-        if key == answer {
-            resultLabelOutlet.text = "correct"
-        }
-        else {
-            resultLabelOutlet.text = "incorrect"
-        }
+                if key == answer {
+                    self.resultLabelOutlet.text = "correct"
+                }
+                else {
+                    self.resultLabelOutlet.text = "incorrect"
+                }
+            }
+            DispatchQueue.main.async {
+                // give user time to see the result
+                sleep(2)
+                // TODO: push result to database
+
+                // navigate back to spinWheelViewController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
+                    assertionFailure("cannot instantiate spinWheelViewController")
+                    return
+                }
+                self.navigationController?.pushViewController(spinWheelViewController, animated: true)
+            }
         
-        // TODO: push result to database
-        
-        // give user time to see the result
-        sleep(2)
-        
-        // navigate back to spinWheelViewController
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
-            assertionFailure("cannot instantiate spinWheelViewController")
-            return
-        }
-        navigationController?.pushViewController(spinWheelViewController, animated: true)
+        })
+
     }
 }

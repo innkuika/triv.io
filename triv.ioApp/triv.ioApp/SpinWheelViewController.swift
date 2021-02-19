@@ -11,17 +11,24 @@ import SwiftFortuneWheel
 
 class SpinWheelViewController: UIViewController {
 
-    @IBOutlet weak var fortuneWheelViewOutlet: SwiftFortuneWheel! 
+    @IBOutlet weak var spinButtonOutlet: UIButton!
+    @IBOutlet weak var fortuneWheelViewOutlet: SwiftFortuneWheel!
     // pass in the category names here
     var SpinWheelTextArray: [String] = ["small KT", "middle KT", "big KT", "XL KT", "cute KT", "fat KT"]
+    var finishIndex: Int?
+    
+    // query from database
+    var isUserTurn = true
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: query current game state from database and render accordingly
-        var slices: [Slice] = []
-        let textPreferences = TextPreferences(textColorType: SFWConfiguration.ColorType.evenOddColors(evenColor: .black, oddColor: .black), font: SFWFont.systemFont(ofSize: 15))
         
+        
+        var slices: [Slice] = []
+        // slice customization
+        let textPreferences = TextPreferences(textColorType: SFWConfiguration.ColorType.evenOddColors(evenColor: .black, oddColor: .black), font: SFWFont.systemFont(ofSize: 15))
         SpinWheelTextArray.forEach {
             let textSliceContent = Slice.ContentType.text(text: $0, preferences: textPreferences)
             let slice = Slice(contents: [textSliceContent])
@@ -30,7 +37,7 @@ class SpinWheelViewController: UIViewController {
         fortuneWheelViewOutlet.pinImage = "long-arrow-up"
         fortuneWheelViewOutlet.isSpinEnabled = true
 
-
+        // wheel customizations
 //        let sliceColorType = SFWConfiguration.ColorType.evenOddColors(evenColor: .red, oddColor: .cyan)
         let pin = SFWConfiguration.PinImageViewPreferences(size: CGSize(width: 13, height: 40), position: .top, verticalOffset: -25)
         let spin = SFWConfiguration.SpinButtonPreferences(size: CGSize(width: 50, height: 20))
@@ -52,13 +59,30 @@ class SpinWheelViewController: UIViewController {
             assertionFailure("cannot instantiate questionViewController")
             return
         }
-
-        fortuneWheelViewOutlet.startRotationAnimation(finishIndex: finishIndex, continuousRotationTime: 1) { (finished) in
+        
+        // if it's not user's turn, it's bot's turn and will spin automatically
+        if !isUserTurn{
+            spinButtonOutlet.isEnabled = false
+            fortuneWheelViewOutlet.startRotationAnimation(finishIndex: finishIndex, continuousRotationTime: 1) { (finished) in
             questionViewController.questionCategory = self.SpinWheelTextArray[finishIndex]
             self.navigationController?.pushViewController(questionViewController, animated: true)
                 }
+        }
     }
 
+    @IBAction func spinButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let questionViewController = storyboard.instantiateViewController(identifier: "questionViewController") as? QuestionViewController else {
+            assertionFailure("cannot instantiate questionViewController")
+            return
+        }
+        
+        fortuneWheelViewOutlet.startRotationAnimation(finishIndex: finishIndex ?? 0, continuousRotationTime: 1) { (finished) in
+            questionViewController.questionCategory = self.SpinWheelTextArray[self.finishIndex ?? 0]
+        self.navigationController?.pushViewController(questionViewController, animated: true)
+            }
 
+    }
+    
 }
 
