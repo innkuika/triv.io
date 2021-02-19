@@ -18,6 +18,7 @@ class SpinWheelViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // TODO: query current game state from database and render accordingly
         var slices: [Slice] = []
         let textPreferences = TextPreferences(textColorType: SFWConfiguration.ColorType.evenOddColors(evenColor: .black, oddColor: .black), font: SFWFont.systemFont(ofSize: 15))
         
@@ -42,34 +43,22 @@ class SpinWheelViewController: UIViewController {
         
         fortuneWheelViewOutlet.configuration = configuration
         fortuneWheelViewOutlet.slices = slices
-        fortuneWheelViewOutlet.startRotationAnimation(finishIndex: 0, continuousRotationTime: 1) { (finished) in
-                    print(finished)
+        
+        let finishIndex = Int.random(in: 0 ..< SpinWheelTextArray.count)
+        
+        // get questionViewController and prepare navigation
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let questionViewController = storyboard.instantiateViewController(identifier: "questionViewController") as? QuestionViewController else {
+            assertionFailure("cannot instantiate questionViewController")
+            return
+        }
+
+        fortuneWheelViewOutlet.startRotationAnimation(finishIndex: finishIndex, continuousRotationTime: 1) { (finished) in
+            questionViewController.questionCategory = self.SpinWheelTextArray[finishIndex]
+            self.navigationController?.pushViewController(questionViewController, animated: true)
                 }
     }
 
 
 }
 
-public extension SFWConfiguration {
-    static var variousWheelJackpotConfiguration: SFWConfiguration {
-        let anchorImage = SFWConfiguration.AnchorImage(imageName: "blueAnchorImage", size: CGSize(width: 12, height: 12), verticalOffset: -22)
-        
-        let pin = SFWConfiguration.PinImageViewPreferences(size: CGSize(width: 13, height: 40), position: .top, verticalOffset: -25)
-        
-        let spin = SFWConfiguration.SpinButtonPreferences(size: CGSize(width: 20, height: 20))
-        
-        let sliceColorType = SFWConfiguration.ColorType.customPatternColors(colors: nil, defaultColor: .white)
-        
-        let slicePreferences = SFWConfiguration.SlicePreferences(backgroundColorType: sliceColorType, strokeWidth: 0, strokeColor: .white)
-        
-        let circlePreferences = SFWConfiguration.CirclePreferences(strokeWidth: 15, strokeColor: .black)
-        
-        var wheelPreferences = SFWConfiguration.WheelPreferences(circlePreferences: circlePreferences, slicePreferences: slicePreferences, startPosition: .top)
-        
-        wheelPreferences.centerImageAnchor = anchorImage
-        
-        let configuration = SFWConfiguration(wheelPreferences: wheelPreferences, pinPreferences: pin, spinButtonPreferences: spin)
-        
-        return configuration
-    }
-}
