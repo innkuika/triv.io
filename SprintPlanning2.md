@@ -16,7 +16,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
   * Used Figma for MVP wireframing. Discussed the wireframe with teammates and improved it based on feedback. See work at: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=0%3A1
 ### Manprit Heer
 * Creation of Rough Schema for Firebase
->Link of commit/Description of Work
+	* Uploaded png file of schema: https://github.com/ECS189E/project-w21-triv-io/commit/9c4db5b0cd043c8b881c93872280a9481c7fa9b7
 ### Roberto Lozano
 * Authentication Log-In System
 	* Decided which platforms we would like to use for our Login/Authentication system.
