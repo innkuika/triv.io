@@ -53,3 +53,4 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * This app screen displays the list of existing categories of trivia questions and allows the player to select a total of three categories to play from.
 * Created an initial Game Model that interacts with the Category Selection View Controller as the user selects and deselects different categories from the list. The list of available categories is currently hard-coded inside the Game Model.
 * Link to commit: https://github.com/ECS189E/project-w21-triv-io/commit/7e76402020e35dae3ae199226cc87027770fba8a
+* Will work on creating trivia questions to be added to the app
