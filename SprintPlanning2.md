@@ -43,4 +43,5 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 >Link of commit/Description of Work
 ### Jessica Ma
 * UI: Pick 3 Categories (Before Start of Game)
->Link of commit/Description of Work
+* This app screen displays the list of existing categories of trivia questions and allows the player to select a total of three categories to play from.
+* Link to commit: https://github.com/ECS189E/project-w21-triv-io/commit/7e76402020e35dae3ae199226cc87027770fba8a
