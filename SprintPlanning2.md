@@ -16,10 +16,12 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
   * Used Figma for MVP wireframing. Discussed the wireframe with teammates and improved it based on feedback. See work at: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=0%3A1
 ### Manprit Heer
 * Creation of Rough Schema for Firebase
-* Uploaded png file of schema: https://github.com/ECS189E/project-w21-triv-io/commit/9c4db5b0cd043c8b881c93872280a9481c7fa9b7
-### Roberto Lozano
-* Research on Authentication Log-In System
 >Link of commit/Description of Work
+### Roberto Lozano
+* Authentication Log-In System
+	* Decided which platforms we would like to use for our Login/Authentication system.
+	* Worked on researching and doing set up for the authentication and login system for our app. Setup FireStore/FireBase app and began implementing Google Authentication/Login.
+	* Link to commit: https://github.com/ECS189E/project-w21-triv-io/commit/ef6f2f1ec282e348c528b8aea67367855ad7a250
 ### Jessica Ma
 * Skeleton of app, push to Github
 >Link of commit/Description of Work
@@ -37,11 +39,14 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
  * Note: the segue in the commit is purely for testing purpose and will (100 percent) not show up in the final product.
 ### Manprit Heer
 * Page 4: UI: Winning Page/Game Stats
- * Page is in progress. Created a more solid wireframe of the Game Stats to go on top of existing wireframe by Jessica. Pages will be completed by tomorrow morning, before 02/19 meeting. 
- * Initiated Logo-Making process for app 
+>Link of commit/Description of Work
 ### Roberto Lozano
 * UI/Authentication: Log-In Screen
->Link of commit/Description of Work
+	* Continued work on the login/authentication system.
+	* Finished implementing Google Login/Authentication
+	* Began and completed Facebook Login/Authentication
+	* Beginning research on implementing Apple Login/Authentication
+	* Link to commit: https://github.com/ECS189E/project-w21-triv-io/commit/ef6f2f1ec282e348c528b8aea67367855ad7a250
 ### Jessica Ma
 * UI: Pick 3 Categories (Before Start of Game)
 * This app screen displays the list of existing categories of trivia questions and allows the player to select a total of three categories to play from.
