@@ -37,8 +37,8 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
  * Note: the segue in the commit is purely for testing purpose and will (100 percent) not show up in the final product.
 ### Manprit Heer
 * Page 4: UI: Winning Page/Game Stats
- * Page is in progress. Created a more solid wireframe of the Game Stats. Pages will be completed by tomorrow morning, before 02/19 meeting. 
- * Initiated Logo-Making progress for app 
+ * Page is in progress. Created a more solid wireframe of the Game Stats to go on top of existing wireframe by Jessica. Pages will be completed by tomorrow morning, before 02/19 meeting. 
+ * Initiated Logo-Making process for app 
 ### Roberto Lozano
 * UI/Authentication: Log-In Screen
 >Link of commit/Description of Work
