@@ -10,7 +10,10 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ### Donald Lieu
 * Research on making an instance of a game on iOS 
->Link of commit/Description of Work
+    * Created protocols for proposed database schema. 
+    > https://github.com/ECS189E/project-w21-triv-io/commit/6c15e7497c4347b992e3afb40ccbcec3ca386a2b#diff-a2936beff2f4c0d0b8fc4047d78e060e0d09c0b2b2d26704fed69e635d4307a8
+    * Created function stubs for classes implementing said protocols and some mocks. 
+    > https://github.com/ECS189E/project-w21-triv-io/commit/8be6575b06c90d5a0820e9cc168d68c79bc8eeb1#diff-a2936beff2f4c0d0b8fc4047d78e060e0d09c0b2b2d26704fed69e635d4307a8
 ### Jessica Wu 
 * Front-end Wireframing 
   * Used Figma for MVP wireframing. Discussed the wireframe with teammates and improved it based on feedback. See work at: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=0%3A1
@@ -31,7 +34,8 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ### Donald Lieu
 * Page 2: UI: Create Game/Join Game Page
->Link of commit/Description of Work
+* Added navigation controller and button to navigate to new home controller.
+> https://github.com/ECS189E/project-w21-triv-io/commit/cc4b292b2717e546054c9157fe4815dd5a0204dd#diff-a2936beff2f4c0d0b8fc4047d78e060e0d09c0b2b2d26704fed69e635d4307a8
 ### Jessica Wu 
 * Page 3/3.5: UI: Single-Player/Bot Page + Spin Page
  * Did some research on existing libraries for fortune wheels and tried to implement one that meets the requirement of the app. Gathered some image assests that will be useful in later development.
