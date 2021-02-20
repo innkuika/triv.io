@@ -15,16 +15,6 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iua-pa-J9B">
-                                <rect key="frame" x="184" y="475" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="4Dg-3a-Svs" kind="show" id="KqJ-ue-qCG"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -43,22 +33,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="spinwheel page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNT-MS-uye">
-                                <rect key="frame" x="186" y="77" width="119" height="21"/>
+                                <rect key="frame" x="148" y="61" width="119" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8W-m1-WZZ">
-                                <rect key="frame" x="191" y="745" width="33" height="30"/>
+                                <rect key="frame" x="191" y="815" width="33" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="spin!"/>
                                 <connections>
                                     <action selector="spinButtonPressed:" destination="W5N-fV-J4a" eventType="touchUpInside" id="Q8B-aO-to4"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEC-0h-ZNf" customClass="SwiftFortuneWheel" customModule="SwiftFortuneWheel">
-                                <rect key="frame" x="20" y="322" width="374" height="374"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6qK-6n-XXh">
+                                <rect key="frame" x="20" y="107" width="374" height="246"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                            <view contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yEC-0h-ZNf" customClass="SwiftFortuneWheel" customModule="SwiftFortuneWheel">
+                                <rect key="frame" x="20" y="420" width="374" height="374"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -69,6 +63,7 @@
                     <navigationItem key="navigationItem" id="OxE-nq-JlA"/>
                     <connections>
                         <outlet property="fortuneWheelViewOutlet" destination="yEC-0h-ZNf" id="dWb-PN-lpa"/>
+                        <outlet property="scoreBoardUIViewOutlet" destination="6qK-6n-XXh" id="UM1-pg-VhE"/>
                         <outlet property="spinButtonOutlet" destination="n8W-m1-WZZ" id="cH6-tP-M59"/>
                     </connections>
                 </viewController>
@@ -140,7 +135,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ksD-CY-NF7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="co6-gh-jSU" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="co6-gh-jSU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="OBe-t5-bTv">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
