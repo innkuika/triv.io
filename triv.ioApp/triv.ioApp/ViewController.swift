@@ -15,11 +15,11 @@ class ViewController: UIViewController {
         
         // for testing, can be safely removed
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
-            assertionFailure("cannot instantiate spinWheelViewController")
+        guard let categorySelectionViewController = storyboard.instantiateViewController(identifier: "categorySelectionViewController") as? CategorySelectionViewController else {
+            assertionFailure("cannot instantiate categorySelectionViewController")
             return
         }
-        self.navigationController?.pushViewController(spinWheelViewController, animated: true)
+        self.navigationController?.pushViewController(categorySelectionViewController, animated: true)
     }
 
 

@@ -14,7 +14,7 @@ class QuestionViewController: UIViewController {
     
     // init in viewDidLoad
     var key: String?
-    var answerArray: [String]
+    var answerArray: [String] = []
     
     @IBOutlet weak var questionLabelOutlet: UILabel!
     @IBOutlet weak var answerAButtonOutlet: UIButton!
@@ -56,7 +56,7 @@ class QuestionViewController: UIViewController {
                 sleep(2)
             
                 // TODO: push result (user and bot) to database
-                botAnswer = answerArray[2]
+                let botAnswer = self.answerArray[2]
                 
                 // navigate back to spinWheelViewController
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

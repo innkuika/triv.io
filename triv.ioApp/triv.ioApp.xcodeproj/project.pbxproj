@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0978E391E80ED83DB1CBAD5A /* Pods_triv_ioApp_triv_ioAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E26512DCB5337365C11DEC /* Pods_triv_ioApp_triv_ioAppUITests.framework */; };
+		2CA142F625E1EAAE0066E410 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F425E1EAAE0066E410 /* GameModel.swift */; };
+		2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */; };
 		4954C5CB25DFA185002CB36C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954C5CA25DFA185002CB36C /* QuestionViewController.swift */; };
 		49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */; };
 		8287C42225D78EF100729808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42125D78EF100729808 /* AppDelegate.swift */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		228883F98C693499DA6480BC /* Pods-triv.ioApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp.release.xcconfig"; path = "Target Support Files/Pods-triv.ioApp/Pods-triv.ioApp.release.xcconfig"; sourceTree = "<group>"; };
+		2CA142F425E1EAAE0066E410 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
 		4954C5CA25DFA185002CB36C /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinWheelViewController.swift; sourceTree = "<group>"; };
 		53DB972446EBDFA5213734A6 /* Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-triv.ioApp-triv.ioAppUITests/Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 		8287C42025D78EF100729808 /* triv.ioApp */ = {
 			isa = PBXGroup;
 			children = (
+				2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */,
+				2CA142F425E1EAAE0066E410 /* GameModel.swift */,
 				8287C42125D78EF100729808 /* AppDelegate.swift */,
 				8287C42325D78EF100729808 /* SceneDelegate.swift */,
 				8287C42525D78EF100729808 /* ViewController.swift */,
@@ -418,8 +424,10 @@
 				4954C5CB25DFA185002CB36C /* QuestionViewController.swift in Sources */,
 				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
 				49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */,
+				2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */,
 				8287C42625D78EF100729808 /* ViewController.swift in Sources */,
 				8287C42225D78EF100729808 /* AppDelegate.swift in Sources */,
+				2CA142F625E1EAAE0066E410 /* GameModel.swift in Sources */,
 				8287C42425D78EF100729808 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +608,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KKBC76327S;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -620,6 +629,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KKBC76327S;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
