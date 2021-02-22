@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0978E391E80ED83DB1CBAD5A /* Pods_triv_ioApp_triv_ioAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E26512DCB5337365C11DEC /* Pods_triv_ioApp_triv_ioAppUITests.framework */; };
-		2CA142F625E1EAAE0066E410 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F425E1EAAE0066E410 /* GameModel.swift */; };
 		2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */; };
 		44A5745425DF65760053E990 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745325DF65760053E990 /* HomeViewController.swift */; };
 		44A5745E25DF7C070053E990 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745D25DF7C070053E990 /* UserModel.swift */; };
@@ -21,11 +20,12 @@
 		44A5749A25DF8ACE0053E990 /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5749925DF8ACE0053E990 /* QuestionProtocol.swift */; };
 		44A5749F25DF90C80053E990 /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5749E25DF90C80053E990 /* BotUser.swift */; };
 		44D9650225E372D20030382A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44D9650125E372D20030382A /* GoogleService-Info.plist */; };
-		4954C5CB25DFA185002CB36C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954C5CA25DFA185002CB36C /* QuestionViewController.swift */; };
-		49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */; };
+		44D9657525E379980030382A /* SpinWheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657225E379980030382A /* SpinWheelViewController.swift */; };
+		44D9657625E379980030382A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657325E379980030382A /* ViewController.swift */; };
+		44D9657725E379980030382A /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657425E379980030382A /* QuestionViewController.swift */; };
+		44D9658025E379D60030382A /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657E25E379D60030382A /* GameModel.swift */; };
 		8287C42225D78EF100729808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42125D78EF100729808 /* AppDelegate.swift */; };
 		8287C42425D78EF100729808 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42325D78EF100729808 /* SceneDelegate.swift */; };
-		8287C42625D78EF100729808 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42525D78EF100729808 /* ViewController.swift */; };
 		8287C42925D78EF200729808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8287C42725D78EF200729808 /* Main.storyboard */; };
 		8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42A25D78EF200729808 /* triv_ioApp.xcdatamodeld */; };
 		8287C42E25D78EF500729808 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8287C42D25D78EF500729808 /* Assets.xcassets */; };
@@ -55,7 +55,6 @@
 
 /* Begin PBXFileReference section */
 		228883F98C693499DA6480BC /* Pods-triv.ioApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp.release.xcconfig"; path = "Target Support Files/Pods-triv.ioApp/Pods-triv.ioApp.release.xcconfig"; sourceTree = "<group>"; };
-		2CA142F425E1EAAE0066E410 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
 		44A5745325DF65760053E990 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		44A5745D25DF7C070053E990 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -68,13 +67,14 @@
 		44A5749925DF8ACE0053E990 /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
 		44A5749E25DF90C80053E990 /* BotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotUser.swift; sourceTree = "<group>"; };
 		44D9650125E372D20030382A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		4954C5CA25DFA185002CB36C /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
-		49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinWheelViewController.swift; sourceTree = "<group>"; };
+		44D9657225E379980030382A /* SpinWheelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinWheelViewController.swift; sourceTree = "<group>"; };
+		44D9657325E379980030382A /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		44D9657425E379980030382A /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		44D9657E25E379D60030382A /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		53DB972446EBDFA5213734A6 /* Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-triv.ioApp-triv.ioAppUITests/Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8287C41E25D78EF100729808 /* triv.ioApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = triv.ioApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8287C42125D78EF100729808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8287C42325D78EF100729808 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8287C42525D78EF100729808 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8287C42825D78EF200729808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8287C42B25D78EF200729808 /* triv_ioApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = triv_ioApp.xcdatamodel; sourceTree = "<group>"; };
 		8287C42D25D78EF500729808 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -126,6 +126,9 @@
 		44A5745125DF65450053E990 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				44D9657425E379980030382A /* QuestionViewController.swift */,
+				44D9657225E379980030382A /* SpinWheelViewController.swift */,
+				44D9657325E379980030382A /* ViewController.swift */,
 				44A5745325DF65760053E990 /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
@@ -147,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				44A5746A25DF7D3E0053E990 /* Mocks */,
+				44D9657E25E379D60030382A /* GameModel.swift */,
 				44A5745D25DF7C070053E990 /* UserModel.swift */,
 				44A5749E25DF90C80053E990 /* BotUser.swift */,
 			);
@@ -189,20 +193,16 @@
 			children = (
 				44D9650125E372D20030382A /* GoogleService-Info.plist */,
 				2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */,
-				2CA142F425E1EAAE0066E410 /* GameModel.swift */,
 				44A5745C25DF7BF40053E990 /* Models */,
 				44A5745225DF654C0053E990 /* Protocols */,
 				44A5745125DF65450053E990 /* ViewControllers */,
 				8287C42125D78EF100729808 /* AppDelegate.swift */,
 				8287C42325D78EF100729808 /* SceneDelegate.swift */,
-				8287C42525D78EF100729808 /* ViewController.swift */,
 				8287C42725D78EF200729808 /* Main.storyboard */,
 				8287C42D25D78EF500729808 /* Assets.xcassets */,
 				8287C42F25D78EF500729808 /* LaunchScreen.storyboard */,
 				8287C43225D78EF500729808 /* Info.plist */,
 				8287C42A25D78EF200729808 /* triv_ioApp.xcdatamodeld */,
-				49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */,
-				4954C5CA25DFA185002CB36C /* QuestionViewController.swift */,
 			);
 			path = triv.ioApp;
 			sourceTree = "<group>";
@@ -487,24 +487,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4954C5CB25DFA185002CB36C /* QuestionViewController.swift in Sources */,
 				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
-				49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */,
+				44D9657525E379980030382A /* SpinWheelViewController.swift in Sources */,
+				44D9657625E379980030382A /* ViewController.swift in Sources */,
 				2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */,
+				44D9657725E379980030382A /* QuestionViewController.swift in Sources */,
 				44A5746C25DF7D5A0053E990 /* UserModelMock.swift in Sources */,
 				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
 				44A5745E25DF7C070053E990 /* UserModel.swift in Sources */,
 				44A5749F25DF90C80053E990 /* BotUser.swift in Sources */,
 				44A5748A25DF862B0053E990 /* GameStateProtocol.swift in Sources */,
-				49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */,
+				44D9658025E379D60030382A /* GameModel.swift in Sources */,
 				44A5747D25DF83620053E990 /* GameInstanceProtocol.swift in Sources */,
 				44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */,
-				8287C42625D78EF100729808 /* ViewController.swift in Sources */,
 				44A5748225DF843B0053E990 /* GameInstanceModelMock.swift in Sources */,
 				44A5749A25DF8ACE0053E990 /* QuestionProtocol.swift in Sources */,
 				44A5749225DF8A400053E990 /* CategoryProtocol.swift in Sources */,
 				8287C42225D78EF100729808 /* AppDelegate.swift in Sources */,
-				2CA142F625E1EAAE0066E410 /* GameModel.swift in Sources */,
 				8287C42425D78EF100729808 /* SceneDelegate.swift in Sources */,
 				44A5745425DF65760053E990 /* HomeViewController.swift in Sources */,
 			);
