@@ -10,6 +10,17 @@
 		0978E391E80ED83DB1CBAD5A /* Pods_triv_ioApp_triv_ioAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7E26512DCB5337365C11DEC /* Pods_triv_ioApp_triv_ioAppUITests.framework */; };
 		2CA142F625E1EAAE0066E410 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F425E1EAAE0066E410 /* GameModel.swift */; };
 		2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */; };
+		44A5745425DF65760053E990 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745325DF65760053E990 /* HomeViewController.swift */; };
+		44A5745E25DF7C070053E990 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745D25DF7C070053E990 /* UserModel.swift */; };
+		44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5746525DF7CB90053E990 /* UserProtocol.swift */; };
+		44A5746C25DF7D5A0053E990 /* UserModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5746B25DF7D5A0053E990 /* UserModelMock.swift */; };
+		44A5747D25DF83620053E990 /* GameInstanceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5747C25DF83620053E990 /* GameInstanceProtocol.swift */; };
+		44A5748225DF843B0053E990 /* GameInstanceModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5748125DF843B0053E990 /* GameInstanceModelMock.swift */; };
+		44A5748A25DF862B0053E990 /* GameStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5748925DF862B0053E990 /* GameStateProtocol.swift */; };
+		44A5749225DF8A400053E990 /* CategoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5749125DF8A400053E990 /* CategoryProtocol.swift */; };
+		44A5749A25DF8ACE0053E990 /* QuestionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5749925DF8ACE0053E990 /* QuestionProtocol.swift */; };
+		44A5749F25DF90C80053E990 /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5749E25DF90C80053E990 /* BotUser.swift */; };
+		44D9650225E372D20030382A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44D9650125E372D20030382A /* GoogleService-Info.plist */; };
 		4954C5CB25DFA185002CB36C /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4954C5CA25DFA185002CB36C /* QuestionViewController.swift */; };
 		49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */; };
 		8287C42225D78EF100729808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42125D78EF100729808 /* AppDelegate.swift */; };
@@ -46,6 +57,17 @@
 		228883F98C693499DA6480BC /* Pods-triv.ioApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp.release.xcconfig"; path = "Target Support Files/Pods-triv.ioApp/Pods-triv.ioApp.release.xcconfig"; sourceTree = "<group>"; };
 		2CA142F425E1EAAE0066E410 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
+		44A5745325DF65760053E990 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		44A5745D25DF7C070053E990 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		44A5746525DF7CB90053E990 /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
+		44A5746B25DF7D5A0053E990 /* UserModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelMock.swift; sourceTree = "<group>"; };
+		44A5747C25DF83620053E990 /* GameInstanceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInstanceProtocol.swift; sourceTree = "<group>"; };
+		44A5748125DF843B0053E990 /* GameInstanceModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInstanceModelMock.swift; sourceTree = "<group>"; };
+		44A5748925DF862B0053E990 /* GameStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateProtocol.swift; sourceTree = "<group>"; };
+		44A5749125DF8A400053E990 /* CategoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProtocol.swift; sourceTree = "<group>"; };
+		44A5749925DF8ACE0053E990 /* QuestionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionProtocol.swift; sourceTree = "<group>"; };
+		44A5749E25DF90C80053E990 /* BotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotUser.swift; sourceTree = "<group>"; };
+		44D9650125E372D20030382A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4954C5CA25DFA185002CB36C /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		49D7785A25DE38E500ECCC69 /* SpinWheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinWheelViewController.swift; sourceTree = "<group>"; };
 		53DB972446EBDFA5213734A6 /* Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-triv.ioApp-triv.ioAppUITests/Pods-triv.ioApp-triv.ioAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +123,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44A5745125DF65450053E990 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				44A5745325DF65760053E990 /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		44A5745225DF654C0053E990 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				44A5746525DF7CB90053E990 /* UserProtocol.swift */,
+				44A5747C25DF83620053E990 /* GameInstanceProtocol.swift */,
+				44A5748925DF862B0053E990 /* GameStateProtocol.swift */,
+				44A5749125DF8A400053E990 /* CategoryProtocol.swift */,
+				44A5749925DF8ACE0053E990 /* QuestionProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		44A5745C25DF7BF40053E990 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				44A5746A25DF7D3E0053E990 /* Mocks */,
+				44A5745D25DF7C070053E990 /* UserModel.swift */,
+				44A5749E25DF90C80053E990 /* BotUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		44A5746A25DF7D3E0053E990 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				44A5746B25DF7D5A0053E990 /* UserModelMock.swift */,
+				44A5748125DF843B0053E990 /* GameInstanceModelMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		8287C41525D78EF100729808 = {
 			isa = PBXGroup;
 			children = (
@@ -126,8 +187,12 @@
 		8287C42025D78EF100729808 /* triv.ioApp */ = {
 			isa = PBXGroup;
 			children = (
+				44D9650125E372D20030382A /* GoogleService-Info.plist */,
 				2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */,
 				2CA142F425E1EAAE0066E410 /* GameModel.swift */,
+				44A5745C25DF7BF40053E990 /* Models */,
+				44A5745225DF654C0053E990 /* Protocols */,
+				44A5745125DF65450053E990 /* ViewControllers */,
 				8287C42125D78EF100729808 /* AppDelegate.swift */,
 				8287C42325D78EF100729808 /* SceneDelegate.swift */,
 				8287C42525D78EF100729808 /* ViewController.swift */,
@@ -292,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8287C43125D78EF500729808 /* LaunchScreen.storyboard in Resources */,
+				44D9650225E372D20030382A /* GoogleService-Info.plist in Resources */,
 				8287C42E25D78EF500729808 /* Assets.xcassets in Resources */,
 				8287C42925D78EF200729808 /* Main.storyboard in Resources */,
 			);
@@ -425,10 +491,22 @@
 				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
 				49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */,
 				2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */,
+				44A5746C25DF7D5A0053E990 /* UserModelMock.swift in Sources */,
+				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
+				44A5745E25DF7C070053E990 /* UserModel.swift in Sources */,
+				44A5749F25DF90C80053E990 /* BotUser.swift in Sources */,
+				44A5748A25DF862B0053E990 /* GameStateProtocol.swift in Sources */,
+				49D7785B25DE38E500ECCC69 /* SpinWheelViewController.swift in Sources */,
+				44A5747D25DF83620053E990 /* GameInstanceProtocol.swift in Sources */,
+				44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */,
 				8287C42625D78EF100729808 /* ViewController.swift in Sources */,
+				44A5748225DF843B0053E990 /* GameInstanceModelMock.swift in Sources */,
+				44A5749A25DF8ACE0053E990 /* QuestionProtocol.swift in Sources */,
+				44A5749225DF8A400053E990 /* CategoryProtocol.swift in Sources */,
 				8287C42225D78EF100729808 /* AppDelegate.swift in Sources */,
 				2CA142F625E1EAAE0066E410 /* GameModel.swift in Sources */,
 				8287C42425D78EF100729808 /* SceneDelegate.swift in Sources */,
+				44A5745425DF65760053E990 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +612,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -589,7 +667,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -606,7 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KKBC76327S;
+				DEVELOPMENT_TEAM = 9MBGAAQZU2;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -627,7 +705,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KKBC76327S;
+				DEVELOPMENT_TEAM = 9MBGAAQZU2;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (

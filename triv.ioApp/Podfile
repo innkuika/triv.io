@@ -6,8 +6,9 @@ target 'triv.ioApp' do
   use_frameworks!
 
   # Pods for triv.ioApp
+	pod 'Firebase'
 	pod 'SwiftFortuneWheel'
-
+	
   target 'triv.ioAppTests' do
     inherit! :search_paths
     # Pods for testing
