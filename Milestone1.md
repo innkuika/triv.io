@@ -1,7 +1,7 @@
 # Milestone 1 - triv.io 
 ## Trivia App 
 ____________________________________________
-### Manprit Heer ![Screenshot](/profilePictures/Manprit_189E.JPG | width=25)
+### Manprit Heer ![Screenshot](/profilePictures/Manprit_189E.JPG =25x25)
 	 Github: @mamkh27
 ### Donald Lieu
 	 Github: @de-Blaxe
