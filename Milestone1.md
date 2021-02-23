@@ -1,15 +1,15 @@
 # Milestone 1 - triv.io 
 ## Trivia App 
 ____________________________________________
-### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/Manprit_189E.JPG" width="75" height="75"> Manprit Heer 
+### <img src="profilePictures/Manprit_189E.JPG" alt="" width="75"/> Manprit Heer
 	 Github: @mamkh27
-### Donald Lieu
+### <img src="profilePictures/IMG_0023.jpg" alt="" width="75"/> Donald Lieu
 	 Github: @de-Blaxe
-### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/robertoPic.png" width="75" height="75"> Roberto Lozano 
+### <img src="profilePictures/robertoPic.png" alt="" width="75"/> Roberto Lozano 
 	 Github: @robertolozano
-### Jessica Wu
+### <img src="profilePictures/Jessica Wu profile picture.png" width="75" height="75"> Jessica Wu
 	 Github: @innkuika
-### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/JessicaMa.jpg" width="75" height="75"> Jessica Ma
+### <img src="profilePictures/JessicaMa.jpg" width="75" height="75"> Jessica Ma
 	 Github: @ma-jessica
 
 ### 1. Screen Designs: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=56%3A82
