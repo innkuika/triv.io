@@ -2,6 +2,7 @@
 ## Trivia App 
 ____________________________________________
 #### Manprit Heer, Donald Lieu, Roberto Lozano, Jessica Wu, Jessica Ma
+#### Trello Board: https://trello.com/b/uw1VUGxd/trivio-app-project
 
 ### 1. Screen Designs: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=56%3A82
 ____________________________________________________
