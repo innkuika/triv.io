@@ -1,5 +1,6 @@
 # Milestone 1 - triv.io 
-## Trivia App 
+## Trivia App
+#### Trello Board: https://trello.com/b/uw1VUGxd/trivio-app-project
 ____________________________________________
 ### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/Manprit_189E.JPG" width="75" height="75"> Manprit Heer 
 	 Github: @mamkh27
