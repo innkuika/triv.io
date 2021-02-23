@@ -5,7 +5,7 @@ ____________________________________________
 	 Github: @mamkh27
 ### Donald Lieu
 	 Github: @de-Blaxe
-### Roberto Lozano
+### Roberto Lozano ![Picture]((/profilePictures/robertoPic.png)
 	 Github: @robertolozano
 ### Jessica Wu
 	 Github: @innkuika
