@@ -57,6 +57,7 @@ ____________________________________________________
 * User Protocol
 
 #### View Controller Communication: 
+*See Screen Design for Communication*
 *Game Variables:*
 * passing user information
 * refreshing/updating game state 
@@ -121,28 +122,23 @@ Initial Push of MVP to App Store DATE: 02/27/21
 Let User Create Questions/Categories
 
 Deadline: 02/22/21
-→ Create Database with Updated Schema (Finished) (Manprit)
-→ Connect Database to Server Side of iOS 
+→ Create Database with Updated Schema (Manprit) *FINISHED*
+→ Connect Database to Server Side of iOS *FINISHED*
 	-pod Firebase (Finished)
-	-fetch database, connect with models [Manprit/Donald]
-	-update(), delete(), create() [Manprit/Donald]
-
-
-
-
+	-fetch database, connect with models [Manprit/Donald] *FINISHED*
+	-update(), delete(), create() Documentation [Manprit/Donald] *FINISHED*
 
 Deadline: 02/25/21-02/26/21
-→ Polish UI [Jessica W] P3
-→ Further Database/Model Installation [Manprit/Donald] P1
-→ App Landing/Home Page [Jessica M] P2
-→ End of 2/26/21 Create Pages/Slide [Manprit] P3
-→ Implement Apple Login/Authentication (Roberto) P1
-
-→ Website (Landing Page) [Roberto] [Finished (For now)]
+* Polish UI [Jessica W] *P3*
+* Further Database/Model Installation [Manprit/Donald] *P1*
+* App Landing/Home Page [Jessica M] *P2*
+* End of 2/26/21 Create Pages/Slide [Manprit] *P3*
+* Implement Apple Login/Authentication (Roberto) *P1*
+* Website (Landing Page) [Roberto] [Finished (For now)]
 	- Privacy block 
 	-Logo + App Description + Link to App (App Store button) 
-→ Randomize Bot Data (Finished) 
-→ Create Categories/Questions (7/7 Finished) (Everyone)
+* Randomize Bot Data (Finished) 
+* Create Categories/Questions (7/7 Finished) (Everyone)
 	1. Science & Tech DONE
 	2. Video Games DONE
 	3. History
@@ -150,7 +146,7 @@ Deadline: 02/25/21-02/26/21
 	5. UC Davis
 	6. Art → Music/Paintings/Graffiti 
 	7. Sports
-→ Use Protocols to Connect Game Logic()
-→ 5 Questions Per Category 
-	- 4 answers per Question
+* Use Protocols to Connect Game Logic()
+* 5 Questions Per Category 
+ 	* 4 answers per Question
 
