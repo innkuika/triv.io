@@ -63,6 +63,7 @@ ____________________________________________________
 * refreshing/updating game state 
 * question 
 * categories chosen (6) 
+____________________________________________________
 ### 6. Testing Plan:
 #### 1. Log In:
 	* How long does it take a user to complete the authentication step?
