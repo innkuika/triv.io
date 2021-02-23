@@ -98,9 +98,9 @@ ____________________________________________________
 	* How often do you see yourself coming back to this app? 
 		* 	Never 
 		* 	Once a week
-		* 	 Once every few days 
-		* 	 Once a day 
-		* 	 Multiple times a day
+		* 	Once every few days 
+		* 	Once a day 
+		* 	Multiple times a day
 
 ____________________________________________________
 
@@ -110,7 +110,7 @@ Finished So Far:
 * Protocols/Model files initiated and filled 
 * MVP UI Done 
 
-Push App to App Store DATE: 03/  /21
+### Push App to App Store DATE: 03/06/21
 1. Implement rest of VCs
 * Coin Features
 * Shop for Avatar Customizations/Accessories
@@ -127,14 +127,14 @@ Push App to App Store DATE: 03/  /21
 Initial Push of MVP to App Store DATE: 02/27/21
 Let User Create Questions/Categories
 
-Deadline: 02/22/21
+### Deadline: 02/22/21
 → Create Database with Updated Schema (Manprit) *FINISHED*
 → Connect Database to Server Side of iOS *FINISHED*
 	-pod Firebase (Finished)
 	-fetch database, connect with models [Manprit/Donald] *FINISHED*
 	-update(), delete(), create() Documentation [Manprit/Donald] *FINISHED*
 
-Deadline: 02/25/21-02/26/21
+### Deadline: 02/25/21-02/26/21
 * Polish UI [Jessica W] *P3*
 * Further Database/Model Installation [Manprit/Donald] *P1*
 * App Landing/Home Page [Jessica M] *P2*
