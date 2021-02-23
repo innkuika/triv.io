@@ -33,7 +33,7 @@ ____________________________________________________
 
 ### 5. List of View Controllers to Implement: 
 	Launch Screen
-Log-In Screen
+	Log-In Screen
 	Send Code to User Screen (Join Game)
 	User Verifies Game Code Screen
 	Pick 3 Categories Screen 
@@ -52,16 +52,16 @@ Log-In Screen
 	Settings/User Screen
 
 #### Protocols/Delegates/Variables in Use: 
-Game Instance/State Protocol
-Question Protocol
-User Protocol
+* Game Instance/State Protocol
+* Question Protocol
+* User Protocol
 
 #### View Controller Communication: 
-Game Variables: 
-- passing user information
-- refreshing/updating game state 
-- question 
-- categories chosen (6) 
+*Game Variables:*
+* passing user information
+* refreshing/updating game state 
+* question 
+* categories chosen (6) 
 ### 6. Testing Plan:
 #### 1. Log In:
 How long does it take a user to complete the authentication step?
@@ -99,17 +99,17 @@ ____________________________________________________
 
 ### 7. Timeline / Week long tasks: 
 Finished So Far:
-- Basic Logic for Questions & Spinwheels
-- Protocols/Model files initiated and filled 
-- MVP UI Done 
+* Basic Logic for Questions & Spinwheels
+* Protocols/Model files initiated and filled 
+* MVP UI Done 
 
 Push App to App Store DATE: 03/  /21
 1. Implement rest of VCs
-	-Coin Features
--Shop for Avatar Customizations/Accessories
--Buy a new Category
--Coin Awards via Streaks and Referrals 
-	-Personalized Avatar Feature 
+* Coin Features
+* Shop for Avatar Customizations/Accessories
+* Buy a new Category
+* Coin Awards via Streaks and Referrals 
+	Personalized Avatar Feature 
 2. Add more questions (50+) to Each Category 
 3. Friend Implementation
 4. Leaderboard 
