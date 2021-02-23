@@ -7,7 +7,7 @@ ____________________________________________
 	 Github: @de-Blaxe
 ### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/robertoPic.png" width="75" height="75"> Roberto Lozano 
 	 Github: @robertolozano
-### Jessica Wu
+### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/Jessica%20Wu%20profile%20picture.png" width="75" height="75">  Jessica Wu
 	 Github: @innkuika
 ### <img src="https://github.com/ECS189E/project-w21-triv-io/blob/main/profilePictures/JessicaMa.jpg" width="75" height="75"> Jessica Ma
 	 Github: @ma-jessica
