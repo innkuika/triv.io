@@ -128,11 +128,11 @@ Initial Push of MVP to App Store DATE: 02/27/21
 Let User Create Questions/Categories
 
 ### Deadline: 02/22/21
-→ Create Database with Updated Schema (Manprit) *FINISHED*
-→ Connect Database to Server Side of iOS *FINISHED*
-	-pod Firebase (Finished)
-	-fetch database, connect with models [Manprit/Donald] *FINISHED*
-	-update(), delete(), create() Documentation [Manprit/Donald] *FINISHED*
+* Create Database with Updated Schema (Manprit) *FINISHED*
+* Connect Database to Server Side of iOS *FINISHED*
+	* pod Firebase (Finished)
+	* fetch database, connect with models [Manprit/Donald] *FINISHED*
+	* update(), delete(), create() Documentation [Manprit/Donald] *FINISHED*
 
 ### Deadline: 02/25/21-02/26/21
 * Polish UI [Jessica W] *P3*
@@ -141,8 +141,8 @@ Let User Create Questions/Categories
 * End of 2/26/21 Create Pages/Slide [Manprit] *P3*
 * Implement Apple Login/Authentication (Roberto) *P1*
 * Website (Landing Page) [Roberto] [Finished (For now)]
-	- Privacy block 
-	-Logo + App Description + Link to App (App Store button) 
+	* Privacy block 
+	* Logo + App Description + Link to App (App Store button) 
 * Randomize Bot Data (Finished) 
 * Create Categories/Questions (7/7 Finished) (Everyone)
 	1. Science & Tech DONE
