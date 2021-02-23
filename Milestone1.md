@@ -65,36 +65,42 @@ ____________________________________________________
 * categories chosen (6) 
 ### 6. Testing Plan:
 #### 1. Log In:
-How long does it take a user to complete the authentication step?
-Are the authentication methods that we currently provide sufficient? Is there an alternate authentication method that a significant portion of users would prefer to have as an option?
+	* How long does it take a user to complete the authentication step?
+	* Are the authentication methods that we currently provide sufficient? 
+	* Is there an alternate authentication method that a significant portion of users would prefer to have as an option?
 
 #### 2. Start/Join a Game:
-On a scale of 1-5, how easy was it to start a new game?
-On a scale of 1-5, how easy was it to join an existing game?
-On a scale of 1-5, how would you rate the look and feel of this interface?
+	* On a scale of 1-5, how easy was it to start a new game?
+	* On a scale of 1-5, how easy was it to join an existing game?
+	* On a scale of 1-5, how would you rate the look and feel of this interface?
 
 #### 3. Gameplay:
-On a scale of 1-5, how easy was it to understand the game mechanics?
-On a scale of 1-5, how fun and interesting were the trivia questions that you were given?
-On a scale of 1-5, how engaging was the gameplay overall?
-On a scale of 1-5, how would you rate the look and feel of this interface?
+	* On a scale of 1-5, how easy was it to understand the game mechanics?
+	* On a scale of 1-5, how fun and interesting were the trivia questions that you were given?
+	* On a scale of 1-5, how engaging was the gameplay overall?
+	* On a scale of 1-5, how would you rate the look and feel of this interface?
 
 #### 4. Contribute Questions:
-On a scale of 1-5, how easy was it to create and tag new questions?
-On a scale of 1-5, how would you rate the look and feel of this interface?
+	* On a scale of 1-5, how easy was it to create and tag new questions?
+	* On a scale of 1-5, how would you rate the look and feel of this interface?
 
 #### 5. User Profile:
-On a scale of 1-5, how easy was it to locate this page?
-On a scale of 1-5, how easy was it to update your profile information?
-On a scale of 1-5, how would you rate the look and feel of this interface?
+	* On a scale of 1-5, how easy was it to locate this page?
+	* On a scale of 1-5, how easy was it to update your profile information?
+	* On a scale of 1-5, how would you rate the look and feel of this interface?
 
 #### 6. Leaderboard:
-On a scale of 1-5, how easy was it to locate this page?
-On a scale of 1-5, how would you rate the look and feel of this interface?
+	* On a scale of 1-5, how easy was it to locate this page?
+	* On a scale of 1-5, how would you rate the look and feel of this interface?
 
 #### 7. Overall:
-On a scale of 1-5, how easy was it to navigate the app?
-How often do you see yourself coming back to this app? Never --- Once a week --- Once every few days --- Once a day --- Multiple times a day
+	* On a scale of 1-5, how easy was it to navigate the app?
+	* How often do you see yourself coming back to this app? 
+		* 	Never 
+		* 	Once a week
+		* 	 Once every few days 
+		* 	 Once a day 
+		* 	 Multiple times a day
 
 ____________________________________________________
 
