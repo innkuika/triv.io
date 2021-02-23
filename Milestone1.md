@@ -9,7 +9,7 @@ ____________________________________________
 	 Github: @robertolozano
 ### Jessica Wu
 	 Github: @innkuika
-### Jessica Ma
+### Jessica Ma ![Screenshot](/profilePictures/JessicaMa.jpg)
 	 Github: @ma-jessica
 
 ### 1. Screen Designs: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=56%3A82
