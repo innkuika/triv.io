@@ -1,8 +1,16 @@
 # Milestone 1 - triv.io 
 ## Trivia App 
 ____________________________________________
-#### Manprit Heer, Donald Lieu, Roberto Lozano, Jessica Wu, Jessica Ma
-#### Trello Board: https://trello.com/b/uw1VUGxd/trivio-app-project
+### Manprit Heer
+	* Github: @mamkh27
+### Donald Lieu
+	* Github: @de-Blaxe
+### Roberto Lozano
+	* Github: @robertolozano
+### Jessica Wu
+	* Github: @innkuika
+### Jessica Ma
+	* Github: @ma-jessica
 
 ### 1. Screen Designs: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=56%3A82
 ____________________________________________________
