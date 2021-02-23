@@ -1,16 +1,16 @@
 # Milestone 1 - triv.io 
 ## Trivia App 
 ____________________________________________
-### Manprit Heer
-	* Github: @mamkh27
+### Manprit Heer ./profilePictures/Manprit_189E.JPG
+	 Github: @mamkh27
 ### Donald Lieu
-	* Github: @de-Blaxe
+	 Github: @de-Blaxe
 ### Roberto Lozano
-	* Github: @robertolozano
+	 Github: @robertolozano
 ### Jessica Wu
-	* Github: @innkuika
+	 Github: @innkuika
 ### Jessica Ma
-	* Github: @ma-jessica
+	 Github: @ma-jessica
 
 ### 1. Screen Designs: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=56%3A82
 ____________________________________________________
