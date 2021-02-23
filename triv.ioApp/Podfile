@@ -8,6 +8,10 @@ target 'triv.ioApp' do
   # Pods for triv.ioApp
 	pod 'Firebase'
 	pod 'SwiftFortuneWheel'
+	pod 'Firebase/Auth'
+	pod 'GoogleSignIn'
+	pod 'FBSDKLoginKit'
+	pod 'Firebase/Auth'
 	
   target 'triv.ioAppTests' do
     inherit! :search_paths

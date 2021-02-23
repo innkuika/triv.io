@@ -143,7 +143,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="jg5-QJ-CBm"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="TNV-lv-0oy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-sH-fiL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -256,6 +256,49 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvf-wl-jr7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5223" y="134"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="EUz-Ro-RUI">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" id="Y0t-ao-bxs" customClass="LoginViewController" customModule="triv_ioApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OES-Dg-xLl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5T-he-ICj">
+                                <rect key="frame" x="20" y="596" width="374" height="185"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="185" id="QBl-LN-g74"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-T1-NOn" customClass="GIDSignInButton">
+                                <rect key="frame" x="96" y="256" width="223" height="75"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="paJ-z9-HQD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="z5T-he-ICj" firstAttribute="centerX" secondItem="OES-Dg-xLl" secondAttribute="centerX" id="CYe-zJ-wPg"/>
+                            <constraint firstItem="z5T-he-ICj" firstAttribute="top" secondItem="Ccc-T1-NOn" secondAttribute="bottom" constant="265" id="FNG-I7-uVf"/>
+                            <constraint firstItem="z5T-he-ICj" firstAttribute="leading" secondItem="paJ-z9-HQD" secondAttribute="leading" constant="20" id="Lbi-qS-QGH"/>
+                            <constraint firstItem="paJ-z9-HQD" firstAttribute="bottom" secondItem="z5T-he-ICj" secondAttribute="bottom" constant="81" id="Ox0-1w-Osx"/>
+                            <constraint firstItem="paJ-z9-HQD" firstAttribute="trailing" secondItem="z5T-he-ICj" secondAttribute="trailing" constant="20" id="X7Q-Fa-YFv"/>
+                            <constraint firstItem="Ccc-T1-NOn" firstAttribute="leading" secondItem="paJ-z9-HQD" secondAttribute="leading" constant="96" id="aPJ-KM-Xeb"/>
+                            <constraint firstItem="Ccc-T1-NOn" firstAttribute="top" secondItem="paJ-z9-HQD" secondAttribute="top" constant="212" id="eCN-IQ-R0L"/>
+                            <constraint firstItem="paJ-z9-HQD" firstAttribute="trailing" secondItem="Ccc-T1-NOn" secondAttribute="trailing" constant="95" id="eqo-uT-s1g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="errorDescription" destination="z5T-he-ICj" id="EIk-5w-5sk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8kl-YX-7dH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6069.5652173913049" y="133.92857142857142"/>
         </scene>
     </scenes>
     <resources>

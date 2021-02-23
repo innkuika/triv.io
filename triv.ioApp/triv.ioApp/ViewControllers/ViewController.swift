@@ -24,11 +24,11 @@ class ViewController: UIViewController {
         
         // for testing, can be safely removed
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let categorySelectionViewController = storyboard.instantiateViewController(identifier: "categorySelectionViewController") as? CategorySelectionViewController else {
+        guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
             assertionFailure("cannot instantiate categorySelectionViewController")
             return
         }
-        self.navigationController?.pushViewController(categorySelectionViewController, animated: true)
+        self.navigationController?.pushViewController(loginViewController, animated: true)
     }
 
 
