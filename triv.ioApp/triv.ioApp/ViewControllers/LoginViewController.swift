@@ -82,11 +82,11 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     //MARK: - Change VC after successful login
     @objc func didSignIn()  {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let categorySelectionViewController = storyboard.instantiateViewController(identifier: "categorySelectionViewController")
+        let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController")
         guard let navC = self.navigationController else {
             assertionFailure("couldn't find nav")
             return
         }
-        navC.setViewControllers([categorySelectionViewController], animated: true)
+        navC.setViewControllers([homeViewController], animated: true)
     }
 }

@@ -300,6 +300,70 @@
             </objects>
             <point key="canvasLocation" x="6069.5652173913049" y="133.92857142857142"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="ciR-3J-sbJ">
+            <objects>
+                <viewController storyboardIdentifier="homeViewController" id="mth-ET-o9K" customClass="HomeViewController" customModule="triv_ioApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oUd-Rj-dzJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRn-2S-DUr">
+                                <rect key="frame" x="64" y="712" width="286" height="50"/>
+                                <color key="backgroundColor" red="0.50980392156862742" green="0.6470588235294118" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="md2-28-F9u"/>
+                                </constraints>
+                                <state key="normal" title="Join Game via Code">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButtonPress" destination="zKW-ok-8fd" eventType="touchUpInside" id="kML-Vb-07M"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eha-VO-uCb">
+                                <rect key="frame" x="64" y="634" width="286" height="50"/>
+                                <color key="backgroundColor" red="0.50980392159999999" green="0.64705882349999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="nXg-9d-6i7"/>
+                                </constraints>
+                                <state key="normal" title="Start New Game">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="startButtonPress" destination="zKW-ok-8fd" eventType="touchUpInside" id="bFw-MZ-xSv"/>
+                                    <action selector="startGameButtonPress" destination="mth-ET-o9K" eventType="touchUpInside" id="SDf-d7-R9I"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2l2-Xt-0kq">
+                                <rect key="frame" x="20" y="108" width="374" height="498"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="YDP-xd-bwu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="kRn-2S-DUr" secondAttribute="trailing" constant="64" id="0wm-DJ-f2f"/>
+                            <constraint firstItem="kRn-2S-DUr" firstAttribute="centerX" secondItem="oUd-Rj-dzJ" secondAttribute="centerX" id="9yS-pI-v8D"/>
+                            <constraint firstItem="2l2-Xt-0kq" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="20" id="C7Z-xi-G1D"/>
+                            <constraint firstItem="2l2-Xt-0kq" firstAttribute="top" secondItem="YDP-xd-bwu" secondAttribute="top" constant="20" id="DmH-nf-c1d"/>
+                            <constraint firstItem="eha-VO-uCb" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="64" id="FMy-qK-xH6"/>
+                            <constraint firstItem="kRn-2S-DUr" firstAttribute="top" secondItem="eha-VO-uCb" secondAttribute="bottom" constant="28" id="Kp8-ou-16y"/>
+                            <constraint firstItem="eha-VO-uCb" firstAttribute="centerX" secondItem="oUd-Rj-dzJ" secondAttribute="centerX" id="RYA-bo-rWZ"/>
+                            <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="2l2-Xt-0kq" secondAttribute="trailing" constant="20" id="ibL-O4-aWQ"/>
+                            <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="eha-VO-uCb" secondAttribute="trailing" constant="64" id="n99-eE-afn"/>
+                            <constraint firstItem="YDP-xd-bwu" firstAttribute="bottom" secondItem="kRn-2S-DUr" secondAttribute="bottom" constant="100" id="qQV-lN-3Cb"/>
+                            <constraint firstItem="eha-VO-uCb" firstAttribute="top" secondItem="2l2-Xt-0kq" secondAttribute="bottom" constant="28" id="usC-xV-7xH"/>
+                            <constraint firstItem="kRn-2S-DUr" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="64" id="zi8-DC-Z3t"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="BJ8-Bd-pdv"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNy-eF-ezW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6915.9420289855079" y="133.92857142857142"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="labelColor">

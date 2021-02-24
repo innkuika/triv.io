@@ -18,7 +18,7 @@ class GameModel {
     weak var delegate: GameModelUpdates?
     
     func loadCategories() {
-        categories = ["Art", "History", "Pop Culture", "Science", "Technology"]
+        categories = ["Art", "History", "Pop Culture", "Science", "Technology", "Video Games"]
         delegate?.categoriesDidLoad(categories)
     }
     

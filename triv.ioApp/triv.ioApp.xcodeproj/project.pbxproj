@@ -130,6 +130,7 @@
 		44A5745125DF65450053E990 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */,
 				44D9657425E379980030382A /* QuestionViewController.swift */,
 				44D9657225E379980030382A /* SpinWheelViewController.swift */,
 				44D9657325E379980030382A /* ViewController.swift */,
@@ -198,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				44D9650125E372D20030382A /* GoogleService-Info.plist */,
-				2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */,
 				44A5745C25DF7BF40053E990 /* Models */,
 				44A5745225DF654C0053E990 /* Protocols */,
 				44A5745125DF65450053E990 /* ViewControllers */,
