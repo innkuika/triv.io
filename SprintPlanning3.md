@@ -18,9 +18,11 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
  * Links to commit: https://github.com/ECS189E/project-w21-triv-io/commit/51d8f3ab0d5d9c9669ca55d3c3c83d2993b1cd40, https://github.com/ECS189E/project-w21-triv-io/commit/e2ee54fe09ee1ad2d01f7c9652ec7adff563f353
  * Note: the segue in the commit is purely for testing purpose and will (100 percent) not show up in the final product.
 ### Manprit Heer
-* Page 4: UI: Winning Page/Game Stats
- * Page is in progress. Created a more solid wireframe of the Game Stats to go on top of existing wireframe by Jessica. Pages will be completed by tomorrow morning, before 02/19 meeting. 
- * Initiated Logo-Making process for app 
+* Page 4: UI: Winning Page/Game Stats 
+* Instantiated database in project and merged code with main: 
+	* Link to commit: https://github.com/ECS189E/project-w21-triv-io/commit/38f2f3abc58fbcc63d1e52f8f0ce7c117b79647c
+* Added questions/solutions to trivia spreadsheet: 
+	* https://docs.google.com/spreadsheets/d/1B5Ue6a2LAx5VJ6mYeJVaaCHrKfYmauLaz4Kn_qtvwCg/edit?usp=sharing
 ### Roberto Lozano
 * UI/Authentication: Log-In Screen
 	* Continued work on the login/authentication system.
@@ -48,9 +50,10 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
  *
  * 
 ### Manprit Heer
-* 
- * 
- * 
+* Work on connecting models with database.
+* Assess progress as of 02/26/21 and delegate new roles. 
+* Create screens for App Store review post UI-fix. 
+
 ### Roberto Lozano
 * 
 	* 
