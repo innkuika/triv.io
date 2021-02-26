@@ -9,18 +9,22 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import FBSDKLoginKit
-
 import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController, LoginButtonDelegate {
     
     @IBOutlet weak var errorDescription: UILabel!
+    var ref: DatabaseReference!
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        GIDSignIn.sharedInstance().signIn()
         
         let loginButton = FBLoginButton()
         loginButton.delegate = self
@@ -55,7 +59,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         fireBaseFaceBookLogin(accessToken: tokenString)
         
         return
-        
     }
     
     //Facebook Logout Button Pressed
@@ -76,11 +79,32 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
                 return
             }
             NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
+            
         }
     }
     
     //MARK: - Change VC after successful login
     @objc func didSignIn()  {
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return
+        }
+        print("user signed in")
+        self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                print("Got data \(snapshot.value!)")
+            }
+            else {
+                print("No data available")
+                // if user doesn't exist, create new user and push to database
+                // FIXME: try to access user name
+                self.ref.child("User").child(user.uid).setValue(["Name": "guest", "Streak": 0])
+            }
+        }
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController")
         guard let navC = self.navigationController else {

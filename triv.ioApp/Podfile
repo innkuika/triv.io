@@ -11,7 +11,7 @@ target 'triv.ioApp' do
 	pod 'Firebase/Auth'
 	pod 'GoogleSignIn'
 	pod 'FBSDKLoginKit'
-	pod 'Firebase/Auth'
+	pod 'Firebase/Database'
 	
   target 'triv.ioAppTests' do
     inherit! :search_paths
