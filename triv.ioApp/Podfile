@@ -6,7 +6,7 @@ target 'triv.ioApp' do
   use_frameworks!
 
   # Pods for triv.ioApp
-	pod 'Firebase'
+	pod 'Firebase/Database'
 	pod 'SwiftFortuneWheel'
 	pod 'Firebase/Auth'
 	pod 'GoogleSignIn'

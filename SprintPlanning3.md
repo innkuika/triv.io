@@ -35,20 +35,21 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * This app screen displays the list of existing categories of trivia questions and allows the player to select a total of three categories to play from.
 * Created an initial Game Model that interacts with the Category Selection View Controller as the user selects and deselects different categories from the list. The list of available categories is currently hard-coded inside the Game Model.
 * Link to commit: https://github.com/ECS189E/project-w21-triv-io/commit/7e76402020e35dae3ae199226cc87027770fba8a
-* Will work on creating trivia questions to be added to the app
+* Created trivia questions for the app
 
 
 ## **Current Tasks** (02.25.21)
 
 ### Donald Lieu
-* 
-* 
+* Finish connecting models to database
+* Help connect models to game logic
+* Keep project clean
 >
 ### Jessica Wu 
-* 
- * 
- *
- * 
+* built UI and render logic for score board: https://github.com/ECS189E/project-w21-triv-io/commit/3fd26d9d3e07912d3e65e46a9ad6caa1613bc95a
+ * preparing for pushing triv.io to app store (registered bundle id, filled out related forms, ect.)
+ * polishing UI (WIP): https://github.com/ECS189E/project-w21-triv-io/commit/5001175f4355c81533149a708a5d568371297f2e
+ * finishing wireframe for the whole app: https://www.figma.com/file/Ff3cBXe8WKmy5hnkCPfrZN/triv.io?node-id=56%3A82
 ### Manprit Heer
 * Work on connecting models with database.
 * Assess progress as of 02/26/21 and delegate new roles. 
@@ -59,8 +60,6 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Research into FireBase UI for cleaner looking UI
 * Connecting Logged in users to Database
 ### Jessica Ma
-* 
-*
-* 
-* 
-* 
+* Merged category selection code into main, added navigation from the Category Selection View to the Spin Wheel View: https://github.com/ECS189E/project-w21-triv-io/commit/1357c7226b00aca33224de4aa02f64dc8c456214
+* UI: Home Screen: https://github.com/ECS189E/project-w21-triv-io/commit/2632b3b517e190dc0264af12529a120cd53e347f
+* Table view of game instances: https://github.com/ECS189E/project-w21-triv-io/commit/1bb0546b6302592db06b50c9fa3b8270f95b54d4
