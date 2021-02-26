@@ -45,10 +45,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * 
 >
 ### Jessica Wu 
-* 
- * 
- *
- * 
+* built UI and render logic for score board: https://github.com/ECS189E/project-w21-triv-io/commit/3fd26d9d3e07912d3e65e46a9ad6caa1613bc95a
+ * preparing for pushing triv.io to app store (registered bundle id, filled out related forms, ect.)
+ * polishing UI (WIP): https://github.com/ECS189E/project-w21-triv-io/commit/5001175f4355c81533149a708a5d568371297f2e
 ### Manprit Heer
 * Work on connecting models with database.
 * Assess progress as of 02/26/21 and delegate new roles. 
