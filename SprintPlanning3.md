@@ -61,5 +61,5 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Connecting Logged in users to Database
 ### Jessica Ma
 * Merged category selection code into main, added navigation from the Category Selection View to the Spin Wheel View: https://github.com/ECS189E/project-w21-triv-io/commit/1357c7226b00aca33224de4aa02f64dc8c456214
-* UI: Home Screen (WIP): https://github.com/ECS189E/project-w21-triv-io/commit/2632b3b517e190dc0264af12529a120cd53e347f
-* Implementing logic for game instances table view
+* UI: Home Screen: https://github.com/ECS189E/project-w21-triv-io/commit/2632b3b517e190dc0264af12529a120cd53e347f
+* Implementing logic for table view of game instances
