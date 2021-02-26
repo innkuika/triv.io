@@ -55,12 +55,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Create screens for App Store review post UI-fix. 
 
 ### Roberto Lozano
-* 
-	* 
-	* 
-	* 
-	* 
-	*
+* Finish Implementing Apple Login/Authentication
+* Research into FireBase UI for cleaner looking UI
+* Connecting Logged in users to Database
 ### Jessica Ma
 * 
 *
