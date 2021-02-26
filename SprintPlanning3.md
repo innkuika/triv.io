@@ -41,8 +41,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ## **Current Tasks** (02.25.21)
 
 ### Donald Lieu
-* 
-* 
+* Finish connecting models to database
+* Help connect models to game logic
+* Keep project clean
 >
 ### Jessica Wu 
 * built UI and render logic for score board: https://github.com/ECS189E/project-w21-triv-io/commit/3fd26d9d3e07912d3e65e46a9ad6caa1613bc95a
