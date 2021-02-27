@@ -10,26 +10,19 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-    var ref: DatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
     }
     
     // MARK: -UI action handlers
     @IBAction func startGameButtonPress() {
-        // create a game instance and push to database
+        // create new game instance
         guard let user = Auth.auth().currentUser else {
             assertionFailure("Unable to get current logged in user")
             return
         }
-        let gameInstanceRef = self.ref.child("GameInstance").childByAutoId()
-        gameInstanceRef.setValue(["CurrentTurn": user.uid,
-                                  "PlayerIds": [user.uid, "bot"],
-                                  "Players": [user.uid: ["Score": [], "Streak": 0],
-                                              "bot": ["Score": [], "Streak": 0]],
-                                  "Categories": []])
+        let gameInstance = GameModel(userId: user.uid)
         
         // navigate to CategorySelectionViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -38,7 +31,7 @@ class HomeViewController: UIViewController {
             return
         }
         // pass game instance to categorySelectionViewController
-        categorySelectionViewController.gameInstanceRef = gameInstanceRef
+        categorySelectionViewController.gameInstance = gameInstance
         
         navigationController?.pushViewController(categorySelectionViewController, animated: true)
     }

@@ -23,7 +23,7 @@ class SpinWheelViewController: UIViewController {
     var finishIndex: Int?
     
     // query from database
-    var gameInstanceRef: DatabaseReference!
+    var gameInstance: GameModel?
     var isUserTurn = true
     let userScore: [String] = ["small KT", "big KT"]
     let botScore: [String] = ["middle KT", "XL KT"]
