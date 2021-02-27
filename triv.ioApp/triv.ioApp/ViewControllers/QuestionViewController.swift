@@ -7,14 +7,18 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class QuestionViewController: UIViewController {
+    var ref: DatabaseReference!
     // passed in from SpinWheelViewController
     var questionCategory: String?
+    var gameInstance: GameModel?
     
     // init in viewDidLoad
     var key: String?
     var answerArray: [String] = []
+    var questionPrompt: String?
     
     @IBOutlet weak var questionLabelOutlet: UILabel!
     @IBOutlet weak var answerAButtonOutlet: UIButton!
@@ -23,12 +27,25 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var answerDButtonOutlet: UIButton!
     @IBOutlet weak var resultLabelOutlet: UILabel!
     
+    let workerGroup = DispatchGroup()
+    
     override func viewDidLoad() {
-        // TODO: query random question in questionCategory, answers and key from database
-        let questionPrompt = "How tall is the space needle?"
-        answerArray = ["149 ft", "395 ft", "605 ft", "728 ft"]
-        key = "605 ft"
+        ref = Database.database().reference()
+        workerGroup.enter()
+        // query random question in questionCategory, answers and key from database
+        getRandomQuestion()
+        print("got random question")
         
+        workerGroup.notify(queue: DispatchQueue.main) {
+            self.questionDidLoad()
+            print("question did load")
+        }
+
+                
+
+    }
+    
+    func questionDidLoad(){
         let answerButtonOutletArray = [answerAButtonOutlet, answerBButtonOutlet, answerCButtonOutlet, answerDButtonOutlet]
         
         questionLabelOutlet.text = questionPrompt
@@ -36,6 +53,56 @@ class QuestionViewController: UIViewController {
             $0.0?.setTitle($0.1, for: .normal)
             $0.0?.addTarget(self, action: #selector(self.answerButtonClickHandler), for: .touchUpInside)
         }
+    }
+    
+    func getRandomQuestion(){
+        guard let unwrappedQuestionCategory = questionCategory else { return }
+        let categoryRef = ref.child("Categories/\(unwrappedQuestionCategory)")
+        categoryRef.getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                print("Got category data \(snapshot.value!)")
+                let numberOfQuestions = snapshot.childrenCount
+                var randomIndex = 0
+                if numberOfQuestions != 1 {
+                    randomIndex = Int.random(in: 0..<Int(numberOfQuestions)-1)
+                }
+                categoryRef.child(String(randomIndex)).getData{ (error, snapshot) in
+                    if let error = error {
+                        print("Error getting data \(error)")
+                    }
+                    else if snapshot.exists() {
+                        print("Got question id data \(snapshot.value!)")
+                        guard let questionID = snapshot.value as? String else { return }
+                        self.ref.child("Question").child(questionID).getData{ (error, snapshot) in
+                            if let error = error {
+                                print("Error getting data \(error)")
+                            }
+                            else if snapshot.exists() {
+                                print("get question data \(snapshot.value!)")
+                                let questionDict = snapshot.value as? NSDictionary
+                                guard let unwrappedPrompt = questionDict?["Prompt"] as? String else { return }
+                                guard let unwrappedOption = questionDict?["Option"] as? [String] else { return }
+                                guard let unwrappedKey = questionDict?["Key"] as? String else { return }
+                                
+                                self.questionPrompt = unwrappedPrompt
+                                self.answerArray = unwrappedOption
+                                self.key = unwrappedKey
+                                
+                                self.workerGroup.leave()
+                            }
+                            else { print("No question data available") }
+                        }
+                    }
+                    else { print("No question id data available") }
+                }
+            }
+            else { print("No category data available") }
+        }
+        
+        
     }
     
     @objc func answerButtonClickHandler(sender: UIButton) {
@@ -64,7 +131,9 @@ class QuestionViewController: UIViewController {
                     assertionFailure("cannot instantiate spinWheelViewController")
                     return
                 }
+                spinWheelViewController.gameInstance = self.gameInstance
                 self.navigationController?.pushViewController(spinWheelViewController, animated: true)
+    
             }
         
         })

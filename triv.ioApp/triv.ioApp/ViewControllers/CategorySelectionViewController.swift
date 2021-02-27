@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class CategorySelectionViewController: UIViewController, GameModelUpdates, UITableViewDataSource, UITableViewDelegate {
 
@@ -15,7 +17,7 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var startButton: UIButton!
     
-    let gameModel = GameModel()
+    var gameInstance: GameModel?
     var categories: [String] = []
     var selectedCategories: [String] = []
     
@@ -25,10 +27,10 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         categoryLabel2.text = ""
         categoryLabel3.text = ""
         
-        gameModel.delegate = self
+        gameInstance?.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
-        gameModel.loadCategories()
+        gameInstance?.loadCategories()
     }
     
     // MARK: -GameModelUpdates protocol implementation
@@ -72,11 +74,11 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         return indexPath
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        gameModel.selectCategory(categories[indexPath.row])
+        gameInstance?.selectCategory(categories[indexPath.row])
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        gameModel.deselectCategory(categories[indexPath.row])
+        gameInstance?.deselectCategory(categories[indexPath.row])
     }
 
     // MARK: -UI action handlers
@@ -84,12 +86,17 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         navigationController?.popViewController(animated: true)
     }
     @IBAction func startButtonPress() {
+        // push selected categories to database
+        gameInstance?.updateCategories()
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
             assertionFailure("cannot instantiate spinWheelViewController")
             return
         }
         let viewControllers = [spinWheelViewController]
+        // pass game instance to categorySelectionViewController
+        spinWheelViewController.gameInstance = gameInstance
         navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
