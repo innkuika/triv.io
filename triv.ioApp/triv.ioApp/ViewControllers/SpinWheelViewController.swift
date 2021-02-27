@@ -25,17 +25,32 @@ class SpinWheelViewController: UIViewController {
     var gameInstance: GameModel?
     
     // query from database
+    var ref: DatabaseReference!
     var SpinWheelTextArray: [String] = []
     var isUserTurn = true
     var userScore: [String] = []
     var botScore: [String] = []
-
+    
+    let workerGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // get latest data from database
-        gameInstance?.updateGameInstance()
+        ref = Database.database().reference()
         
+        workerGroup.enter()
+        // get latest data from database
+        gameInstance?.updateGameInstance(workerGroup: workerGroup)
+        print("update game instance")
+
+        
+        workerGroup.notify(queue: DispatchQueue.main) {
+            print("before render ui")
+            self.renderUI()
+            print("renderUI")
+        }
+    }
+    
+    func renderUI() {
         // query current game state (userScore, botScore, isUserTurn) from database and render accordingly
         guard let unwrappedSpinWheelTextArray = gameInstance?.selectedCategories else { return }
         SpinWheelTextArray = unwrappedSpinWheelTextArray
@@ -69,6 +84,7 @@ class SpinWheelViewController: UIViewController {
             assertionFailure("cannot instantiate questionViewController")
             return
         }
+        questionViewController.gameInstance = self.gameInstance
         
         // if it's not user's turn, it's bot's turn and will spin automatically
         if !isUserTurn{
@@ -179,7 +195,7 @@ class SpinWheelViewController: UIViewController {
             assertionFailure("cannot instantiate questionViewController")
             return
         }
-        
+        questionViewController.gameInstance = self.gameInstance
         fortuneWheelViewOutlet.startRotationAnimation(finishIndex: finishIndex ?? 0, continuousRotationTime: 1) { (finished) in
             questionViewController.questionCategory = self.SpinWheelTextArray[self.finishIndex ?? 0]
         self.navigationController?.pushViewController(questionViewController, animated: true)

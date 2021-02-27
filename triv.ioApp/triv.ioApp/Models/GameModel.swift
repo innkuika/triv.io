@@ -22,7 +22,7 @@ class GameModel {
     var playerIds: [String]
     var players: [String: Player]
     var ref = Database.database().reference()
-    var gameInstanceRef: DatabaseReference!
+    var gameInstanceId: String?
     
     
     init(userId: String){
@@ -33,21 +33,21 @@ class GameModel {
         self.players = [userId: UserPlayer, "bot": BotPlayer]
         
         // create a game instance and push to database
-        self.gameInstanceRef = self.ref.child("GameInstance").childByAutoId()
-        self.gameInstanceRef.setValue(["CurrentTurn": userId,
+        let gameInstanceRef = self.ref.child("GameInstance").childByAutoId()
+        guard let unwrappedKey = gameInstanceRef.key else { return }
+        self.gameInstanceId = unwrappedKey
+        gameInstanceRef.setValue(["CurrentTurn": userId,
                                   "PlayerIds": [userId, "bot"],
                                   "Players": [userId: ["Score": [], "Streak": 0],
                                               "bot": ["Score": [], "Streak": 0]],
                                   "Categories": []])
+        
     }
     
     // get latest data from database
-    func updateGameInstance(){
-        gameInstanceRef.getData { (error, snapshot) in
-            if let error = error {
-                print("Error getting data \(error)")
-            }
-            else if snapshot.exists() {
+    func updateGameInstance(workerGroup: DispatchGroup){
+        self.ref.child("GameInstance/\(self.gameInstanceId ?? "")").observe(DataEventType.value, with: { (snapshot) in
+
                 print("Got data \(snapshot.value!)")
                 let value = snapshot.value as? NSDictionary
                 
@@ -66,12 +66,12 @@ class GameModel {
                     return
                 }
                 self.currentTurn = unwrappedCurrentTurn
-            }
-            else {
-                print("No data available")
+                
+                print("before leave group")
+                workerGroup.leave()
+            print("after leave group")
 
-            }
-        }
+        })
     }
     
     func getUserPlayer(id: String) -> Player?{
@@ -89,7 +89,8 @@ class GameModel {
             // FIXME: implement bot selection logic here later
             selectedCategories = categories
         }
-        gameInstanceRef.child("Categories").setValue(selectedCategories)
+        
+        self.ref.child("GameInstance/\(self.gameInstanceId ?? "")/Categories").setValue(selectedCategories)
     
     }
     

@@ -27,10 +27,22 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var answerDButtonOutlet: UIButton!
     @IBOutlet weak var resultLabelOutlet: UILabel!
     
+    let workerGroup = DispatchGroup()
+    
     override func viewDidLoad() {
         ref = Database.database().reference()
+        workerGroup.enter()
         // query random question in questionCategory, answers and key from database
         getRandomQuestion()
+        print("got random question")
+        
+        workerGroup.notify(queue: DispatchQueue.main) {
+            self.questionDidLoad()
+            print("question did load")
+        }
+
+                
+
     }
     
     func questionDidLoad(){
@@ -79,7 +91,7 @@ class QuestionViewController: UIViewController {
                                 self.answerArray = unwrappedOption
                                 self.key = unwrappedKey
                                 
-                                self.questionDidLoad()
+                                self.workerGroup.leave()
                             }
                             else { print("No question data available") }
                         }
@@ -119,7 +131,9 @@ class QuestionViewController: UIViewController {
                     assertionFailure("cannot instantiate spinWheelViewController")
                     return
                 }
+                spinWheelViewController.gameInstance = self.gameInstance
                 self.navigationController?.pushViewController(spinWheelViewController, animated: true)
+    
             }
         
         })
