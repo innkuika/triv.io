@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseAuth
 
 class CategorySelectionViewController: UIViewController, GameModelUpdates, UITableViewDataSource, UITableViewDelegate {
 
@@ -16,6 +18,7 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     @IBOutlet weak var startButton: UIButton!
     
     let gameModel = GameModel()
+    var gameInstanceRef: DatabaseReference!
     var categories: [String] = []
     var selectedCategories: [String] = []
     
@@ -84,12 +87,17 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         navigationController?.popViewController(animated: true)
     }
     @IBAction func startButtonPress() {
+        // push selected categories to database
+        self.gameInstanceRef.child("Categories").setValue(self.selectedCategories)
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
             assertionFailure("cannot instantiate spinWheelViewController")
             return
         }
         let viewControllers = [spinWheelViewController]
+        // pass game instance to categorySelectionViewController
+        spinWheelViewController.gameInstanceRef = gameInstanceRef
         navigationController?.setViewControllers(viewControllers, animated: true)
     }
     

@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 import SwiftFortuneWheel
+import FirebaseDatabase
+import FirebaseAuth
+
 
 class SpinWheelViewController: UIViewController {
 
@@ -20,6 +23,7 @@ class SpinWheelViewController: UIViewController {
     var finishIndex: Int?
     
     // query from database
+    var gameInstanceRef: DatabaseReference!
     var isUserTurn = true
     let userScore: [String] = ["small KT", "big KT"]
     let botScore: [String] = ["middle KT", "XL KT"]
