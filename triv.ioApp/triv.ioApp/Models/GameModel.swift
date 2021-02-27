@@ -15,12 +15,12 @@ protocol GameModelUpdates: class {
 }
 
 class GameModel {
-    var categories: [String] = []
+    var categories: [String] =  ["Art Literature", "History", "Pop Culture", "Science", "Technology", "Video Games"]
     var selectedCategories: [String] = []
     weak var delegate: GameModelUpdates?
     var currentTurn: String
     var playerIds: [String]
-    var players: [Player]
+    var players: [String: Player]
     var ref = Database.database().reference()
     var gameInstanceRef: DatabaseReference!
     
@@ -30,7 +30,7 @@ class GameModel {
         self.playerIds = [userId, "bot"]
         let UserPlayer = Player(playerID: userId, streak: 0, score: [])
         let BotPlayer = Player(playerID: "bot", streak: 0, score: [])
-        self.players = [UserPlayer, BotPlayer]
+        self.players = [userId: UserPlayer, "bot": BotPlayer]
         
         // create a game instance and push to database
         self.gameInstanceRef = self.ref.child("GameInstance").childByAutoId()
@@ -41,18 +41,59 @@ class GameModel {
                                   "Categories": []])
     }
     
-    func updateCategories(){
-        if playerIds.contains("bot"){
-            // FIXME: implement bot selection logic here later
-            gameInstanceRef.child("Categories").setValue(categories)
-        }
-        else {
-            gameInstanceRef.child("Categories").setValue(selectedCategories)
+    // get latest data from database
+    func updateGameInstance(){
+        gameInstanceRef.getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                print("Got data \(snapshot.value!)")
+                let value = snapshot.value as? NSDictionary
+                
+                // get latest players info
+                guard let unwrappedPlayersArray = value?["Players"] as? NSDictionary else { return }
+                for (playerId, playerDictStr) in unwrappedPlayersArray{
+                    guard let unwrappedPlayerId = playerId as? String else { return }
+                    let playerDict = playerDictStr as? NSDictionary
+                    let updatedStreak = playerDict?["Streak"] as? Int ?? 0
+                    let updatedScore: [String] = playerDict?["Score"] as? [String] ?? []
+                    self.players[unwrappedPlayerId] = Player(playerID: unwrappedPlayerId, streak: updatedStreak, score: updatedScore)
+                }
+                
+                // get latest currentTurn
+                guard let unwrappedCurrentTurn = value?["CurrentTurn"] as? String else {
+                    return
+                }
+                self.currentTurn = unwrappedCurrentTurn
+            }
+            else {
+                print("No data available")
+
+            }
         }
     }
     
+    func getUserPlayer(id: String) -> Player?{
+        for (playerId, player) in players{
+            if playerId == id {
+                return player
+            }
+        }
+        assertionFailure("cannot find current user in game instance")
+        return nil
+    }
+    
+    func updateCategories(){
+        if playerIds.contains("bot"){
+            // FIXME: implement bot selection logic here later
+            selectedCategories = categories
+        }
+        gameInstanceRef.child("Categories").setValue(selectedCategories)
+    
+    }
+    
     func loadCategories() {
-        categories = ["Art", "History", "Pop Culture", "Science", "Technology", "Video Games"]
         delegate?.categoriesDidLoad(categories)
     }
     

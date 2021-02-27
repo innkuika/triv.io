@@ -17,21 +17,47 @@ class SpinWheelViewController: UIViewController {
     @IBOutlet weak var scoreBoardUIViewOutlet: UIView!
     @IBOutlet weak var spinButtonOutlet: UIButton!
     @IBOutlet weak var fortuneWheelViewOutlet: SwiftFortuneWheel!
-    // pass in the category names here
-    var SpinWheelTextArray: [String] = ["small KT", "middle KT", "big KT", "XL KT", "cute KT", "fat KT"]
+
     var SpinWheelColorArray = [trivioRed, trivioBlue, trivioYellow, trivioPurple, trivioGreen, trivioOrange]
     var finishIndex: Int?
     
-    // query from database
+    // passed in from CategorySelectionViewController
     var gameInstance: GameModel?
+    
+    // query from database
+    var SpinWheelTextArray: [String] = []
     var isUserTurn = true
-    let userScore: [String] = ["small KT", "big KT"]
-    let botScore: [String] = ["middle KT", "XL KT"]
+    var userScore: [String] = []
+    var botScore: [String] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: query current game state (userScore, botScore, isUserTurn) from database and render accordingly
+        // get latest data from database
+        gameInstance?.updateGameInstance()
+        
+        // query current game state (userScore, botScore, isUserTurn) from database and render accordingly
+        guard let unwrappedSpinWheelTextArray = gameInstance?.selectedCategories else { return }
+        SpinWheelTextArray = unwrappedSpinWheelTextArray
+        
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return
+        }
+        
+        guard let unwrappedUserScore = gameInstance?.getUserPlayer(id: user.uid) else { return }
+        userScore = unwrappedUserScore.score
+        
+        guard let unwrappedBotScore = gameInstance?.getUserPlayer(id: "bot") else { return }
+        botScore = unwrappedBotScore.score
+        
+        if user.uid == gameInstance?.currentTurn {
+            isUserTurn = true
+        } else {
+            isUserTurn = false
+        }
+        
+        
         
         renderWheel()
         renderScoreBoard(userScore: userScore, botScore: botScore)
@@ -96,7 +122,7 @@ class SpinWheelViewController: UIViewController {
         let sliceColorType = SFWConfiguration.ColorType.customPatternColors(colors: colorArray, defaultColor: SFWColor.white)
         let slicePreferences = SFWConfiguration.SlicePreferences(backgroundColorType: sliceColorType, strokeWidth: 0, strokeColor: .black)
         let circlePreferences = SFWConfiguration.CirclePreferences(strokeWidth: 25, strokeColor: UIColor(red: 28/255, green: 71/255, blue: 126/255, alpha: 1.0))
-        var wheelPreferences = SFWConfiguration.WheelPreferences(circlePreferences: circlePreferences, slicePreferences: slicePreferences, startPosition: .bottom)
+        var wheelPreferences = SFWConfiguration.WheelPreferences(circlePreferences: circlePreferences, slicePreferences: slicePreferences, startPosition: .top)
         
 
         let centerAnchorImage = SFWConfiguration.AnchorImage(imageName: "blueAnchorImage", size: CGSize(width: 15, height: 15), verticalOffset: -6)
