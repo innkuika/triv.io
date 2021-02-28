@@ -69,7 +69,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tqs-AN-Jpz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3531.884057971015" y="133.92857142857142"/>
+            <point key="canvasLocation" x="6096" y="134"/>
         </scene>
         <!--Question View Controller-->
         <scene sceneID="sBf-Gs-j0F">
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lk3-n1-J50" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4381.159420289855" y="133.92857142857142"/>
+            <point key="canvasLocation" x="6943" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ksD-CY-NF7">
@@ -255,7 +255,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvf-wl-jr7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5223" y="134"/>
+            <point key="canvasLocation" x="5272" y="134"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="EUz-Ro-RUI">
@@ -268,7 +268,6 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;error description&gt;" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5T-he-ICj">
                                 <rect key="frame" x="20" y="706" width="374" height="148"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.66581285000000001" green="0.66591060160000004" blue="0.6657914519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -294,7 +293,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kl-YX-7dH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6069.5652173913049" y="133.92857142857142"/>
+            <point key="canvasLocation" x="3538" y="134"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="ciR-3J-sbJ">
@@ -358,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CNy-eF-ezW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6915.9420289855079" y="133.92857142857142"/>
+            <point key="canvasLocation" x="4386" y="134"/>
         </scene>
     </scenes>
     <resources>

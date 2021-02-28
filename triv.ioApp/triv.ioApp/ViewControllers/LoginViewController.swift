@@ -59,7 +59,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         logoOutlet.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.35)
         
         errorDescription.text = ""
-        errorDescription.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.85, height: frameHeight * 0.2)
+        errorDescription.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.80, height: frameHeight * 0.16)
         errorDescription.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.65)
         errorDescription.backgroundColor = view.backgroundColor
         
