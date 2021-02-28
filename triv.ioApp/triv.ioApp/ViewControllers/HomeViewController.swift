@@ -10,9 +10,17 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-
+    @IBOutlet weak var startNewGameButtonOutlet: UIButton!
+    @IBOutlet weak var joinGameViaCodeButtonOutlet: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        renderUI()
+    }
+    
+    func renderUI(){
+        styleButton(button: startNewGameButtonOutlet)
+        styleButton(button: joinGameViaCodeButtonOutlet)
     }
     
     // MARK: -UI action handlers

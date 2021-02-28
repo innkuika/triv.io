@@ -16,7 +16,8 @@ protocol GameModelUpdates: class {
 
 class GameModel {
     // reserved History, Pop Culture and UC Davis category for bot to pick, can fix this later
-    var categories: [String] =  ["Art Literature", "Science", "Technology", "Video Games"]
+    var categories: [String] =  ["Art and Literature", "Science", "Technology", "Video Games"]
+
     var selectedCategories: [String] = []
     weak var delegate: GameModelUpdates?
     var currentTurn: String
