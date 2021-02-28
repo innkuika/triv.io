@@ -63,8 +63,19 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") ?? UITableViewCell(style: .default, reuseIdentifier: "categoryCell")
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "plus.circle")
+        cell.imageView?.tintColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.white
+        cell.backgroundColor = trivioBackgroundColor
+        
+        // style selected Cell
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = trivioBlue
+        cell.selectedBackgroundView = backgroundView
+
         return cell
     }
+    
+    
     
     // MARK: -UITableViewDelegate implementation
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
