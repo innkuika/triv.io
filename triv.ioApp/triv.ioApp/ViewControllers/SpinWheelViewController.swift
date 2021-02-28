@@ -37,16 +37,11 @@ class SpinWheelViewController: UIViewController {
         ref = Database.database().reference()
         
         workerGroup.enter()
-        print("entered group")
         // get latest data from database
         gameInstance?.updateGameInstance(workerGroup: workerGroup)
-        print("update game instance")
 
-        
         workerGroup.notify(queue: DispatchQueue.main) {
-            print("before render ui")
             self.renderUI()
-            print("renderUI")
         }
     }
     
@@ -74,7 +69,8 @@ class SpinWheelViewController: UIViewController {
         
         renderWheel()
         renderScoreBoard(userScore: userScore, botScore: botScore)
-        let finishIndex = Int.random(in: 0 ..< SpinWheelTextArray.count)
+        let newFinishIndex = Int.random(in: 0 ..< SpinWheelTextArray.count)
+        finishIndex = newFinishIndex
         
         // get questionViewController and prepare navigation
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -87,8 +83,9 @@ class SpinWheelViewController: UIViewController {
         // if it's not user's turn, it's bot's turn and will spin automatically
         if !isUserTurn{
             spinButtonOutlet.isEnabled = false
-            fortuneWheelViewOutlet.startRotationAnimation(finishIndex: finishIndex, continuousRotationTime: 1) { (finished) in
-            questionViewController.questionCategory = self.SpinWheelTextArray[finishIndex]
+            guard let unwrappedFinishedIndex = self.finishIndex else { return }
+            fortuneWheelViewOutlet.startRotationAnimation(finishIndex: unwrappedFinishedIndex, continuousRotationTime: 1) { (finished) in
+            questionViewController.questionCategory = self.SpinWheelTextArray[unwrappedFinishedIndex]
             self.navigationController?.pushViewController(questionViewController, animated: true)
                 }
         }

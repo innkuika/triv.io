@@ -35,11 +35,9 @@ class QuestionViewController: UIViewController {
         workerGroup.enter()
         // query random question in questionCategory, answers and key from database
         getRandomQuestion()
-        print("got random question")
         
         workerGroup.notify(queue: DispatchQueue.main) {
             self.questionDidLoad()
-            print("question did load")
         }
     }
     

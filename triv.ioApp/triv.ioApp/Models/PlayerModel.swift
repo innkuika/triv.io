@@ -25,8 +25,6 @@ class Player {
             score.append(newScore)
             let ref = Database.database().reference()
             ref.child("GameInstance/\(gameInstanceID)/Players/\(playerID)/Score").setValue(score)
-        }
-    
-        
+        }  
     }
 }
