@@ -76,13 +76,8 @@ class GameModel {
                     return
                 }
                 self.currentTurn = unwrappedCurrentTurn
-                
-                
-
         })
-        print("before leave group")
         workerGroup.leave()
-    print("after leave group")
     }
     
     func getUserPlayer(id: String) -> Player?{
