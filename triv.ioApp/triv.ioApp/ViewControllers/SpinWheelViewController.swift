@@ -46,6 +46,8 @@ class SpinWheelViewController: UIViewController {
     }
     
     func renderUI() {
+        navigationItem.hidesBackButton = true
+        
         // query current game state (userScore, botScore, isUserTurn) from database and render accordingly
         guard let unwrappedSpinWheelTextArray = gameInstance?.selectedCategories else { return }
         SpinWheelTextArray = unwrappedSpinWheelTextArray
@@ -66,6 +68,16 @@ class SpinWheelViewController: UIViewController {
         } else {
             isUserTurn = false
         }
+        
+        // style spin button
+        spinButtonOutlet.frame = CGRect(x: 0, y: 0, width: view.frame.width * 0.7, height: 50)
+        spinButtonOutlet.center = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.93)
+        spinButtonOutlet.backgroundColor = trivioOrange
+        styleButton(button: spinButtonOutlet)
+        
+        // position score board ui
+        scoreBoardUIViewOutlet.frame = CGRect(x: 0, y: 0, width: view.frame.width * 0.9, height: view.frame.height * 0.4)
+        scoreBoardUIViewOutlet.center = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.1)
         
         renderWheel()
         renderScoreBoard(userScore: userScore, botScore: botScore)
@@ -105,6 +117,12 @@ class SpinWheelViewController: UIViewController {
         fortuneWheelViewOutlet.pinImageViewCollisionEffect = CollisionEffect(force: 15, angle: 30)
         fortuneWheelViewOutlet.edgeCollisionDetectionOn = true
         fortuneWheelViewOutlet.slices = slices
+        
+        let wheelRadius = view.frame.width * 0.9
+        fortuneWheelViewOutlet.frame = CGRect(x: 0, y: 0, width: wheelRadius, height: wheelRadius)
+        fortuneWheelViewOutlet.center = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.6)
+        fortuneWheelViewOutlet.backgroundColor = trivioBackgroundColor
+        
 
         
         fortuneWheelViewOutlet.configuration = wheelConfiguration()
@@ -162,7 +180,7 @@ class SpinWheelViewController: UIViewController {
                 renderArc(startAngleRadius: CGFloat($0.1), radiusPercent: radiusPercent, color: color.cgColor)
             }
             else {
-                renderArc(startAngleRadius: CGFloat($0.1), radiusPercent: radiusPercent, color: UIColor.gray.cgColor)
+                renderArc(startAngleRadius: CGFloat($0.1), radiusPercent: radiusPercent, color: UIColor.lightGray.cgColor)
             }
         }
     }

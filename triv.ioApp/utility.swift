@@ -23,5 +23,5 @@ let trivioBackgroundColor = UIColor(red: 12/255, green: 25/255, blue: 54/255, al
 func styleButton(button: UIButton){
     button.layer.cornerRadius = 10
     button.titleLabel?.font =  UIFont.boldSystemFont(ofSize: 25)
-    button.titleLabel?.textColor = UIColor.init(displayP3Red: 12/255, green: 25/255, blue: 54/255, alpha: 1.0)
+    button.titleLabel?.textColor = trivioBackgroundColor
 }

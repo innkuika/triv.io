@@ -31,6 +31,8 @@ class QuestionViewController: UIViewController {
     let workerGroup = DispatchGroup()
     
     override func viewDidLoad() {
+        navigationItem.hidesBackButton = true
+        
         ref = Database.database().reference()
         workerGroup.enter()
         // query random question in questionCategory, answers and key from database
