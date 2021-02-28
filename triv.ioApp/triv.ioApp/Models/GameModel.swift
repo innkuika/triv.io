@@ -44,6 +44,18 @@ class GameModel {
         
     }
     
+    // push next player info to database
+    func flipTurn() {
+        guard let currentPlayerIndex = playerIds.firstIndex(of: currentTurn) else { return }
+        var nextPlayerIndex = currentPlayerIndex + 1
+        if nextPlayerIndex == playerIds.count {
+            nextPlayerIndex = 0
+        }
+        currentTurn = playerIds[nextPlayerIndex]
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        ref.child("GameInstance/\(unwrappedInstanceId)/CurrentTurn").setValue(currentTurn)
+    }
+    
     // get latest data from database
     func updateGameInstance(workerGroup: DispatchGroup){
         self.ref.child("GameInstance/\(self.gameInstanceId ?? "")").observe(DataEventType.value, with: { (snapshot) in

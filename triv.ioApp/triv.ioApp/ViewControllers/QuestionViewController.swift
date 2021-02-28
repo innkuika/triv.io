@@ -122,17 +122,22 @@ class QuestionViewController: UIViewController {
                 let userAnswerCorrect = sender.titleLabel?.text == self.key
                 guard let unwrappedGameInstanceID = self.gameInstance?.gameInstanceId else { return }
                 guard let unwrappedQuestionCategory = self.questionCategory else { return }
+                guard let user = Auth.auth().currentUser else {
+                    assertionFailure("Unable to get current logged in user")
+                    return
+                }
                 
                 if botAnswerCorrect {
                     self.gameInstance?.getUserPlayer(id: "bot")?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
                 }
                 if userAnswerCorrect{
-                    guard let user = Auth.auth().currentUser else {
-                        assertionFailure("Unable to get current logged in user")
-                        return
-                    }
-                    
                     self.gameInstance?.getUserPlayer(id: user.uid)?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
+                }
+                
+                // determine if we need to flip turn
+                guard let currentPlayer = self.gameInstance?.currentTurn else { return }
+                if (currentPlayer == user.uid && !userAnswerCorrect)||(currentPlayer != user.uid && !botAnswerCorrect) {
+                    self.gameInstance?.flipTurn()
                 }
                 
                 // navigate back to spinWheelViewController
