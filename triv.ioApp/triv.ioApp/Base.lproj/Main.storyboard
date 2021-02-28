@@ -137,8 +137,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="co6-gh-jSU" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OBe-t5-bTv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="OBe-t5-bTv">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -265,35 +265,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5T-he-ICj">
-                                <rect key="frame" x="20" y="596" width="374" height="185"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="185" id="QBl-LN-g74"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;error description&gt;" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5T-he-ICj">
+                                <rect key="frame" x="20" y="706" width="374" height="148"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.66581285000000001" green="0.66591060160000004" blue="0.6657914519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
+                                <color key="highlightedColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-T1-NOn" customClass="GIDSignInButton">
-                                <rect key="frame" x="96" y="256" width="223" height="75"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ccc-T1-NOn" customClass="GIDSignInButton">
+                                <rect key="frame" x="96" y="569" width="223" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray3Color"/>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LOGO_B3" translatesAutoresizingMaskIntoConstraints="NO" id="4rF-fl-GHO">
+                                <rect key="frame" x="20" y="53" width="374" height="384"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="paJ-z9-HQD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="z5T-he-ICj" firstAttribute="centerX" secondItem="OES-Dg-xLl" secondAttribute="centerX" id="CYe-zJ-wPg"/>
-                            <constraint firstItem="z5T-he-ICj" firstAttribute="top" secondItem="Ccc-T1-NOn" secondAttribute="bottom" constant="265" id="FNG-I7-uVf"/>
-                            <constraint firstItem="z5T-he-ICj" firstAttribute="leading" secondItem="paJ-z9-HQD" secondAttribute="leading" constant="20" id="Lbi-qS-QGH"/>
-                            <constraint firstItem="paJ-z9-HQD" firstAttribute="bottom" secondItem="z5T-he-ICj" secondAttribute="bottom" constant="81" id="Ox0-1w-Osx"/>
-                            <constraint firstItem="paJ-z9-HQD" firstAttribute="trailing" secondItem="z5T-he-ICj" secondAttribute="trailing" constant="20" id="X7Q-Fa-YFv"/>
-                            <constraint firstItem="Ccc-T1-NOn" firstAttribute="leading" secondItem="paJ-z9-HQD" secondAttribute="leading" constant="96" id="aPJ-KM-Xeb"/>
-                            <constraint firstItem="Ccc-T1-NOn" firstAttribute="top" secondItem="paJ-z9-HQD" secondAttribute="top" constant="212" id="eCN-IQ-R0L"/>
-                            <constraint firstItem="paJ-z9-HQD" firstAttribute="trailing" secondItem="Ccc-T1-NOn" secondAttribute="trailing" constant="95" id="eqo-uT-s1g"/>
-                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="GoogleButtonOutlet" destination="Ccc-T1-NOn" id="BpP-SG-xST"/>
                         <outlet property="errorDescription" destination="z5T-he-ICj" id="EIk-5w-5sk"/>
+                        <outlet property="logoOutlet" destination="4rF-fl-GHO" id="mw1-41-mpF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8kl-YX-7dH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -366,6 +362,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LOGO_B3" width="2000" height="2000"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

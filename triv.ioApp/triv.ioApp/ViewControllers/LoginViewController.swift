@@ -14,26 +14,26 @@ import FirebaseDatabase
 
 class LoginViewController: UIViewController, LoginButtonDelegate {
     
+    @IBOutlet weak var logoOutlet: UIImageView!
+    @IBOutlet weak var GoogleButtonOutlet: GIDSignInButton!
+    let FaceBookButton = FBLoginButton()
     @IBOutlet weak var errorDescription: UILabel!
     var ref: DatabaseReference!
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
         
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
+    
+        FaceBookButton.delegate = self
+        FaceBookButton.permissions = ["public_profile", "email"]
+       
+        renderUI()
         
-        let loginButton = FBLoginButton()
-        loginButton.delegate = self
-        loginButton.permissions = ["public_profile", "email"]
-        loginButton.center = view.center
-        view.addSubview(loginButton)
         
-        if let token = AccessToken.current,
-           !token.isExpired {
+        if let token = AccessToken.current, !token.isExpired {
 //            fireBaseFaceBookLogin(accessToken: token.tokenString)
         }
         
@@ -42,6 +42,28 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func renderUI(){
+        let frameWidth = view.frame.width
+        let frameHeight = view.frame.height
+        
+        FaceBookButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
+        FaceBookButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.80)
+        
+        view.addSubview(FaceBookButton)
+        GoogleButtonOutlet.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
+        GoogleButtonOutlet.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.9)
+        
+        logoOutlet.frame = CGRect(x: 0, y: 0, width: frameWidth * 1.0, height: frameWidth)
+        logoOutlet.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.35)
+        
+        errorDescription.text = ""
+        errorDescription.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.85, height: frameHeight * 0.2)
+        errorDescription.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.65)
+        errorDescription.backgroundColor = view.backgroundColor
+        
+        navigationItem.hidesBackButton = true
     }
     
     // MARK: - Facebook
