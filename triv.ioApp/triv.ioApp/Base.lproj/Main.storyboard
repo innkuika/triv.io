@@ -170,6 +170,58 @@
             </objects>
             <point key="canvasLocation" x="6942.0289855072469" y="133.92857142857142"/>
         </scene>
+        <!--Result View Controller-->
+        <scene sceneID="8Eu-jX-dO0">
+            <objects>
+                <viewController storyboardIdentifier="resultViewController" id="84d-6n-9CC" customClass="ResultViewController" customModule="triv_ioApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" restorationIdentifier="resultViewController" id="ucG-PX-YcH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU LOSE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VRY-3v-qAO">
+                                <rect key="frame" x="0.0" y="373" width="414" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="M02-TK-syl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="45"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixf-sU-eHf">
+                                <rect key="frame" x="20" y="796" width="374" height="66"/>
+                                <color key="backgroundColor" red="0.39078253509999999" green="0.16533601279999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="VMf-NP-Jop"/>
+                                </constraints>
+                                <state key="normal" title="Go Back to Home">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="goBacktoHomeButtonPressed:" destination="84d-6n-9CC" eventType="touchUpInside" id="H86-kd-waw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1mZ-x2-TyB"/>
+                        <color key="backgroundColor" red="0.016000010070000001" green="0.089141316710000001" blue="0.22746455669999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="VRY-3v-qAO" firstAttribute="leading" secondItem="1mZ-x2-TyB" secondAttribute="leading" id="0AP-Qy-DPl"/>
+                            <constraint firstItem="1mZ-x2-TyB" firstAttribute="trailing" secondItem="VRY-3v-qAO" secondAttribute="trailing" id="0dF-SY-k3e"/>
+                            <constraint firstItem="VRY-3v-qAO" firstAttribute="centerX" secondItem="ucG-PX-YcH" secondAttribute="centerX" id="IIp-IB-8oU"/>
+                            <constraint firstItem="VRY-3v-qAO" firstAttribute="centerY" secondItem="ucG-PX-YcH" secondAttribute="centerY" id="KNA-83-Twz"/>
+                            <constraint firstItem="ixf-sU-eHf" firstAttribute="leading" secondItem="1mZ-x2-TyB" secondAttribute="leading" constant="20" id="RiC-Fu-rhS"/>
+                            <constraint firstItem="ixf-sU-eHf" firstAttribute="bottom" secondItem="1mZ-x2-TyB" secondAttribute="bottom" id="dVP-NI-uy8"/>
+                            <constraint firstItem="1mZ-x2-TyB" firstAttribute="trailing" secondItem="ixf-sU-eHf" secondAttribute="trailing" constant="20" id="yAr-XB-DV7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="goBacktoHomeButtonOutlet" destination="ixf-sU-eHf" id="fFT-iY-VmZ"/>
+                        <outlet property="winningStatusLabelOutlet" destination="VRY-3v-qAO" id="AJe-SI-MMS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLx-Br-b9d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7827.5362318840589" y="133.92857142857142"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="ksD-CY-NF7">
             <objects>
@@ -339,7 +391,7 @@
         <!--Home View Controller-->
         <scene sceneID="ciR-3J-sbJ">
             <objects>
-                <viewController storyboardIdentifier="homeViewController" id="mth-ET-o9K" customClass="HomeViewController" customModule="triv_ioApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="homeViewController" storyboardIdentifier="homeViewController" id="mth-ET-o9K" customClass="HomeViewController" customModule="triv_ioApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oUd-Rj-dzJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

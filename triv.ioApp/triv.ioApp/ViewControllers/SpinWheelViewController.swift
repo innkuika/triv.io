@@ -32,6 +32,7 @@ class SpinWheelViewController: UIViewController {
     var botScore: [String] = []
      
     override func viewDidLoad() {
+        
         let workerGroup = DispatchGroup()
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -42,6 +43,23 @@ class SpinWheelViewController: UIViewController {
 
         workerGroup.notify(queue: DispatchQueue.main) {
             self.renderUI()
+            self.checkWinningStatus()
+        }
+    }
+    
+    func checkWinningStatus() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let resultViewController = storyboard.instantiateViewController(identifier: "resultViewController") as? ResultViewController else {
+            assertionFailure("cannot instantiate resultViewController")
+            return
+        }
+        if userScore.count == 5 {
+            resultViewController.playerDidWin = true
+            self.navigationController?.pushViewController(resultViewController, animated: true)
+        }
+        else if botScore.count == 5 {
+            resultViewController.playerDidWin = false
+            self.navigationController?.pushViewController(resultViewController, animated: true)
         }
     }
     

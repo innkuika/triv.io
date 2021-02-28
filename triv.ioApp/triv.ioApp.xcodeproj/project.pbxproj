@@ -26,6 +26,7 @@
 		44D9657725E379980030382A /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657425E379980030382A /* QuestionViewController.swift */; };
 		44D9658025E379D60030382A /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657E25E379D60030382A /* GameModel.swift */; };
 		49A7687C25E9F1280068A130 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7687B25E9F1280068A130 /* PlayerModel.swift */; };
+		49A7688725EB7FFD0068A130 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7688625EB7FFD0068A130 /* ResultViewController.swift */; };
 		49CA93DC25E58E54001038F5 /* utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA93DB25E58E54001038F5 /* utility.swift */; };
 		5DAD835D25E4A45000B3BA98 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD835C25E4A45000B3BA98 /* LoginViewController.swift */; };
 		8287C42225D78EF100729808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8287C42125D78EF100729808 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		44D9657425E379980030382A /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		44D9657E25E379D60030382A /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		49A7687B25E9F1280068A130 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		49A7688625EB7FFD0068A130 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		49CA93DB25E58E54001038F5 /* utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utility.swift; sourceTree = "<group>"; };
 		5DAD835C25E4A45000B3BA98 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8287C41E25D78EF100729808 /* triv.ioApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = triv.ioApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +140,7 @@
 				44D9657325E379980030382A /* ViewController.swift */,
 				44A5745325DF65760053E990 /* HomeViewController.swift */,
 				5DAD835C25E4A45000B3BA98 /* LoginViewController.swift */,
+				49A7688625EB7FFD0068A130 /* ResultViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				49CA93DC25E58E54001038F5 /* utility.swift in Sources */,
 				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
 				44A5745E25DF7C070053E990 /* UserModel.swift in Sources */,
+				49A7688725EB7FFD0068A130 /* ResultViewController.swift in Sources */,
 				5DAD835D25E4A45000B3BA98 /* LoginViewController.swift in Sources */,
 				44A5749F25DF90C80053E990 /* BotUser.swift in Sources */,
 				44A5748A25DF862B0053E990 /* GameStateProtocol.swift in Sources */,
