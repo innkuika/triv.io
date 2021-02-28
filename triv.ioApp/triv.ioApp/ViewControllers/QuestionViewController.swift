@@ -32,6 +32,7 @@ class QuestionViewController: UIViewController {
     
     override func viewDidLoad() {
         navigationItem.hidesBackButton = true
+        rendeUI()
         
         ref = Database.database().reference()
         workerGroup.enter()
@@ -41,6 +42,15 @@ class QuestionViewController: UIViewController {
         workerGroup.notify(queue: DispatchQueue.main) {
             self.questionDidLoad()
         }
+    }
+    
+    func rendeUI() {
+        styleButton(button: answerAButtonOutlet)
+        styleButton(button: answerBButtonOutlet)
+        styleButton(button: answerCButtonOutlet)
+        styleButton(button: answerDButtonOutlet)
+        
+        resultLabelOutlet.text = ""
     }
     
     func questionDidLoad(){
@@ -108,9 +118,13 @@ class QuestionViewController: UIViewController {
         
                 if key == answer {
                     self.resultLabelOutlet.text = "correct"
+                    self.resultLabelOutlet.textColor = UIColor.white
+                    self.resultLabelOutlet.backgroundColor = trivioGreen
                 }
                 else {
                     self.resultLabelOutlet.text = "incorrect"
+                    self.resultLabelOutlet.textColor = UIColor.white
+                    self.resultLabelOutlet.backgroundColor = trivioRed
                 }
             }
             DispatchQueue.main.async {

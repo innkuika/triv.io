@@ -15,7 +15,7 @@ protocol GameModelUpdates: class {
 }
 
 class GameModel {
-    var categories: [String] =  ["Art Literature", "History", "Pop Culture", "Science", "Technology", "Video Games"]
+    var categories: [String] =  ["Art and Literature", "History", "Pop Culture", "Science", "Technology", "Video Games"]
     var selectedCategories: [String] = []
     weak var delegate: GameModelUpdates?
     var currentTurn: String
