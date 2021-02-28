@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class Player {
     var playerID: String
@@ -16,5 +17,16 @@ class Player {
         self.playerID = playerID
         self.streak = streak
         self.score = score
+    }
+    
+    // push new player score to database
+    func updatePlayerScore(gameInstanceID: String, newScore: String){
+        if !score.contains(newScore) {
+            score.append(newScore)
+            let ref = Database.database().reference()
+            ref.child("GameInstance/\(gameInstanceID)/Players/\(playerID)/Score").setValue(score)
+        }
+    
+        
     }
 }

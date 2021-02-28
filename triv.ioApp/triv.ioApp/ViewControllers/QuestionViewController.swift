@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class QuestionViewController: UIViewController {
     var ref: DatabaseReference!
@@ -40,9 +41,6 @@ class QuestionViewController: UIViewController {
             self.questionDidLoad()
             print("question did load")
         }
-
-                
-
     }
     
     func questionDidLoad(){
@@ -63,7 +61,6 @@ class QuestionViewController: UIViewController {
                 print("Error getting data \(error)")
             }
             else if snapshot.exists() {
-                print("Got category data \(snapshot.value!)")
                 let numberOfQuestions = snapshot.childrenCount
                 var randomIndex = 0
                 if numberOfQuestions != 1 {
@@ -74,14 +71,12 @@ class QuestionViewController: UIViewController {
                         print("Error getting data \(error)")
                     }
                     else if snapshot.exists() {
-                        print("Got question id data \(snapshot.value!)")
                         guard let questionID = snapshot.value as? String else { return }
                         self.ref.child("Question").child(questionID).getData{ (error, snapshot) in
                             if let error = error {
                                 print("Error getting data \(error)")
                             }
                             else if snapshot.exists() {
-                                print("get question data \(snapshot.value!)")
                                 let questionDict = snapshot.value as? NSDictionary
                                 guard let unwrappedPrompt = questionDict?["Prompt"] as? String else { return }
                                 guard let unwrappedOption = questionDict?["Option"] as? [String] else { return }
@@ -123,7 +118,27 @@ class QuestionViewController: UIViewController {
                 sleep(2)
             
                 // TODO: push result (user and bot) to database
-                let botAnswer = self.answerArray[2]
+                let botAnswerCorrect = self.answerArray[2] == self.key
+                let userAnswerCorrect = sender.titleLabel?.text == self.key
+                guard let unwrappedGameInstanceID = self.gameInstance?.gameInstanceId else { return }
+                guard let unwrappedQuestionCategory = self.questionCategory else { return }
+                guard let user = Auth.auth().currentUser else {
+                    assertionFailure("Unable to get current logged in user")
+                    return
+                }
+                
+                if botAnswerCorrect {
+                    self.gameInstance?.getUserPlayer(id: "bot")?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
+                }
+                if userAnswerCorrect{
+                    self.gameInstance?.getUserPlayer(id: user.uid)?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
+                }
+                
+                // determine if we need to flip turn
+                guard let currentPlayer = self.gameInstance?.currentTurn else { return }
+                if (currentPlayer == user.uid && !userAnswerCorrect)||(currentPlayer != user.uid && !botAnswerCorrect) {
+                    self.gameInstance?.flipTurn()
+                }
                 
                 // navigate back to spinWheelViewController
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
