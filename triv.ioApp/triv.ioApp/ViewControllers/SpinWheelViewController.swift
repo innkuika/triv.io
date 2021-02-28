@@ -30,14 +30,14 @@ class SpinWheelViewController: UIViewController {
     var isUserTurn = true
     var userScore: [String] = []
     var botScore: [String] = []
-    
-    let workerGroup = DispatchGroup()
-    
+     
     override func viewDidLoad() {
+        let workerGroup = DispatchGroup()
         super.viewDidLoad()
         ref = Database.database().reference()
         
         workerGroup.enter()
+        print("entered group")
         // get latest data from database
         gameInstance?.updateGameInstance(workerGroup: workerGroup)
         print("update game instance")
@@ -71,8 +71,6 @@ class SpinWheelViewController: UIViewController {
         } else {
             isUserTurn = false
         }
-        
-        
         
         renderWheel()
         renderScoreBoard(userScore: userScore, botScore: botScore)

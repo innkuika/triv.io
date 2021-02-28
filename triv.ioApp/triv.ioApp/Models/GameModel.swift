@@ -47,8 +47,6 @@ class GameModel {
     // get latest data from database
     func updateGameInstance(workerGroup: DispatchGroup){
         self.ref.child("GameInstance/\(self.gameInstanceId ?? "")").observe(DataEventType.value, with: { (snapshot) in
-
-                print("Got data \(snapshot.value!)")
                 let value = snapshot.value as? NSDictionary
                 
                 // get latest players info
@@ -67,11 +65,12 @@ class GameModel {
                 }
                 self.currentTurn = unwrappedCurrentTurn
                 
-                print("before leave group")
-                workerGroup.leave()
-            print("after leave group")
+                
 
         })
+        print("before leave group")
+        workerGroup.leave()
+    print("after leave group")
     }
     
     func getUserPlayer(id: String) -> Player?{
