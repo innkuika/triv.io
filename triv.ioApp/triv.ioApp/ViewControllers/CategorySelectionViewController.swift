@@ -17,20 +17,33 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     @IBOutlet weak var categoriesTableView: UITableView!
     @IBOutlet weak var startButton: UIButton!
     
+    
     var gameInstance: GameModel?
     var categories: [String] = []
     var selectedCategories: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoryLabel1.text = ""
-        categoryLabel2.text = ""
-        categoryLabel3.text = ""
+        renderUI()
         
         gameInstance?.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
         gameInstance?.loadCategories()
+    }
+    
+    func renderUI() {
+        styleButton(button: startButton)
+        styleSectionLabel(label: categoryLabel1)
+        styleSectionLabel(label: categoryLabel2)
+        styleSectionLabel(label: categoryLabel3)
+    }
+    
+    func styleSectionLabel(label: UILabel) {
+        label.text = ""
+        label.layer.cornerRadius = 10
+        label.textColor = UIColor.white
+        label.layer.masksToBounds = true
     }
     
     // MARK: -GameModelUpdates protocol implementation
@@ -42,11 +55,16 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     func selectedCategoriesDidChange(_ selectedCategories: [String]) {
         self.selectedCategories = selectedCategories
         categoryLabel1.text = selectedCategories.count > 0 ? selectedCategories[0] : ""
+        categoryLabel1.backgroundColor = selectedCategories.count > 0 ? trivioYellow : trivioBackgroundColor
+        
         categoryLabel2.text = selectedCategories.count > 1 ? selectedCategories[1] : ""
+        categoryLabel2.backgroundColor = selectedCategories.count > 1 ? trivioYellow : trivioBackgroundColor
+        
         categoryLabel3.text = selectedCategories.count > 2 ? selectedCategories[2] : ""
+        categoryLabel3.backgroundColor = selectedCategories.count > 2 ? trivioYellow : trivioBackgroundColor
         
         if selectedCategories.count == 3 {
-            startButton.backgroundColor = UIColor(red: 0.51, green: 0.65, blue: 1.00, alpha: 1.00)
+            startButton.backgroundColor = trivioOrange
             startButton.isUserInteractionEnabled = true
         } else {
             startButton.backgroundColor = UIColor.systemGray3
