@@ -15,7 +15,9 @@ protocol GameModelUpdates: class {
 }
 
 class GameModel {
-    var categories: [String] =  ["Art and Literature", "History", "Pop Culture", "Science", "Technology", "Video Games"]
+    // reserved History, Pop Culture and UC Davis category for bot to pick, can fix this later
+    var categories: [String] =  ["Art and Literature", "Science", "Technology", "Video Games"]
+
     var selectedCategories: [String] = []
     weak var delegate: GameModelUpdates?
     var currentTurn: String
@@ -93,7 +95,9 @@ class GameModel {
     func updateCategories(){
         if playerIds.contains("bot"){
             // FIXME: implement bot selection logic here later
-            selectedCategories = categories
+            selectedCategories.append("History")
+            selectedCategories.append("Pop Culture")
+            selectedCategories.append("UC Davis")
         }
         
         self.ref.child("GameInstance/\(self.gameInstanceId ?? "")/Categories").setValue(selectedCategories)
