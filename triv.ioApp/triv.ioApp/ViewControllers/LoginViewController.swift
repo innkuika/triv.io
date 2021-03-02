@@ -85,7 +85,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
             print(error.localizedDescription)
             return
         }
-        print("makes it here")
         
         guard let tokenString = AccessToken.current?.tokenString else {
             return
@@ -110,6 +109,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
                 print("Unsuccessful Authentication \(error)")
                 print(error.localizedDescription)
                 self.errorDescription.text = error.localizedDescription
+                
+                let loginManager = LoginManager()
+                loginManager.logOut()
                 return
             }
             NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
@@ -227,6 +229,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     
     //Protocol for ASAuthorizationControllerPresentationContextProviding
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             guard let nonce = currentNonce else{
                 fatalError("Invalid state: A login callback was received, but no login request was sent")
@@ -244,6 +247,14 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
             Auth.auth().signIn(with: credential) { (authDataResult, error) in
                 if let user = authDataResult?.user {
                     print("Signed in as \(user.uid), email: \(user.email ?? "email error")")
+                    
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
+                        assertionFailure("cannot instantiate categorySelectionViewController")
+                        return
+                    }
+                    self.navigationController?.pushViewController(loginViewController, animated: true)
                 }
             }
         }

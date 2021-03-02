@@ -8,10 +8,13 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import Firebase
+import FBSDKLoginKit
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var startNewGameButtonOutlet: UIButton!
     @IBOutlet weak var joinGameViaCodeButtonOutlet: UIButton!
+    @IBOutlet weak var logOutButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,7 @@ class HomeViewController: UIViewController {
     func renderUI(){
         styleButton(button: startNewGameButtonOutlet)
         styleButton(button: joinGameViaCodeButtonOutlet)
+        styleButton(button: logOutButtonOutlet)
     }
     
     // MARK: -UI action handlers
@@ -43,6 +47,39 @@ class HomeViewController: UIViewController {
         categorySelectionViewController.gameInstance = gameInstance
         
         navigationController?.pushViewController(categorySelectionViewController, animated: true)
+    }
+    
+    @IBAction func logOutButtonPressed(_ sender: Any) {
+        print("Log out button pressed")
+       
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            
+            
+            if let tokenString = AccessToken.current?.tokenString{
+                print("facebook logged in")
+                let loginManager = LoginManager()
+                loginManager.logOut()
+            }
+            else {
+                print("no facebook login")
+            }
+            
+            
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
+                assertionFailure("cannot instantiate categorySelectionViewController")
+                return
+            }
+            self.navigationController?.pushViewController(loginViewController, animated: true)
+            
+            
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
     }
     
 }
