@@ -10,6 +10,18 @@ import FirebaseDatabase
 
 class LeaderboardViewController: UIViewController, UITableViewDataSource {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        ref = Database.database().reference()
+        leaderboardTableView.dataSource = self
+        getUserData {
+            DispatchQueue.main.async {
+                self.leaderboardTableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
@@ -19,6 +31,9 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource {
         cell.textLabel?.text = String(indexPath.row + 1) + ". " + users[indexPath.row].name
         cell.detailTextLabel?.text = String(users[indexPath.row].streak_score) + " wins"
         cell.backgroundColor = trivioBackgroundColor
+        cell.imageView?.tintColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.white
+        cell.detailTextLabel?.textColor = UIColor.white
         return cell
     }
     
@@ -27,18 +42,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource {
     var ref: DatabaseReference!
     var users: [User] = []
     
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        ref = Database.database().reference()
-        leaderboardTableView.dataSource = self
-        getUserData { result in
-            if case .failure(let error) = result { print("Error getting data \(error)") }
-            DispatchQueue.main.async {
-                self.leaderboardTableView.reloadData()
-            }
-        }
-    }
     
     func getUserData(completion: @escaping (Result<Void, Error>) -> Void) {
         ref.child("User").queryOrdered(byChild: "Streak").observeSingleEvent(
