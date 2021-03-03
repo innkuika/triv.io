@@ -15,7 +15,8 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource {
         navigationController?.navigationBar.prefersLargeTitles = true
         ref = Database.database().reference()
         leaderboardTableView.dataSource = self
-        getUserData {
+        getUserData { result in
+            if case .failure(let error) = result { print("Error getting data \(error)") }
             DispatchQueue.main.async {
                 self.leaderboardTableView.reloadData()
             }
