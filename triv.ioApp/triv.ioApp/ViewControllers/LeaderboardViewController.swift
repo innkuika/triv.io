@@ -40,31 +40,30 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var leaderboardTableView: UITableView!
     var ref: DatabaseReference!
-    let workerGroup = DispatchGroup()
     var users: [User] = []
     
-
     
-    
-    func getUserData(completion: @escaping () -> Void) {
-        ref.child("User").queryOrdered(byChild: "Streak").ref.getData { (error, snapshot) in
-            if let error = error {
-                print("Error getting data \(error)")
-            } else if snapshot.exists() {
-                guard let resultDict = snapshot.value as? NSDictionary else {
-                    self.workerGroup.leave()
-                    return
-                }
-                let ids = resultDict.allKeys
-                self.users = ids.compactMap { id in
-                    UserModel(
-                        name: (resultDict[id] as? NSDictionary)?["Name"] as? String,
-                        streak_score: (resultDict[id] as? NSDictionary)?["Streak"] as? Int,
-                        id: id as? String,
-                        database: 0)
-                }
+    func getUserData(completion: @escaping (Result<Void, Error>) -> Void) {
+        ref.child("User").queryOrdered(byChild: "Streak").observeSingleEvent(
+            of: .value,
+            with: { (snapshot) in
+            if snapshot.exists() {
+                self.users = snapshot.children.compactMap { childSnapshot in
+                    guard let childSnapshot = (childSnapshot as? DataSnapshot),
+                          let resultDict = childSnapshot.value as? NSDictionary else {
+                        return nil
+                    }
+                    return UserModel(
+                        name: resultDict["Name"] as? String,
+                        streak_score: resultDict["Streak"] as? Int,
+                        id: childSnapshot.key,
+                        database: 0
+                    )
+                }.reversed()
+                completion(Result<Void,Error>.success(()))
             }
-            completion()
+        }) { (error) in
+            completion(Result<Void, Error>.failure(error))
         }
     }
 }
