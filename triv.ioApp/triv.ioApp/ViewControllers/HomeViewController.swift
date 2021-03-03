@@ -12,10 +12,11 @@ import Firebase
 import FBSDKLoginKit
 
 class HomeViewController: UIViewController {
+    @IBOutlet weak var leaderboardButtonOutlet: UIButton!
     @IBOutlet weak var startNewGameButtonOutlet: UIButton!
     @IBOutlet weak var joinGameViaCodeButtonOutlet: UIButton!
-    @IBOutlet weak var logOutButtonOutlet: UIButton!
     
+    @IBOutlet weak var userPreferenceButtonOutlet: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.hidesBackButton = true
@@ -25,7 +26,7 @@ class HomeViewController: UIViewController {
     func renderUI(){
         styleButton(button: startNewGameButtonOutlet)
         styleButton(button: joinGameViaCodeButtonOutlet)
-        styleButton(button: logOutButtonOutlet)
+        styleCircleButton(button: leaderboardButtonOutlet)
     }
     
     // MARK: -UI action handlers
@@ -49,40 +50,7 @@ class HomeViewController: UIViewController {
         navigationController?.pushViewController(categorySelectionViewController, animated: true)
     }
     
-    @IBAction func logOutButtonPressed(_ sender: Any) {
-        print("Log out button pressed")
-       
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            
-            
-            if let tokenString = AccessToken.current?.tokenString{
-                print("facebook logged in")
-                let loginManager = LoginManager()
-                loginManager.logOut()
-            }
-            else {
-                print("no facebook login")
-            }
-            
-            
-            
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
-                assertionFailure("cannot instantiate categorySelectionViewController")
-                return
-            }
-            self.navigationController?.pushViewController(loginViewController, animated: true)
-            
-            
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        
-    }
-    
-    @IBAction func leaderboardButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func leaderboardButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let leaderboardViewController = storyboard.instantiateViewController(identifier: "leaderboardViewController") as? LeaderboardViewController else {
             assertionFailure("cannot instantiate leaderboardViewController")
@@ -91,5 +59,28 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(leaderboardViewController, animated: true)
     }
     
+    
+    
+    @IBAction func userPreferenceButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let userPreferenceViewController = storyboard.instantiateViewController(identifier: "userPreferenceViewController") as? UserPreferenceViewController else {
+            assertionFailure("cannot instantiate userPreferenceViewController")
+            return
+        }
+        self.navigationController?.pushViewController(userPreferenceViewController, animated: true)
+
+
+        
+    }
+    
+//    @IBAction func userPreferenceButtonPressed(_ sender: Any) {
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let userPreferenceViewController = storyboard.instantiateViewController(identifier: "userPreferenceViewController") as? UserPreferenceViewController else {
+//            assertionFailure("cannot instantiate userPreferenceViewController")
+//            return
+//        }
+//        self.navigationController?.pushViewController(userPreferenceViewController, animated: true)
+//
+//    }
     
 }
