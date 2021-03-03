@@ -82,6 +82,7 @@
 		49A7687B25E9F1280068A130 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		49A7688625EB7FFD0068A130 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		49CA93DB25E58E54001038F5 /* utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utility.swift; sourceTree = "<group>"; };
+		5D985AED25EF100600AD8CA2 /* triv.ioApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triv.ioApp.entitlements; sourceTree = "<group>"; };
 		5DAD835C25E4A45000B3BA98 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8287C41E25D78EF100729808 /* triv.ioApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = triv.ioApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8287C42125D78EF100729808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 		8287C42025D78EF100729808 /* triv.ioApp */ = {
 			isa = PBXGroup;
 			children = (
+				5D985AED25EF100600AD8CA2 /* triv.ioApp.entitlements */,
 				44D9650125E372D20030382A /* GoogleService-Info.plist */,
 				44A5745C25DF7BF40053E990 /* Models */,
 				44A5745225DF654C0053E990 /* Protocols */,
@@ -734,6 +736,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = triv.ioApp/triv.ioApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7HF46BS5MM;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
@@ -755,6 +758,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = triv.ioApp/triv.ioApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7HF46BS5MM;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
