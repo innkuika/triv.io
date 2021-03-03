@@ -20,7 +20,7 @@ class UserModel: User {
             
         }
     }
-    let id: Int
+    let id: String
     //FIXME: Create a database type for the models to communicate with.
     let database: Int
     
@@ -33,4 +33,15 @@ class UserModel: User {
         return nil
         // Use ID to fetch data from database and populate fields
     }
+    
+    init?(name: String?, streak_score: Int?, id: String?, database: Int?) {
+        guard let name = name, let streak_score = streak_score,  let id = id, let database = database else {
+            return nil
+        }
+        self.name = name
+        self.streak_score = streak_score
+        self.id = id
+        self.database = database
+    }
+
 }

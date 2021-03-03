@@ -8,7 +8,7 @@
 class UserModelMock: User {
     var name = "John Doe"
     var streak_score: Int = 0
-    let id = 0
+    let id = "0"
     
     //TODO: Implement this
     func promptForMove() {

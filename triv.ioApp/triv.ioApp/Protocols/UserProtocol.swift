@@ -8,6 +8,6 @@
 protocol User {
     var name: String {get set}
     var streak_score: Int {get set}
-    var id: Int {get}
+    var id: String {get}
     func promptForMove()
 }

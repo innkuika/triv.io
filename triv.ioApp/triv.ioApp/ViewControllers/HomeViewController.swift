@@ -82,4 +82,14 @@ class HomeViewController: UIViewController {
         
     }
     
+    @IBAction func leaderboardButtonPressed(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let leaderboardViewController = storyboard.instantiateViewController(identifier: "leaderboardViewController") as? LeaderboardViewController else {
+            assertionFailure("cannot instantiate leaderboardViewController")
+            return
+        }
+        self.navigationController?.pushViewController(leaderboardViewController, animated: true)
+    }
+    
+    
 }
