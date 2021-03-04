@@ -30,3 +30,115 @@ func styleCircleButton(button: UIButton){
     button.layer.cornerRadius =  button.frame.size.width / 2
     button.clipsToBounds = true
 }
+
+func generateFriendMessage(uid: String) -> String{
+    return "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. \(uid)."
+}
+
+
+@objc protocol MessagePromptDelegate {
+    func tapped()
+    func buttonPressed()
+}
+
+class MessagePrompt {
+    
+    var parentViewController: UIViewController
+    var delegate: MessagePromptDelegate?
+    
+    // Call within a view controller and pass in self
+    init(parentView: UIViewController) {
+        parentViewController = parentView
+    }
+    
+    // with sub message and tap to continue function
+    func displayMessage(view: UIView, messageText: String, heightPercentage: Float, subMessageText: String, promptView: UIView){
+        // add subview to view
+        promptView.frame = CGRect(x: 0, y: 0, width:  view.frame.width * 0.85, height: view.frame.height * CGFloat(heightPercentage))
+        promptView.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height * 0.80)
+        promptView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
+        promptView.layer.cornerRadius = 20
+        // tap to continue
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapHandler))
+        view.addGestureRecognizer(tap)
+
+        // add shadow
+        promptView.layer.shadowColor = UIColor.purple.cgColor
+        promptView.layer.shadowRadius = 5
+        promptView.layer.shadowOpacity = 1
+        promptView.layer.shadowOffset = .zero
+        UIView.transition(with: parentViewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+          view.addSubview(promptView)
+        }, completion: nil)
+        
+        
+        // add main message text
+        let promptMessage = UILabel()
+        promptMessage.frame = CGRect(x: 0, y: 0, width: promptView.frame.width * 0.9, height: promptView.frame.height * 0.3)
+        promptMessage.center = CGPoint(x: promptView.frame.size.width / 2, y: promptView.frame.size.height * 0.20)
+        promptMessage.text = messageText
+        promptMessage.textAlignment = .center
+        promptMessage.numberOfLines = 4
+        promptMessage.font = UIFont(name: "PingFangSC-Semibold", size: 16)
+        promptView.addSubview(promptMessage)
+        
+        // add sub message text
+        let subMessage = UILabel()
+        subMessage.frame = CGRect(x: 0, y: 0, width: promptView.frame.width * 0.9, height: promptView.frame.height * 0.2)
+        subMessage.center = CGPoint(x: promptView.frame.size.width / 2, y: promptView.frame.size.height * 0.80)
+        subMessage.text = subMessageText
+        subMessage.textAlignment = .center
+        subMessage.textColor = UIColor.gray
+        subMessage.numberOfLines = 3
+        subMessage.font = UIFont(name: "PingFangSC-Semibold", size: 14)
+        promptView.addSubview(subMessage)
+    }
+    
+    
+    func displayMessage(view: UIView, messageText: String, heightPercentage: Float, buttonText: String, promptView: UIView){
+        // add subview to view
+        promptView.frame = CGRect(x: 0, y: 0, width:  view.frame.width * 0.85, height: view.frame.height * CGFloat(heightPercentage))
+        promptView.center = CGPoint(x: view.frame.size.width / 2, y: view.frame.size.height * 0.85)
+        promptView.backgroundColor = trivioYellow
+        promptView.layer.cornerRadius = 20
+        UIView.transition(with: parentViewController.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+          view.addSubview(promptView)
+        }, completion: nil)
+        
+        // add shadow
+        promptView.layer.shadowColor = UIColor.purple.cgColor
+        promptView.layer.shadowRadius = 5
+        promptView.layer.shadowOpacity = 1
+        promptView.layer.shadowOffset = .zero
+
+        // add main message text
+        let promptMessage = UILabel()
+        promptMessage.frame = CGRect(x: 0, y: 0, width: promptView.frame.width * 0.9, height: promptView.frame.height * 0.3)
+        promptMessage.center = CGPoint(x: promptView.frame.size.width / 2, y: promptView.frame.size.height * 0.20)
+        promptMessage.text = messageText
+        promptMessage.textAlignment = .center
+        promptMessage.numberOfLines = 4
+        promptMessage.font = UIFont(name: "PingFangSC-Semibold", size: 16)
+        promptView.addSubview(promptMessage)
+
+        // add button
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: promptView.frame.width * 0.8, height: promptView.frame.height * 0.2)
+        button.center = CGPoint(x: promptView.frame.size.width / 2, y: promptView.frame.size.height * 0.80)
+        button.setTitle(buttonText, for: .normal)
+        button.backgroundColor = trivioPurple
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(self.buttonPressedHandler), for: .touchUpInside)
+        promptView.addSubview(button)
+        
+        
+    }
+    
+    @objc private func tapHandler() {
+        self.delegate?.tapped()
+    }
+    
+    @objc private func buttonPressedHandler() {
+        self.delegate?.buttonPressed()
+    }
+}
