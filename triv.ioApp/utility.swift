@@ -30,3 +30,7 @@ func styleCircleButton(button: UIButton){
     button.layer.cornerRadius =  button.frame.size.width / 2
     button.clipsToBounds = true
 }
+
+func generateFriendMessage(uid: String) -> String{
+    return "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. \(uid)."
+}

@@ -46,13 +46,13 @@ class UserPreferenceViewController: UIViewController{
     func renderUI(){
         styleButton(button: logoutButtonOutlet)
         print("user id: \(userId)")
-        uidButtonOutlet.setTitle(userId, for: .normal)
-        avatarImageViewOutlet.image = UIImage(named: "Robot Avatars_1.png")
+        avatarImageViewOutlet.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
         userNameLabelOutlet.text = userName
 
         coinNumberLabelOutlet.text = "\(coinNumber)"
     }
     @IBAction func uidButtonPressed(_ sender: Any) {
+        UIPasteboard.general.string = generateFriendMessage(uid: userId)
     }
     
     func getUserProfileData(){
