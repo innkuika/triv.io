@@ -12,14 +12,19 @@ import FirebaseAuth
 import Firebase
 import FBSDKLoginKit
 
-class UserPreferenceViewController: UIViewController{
+class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
+    
+    
     @IBOutlet weak var avatarImageViewOutlet: UIImageView!
     @IBOutlet weak var userNameLabelOutlet: UILabel!
     @IBOutlet weak var uidButtonOutlet: UIButton!
-    
     @IBOutlet weak var coinNumberLabelOutlet: UILabel!
     
     let workerGroup = DispatchGroup()
+    
+    var messagePrompt: MessagePrompt?
+    let promptView = UIView()
+
     
     // query from database
     var ref: DatabaseReference!
@@ -44,6 +49,11 @@ class UserPreferenceViewController: UIViewController{
     }
     
     func renderUI(){
+        // init message prompt
+        messagePrompt = MessagePrompt(parentView: self)
+        messagePrompt?.delegate = self
+
+        
         styleButton(button: logoutButtonOutlet)
         print("user id: \(userId)")
         avatarImageViewOutlet.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
@@ -53,7 +63,21 @@ class UserPreferenceViewController: UIViewController{
     }
     @IBAction func uidButtonPressed(_ sender: Any) {
         UIPasteboard.general.string = generateFriendMessage(uid: userId)
+        promptView.isHidden = false
+        messagePrompt?.displayMessage(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: promptView)
+
+
     }
+    
+    func tapped() {
+        print("tapped")
+    }
+    
+    func buttonPressed() {
+        print("pressed")
+        promptView.isHidden = true
+    }
+    
     
     func getUserProfileData(){
         guard let user = Auth.auth().currentUser else {
