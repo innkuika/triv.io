@@ -59,6 +59,15 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(leaderboardViewController, animated: true)
     }
     
+    @IBAction func friendsButtonPressed() {
+        // Navigate to Friend List View
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let friendListViewController = storyboard.instantiateViewController(identifier: "friendListViewController") as? FriendListViewController else {
+            assertionFailure("cannot instantiate friendListViewController")
+            return
+        }
+        self.navigationController?.pushViewController(friendListViewController, animated: true)
+    }
     
     
     @IBAction func userPreferenceButtonPressed(_ sender: Any) {
