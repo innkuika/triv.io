@@ -59,4 +59,3 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Sending friend requests: https://github.com/ECS189E/project-w21-triv-io/commit/fd654fab15cf99d12b7f6d7744f3ef29a2493f85
 * Auto fill in UID for friend request from pasteboard using template: https://github.com/ECS189E/project-w21-triv-io/commit/9aa42f2728b85bff6a864d599e18f925c3e70ce7
 * Opponent selection (in progress): https://github.com/ECS189E/project-w21-triv-io/commit/c1a53dd7eac45e474b01af9f58d4dbf1c3fc2e8f
-* Populated Firebase with questions and answer choices (all team members worked on coming up with questions and answer choices)
