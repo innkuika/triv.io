@@ -243,6 +243,25 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
     func showFriendRequestPrompt() {
         let alert = UIAlertController(title: "Add New Friend", message: "Please enter the ID of the player you would like to send a friend request to.", preferredStyle: .alert)
         
+        alert.addTextField { (textField) in
+            // Try to get UID from pasteboard
+            let strings = UIPasteboard.general.strings ?? []
+            
+            for str in strings {
+                do {
+                    let pattern = NSRegularExpression.escapedPattern(for: "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. ") + "(.+)" + NSRegularExpression.escapedPattern(for: ".")
+                    let regex = try NSRegularExpression(pattern: pattern)
+                    
+                    if let match = regex.firstMatch(in: str, range: NSMakeRange(0, str.count)) {
+                        // Found a match in pasteboard
+                        textField.text = (str as NSString).substring(with: match.range(at: 1))
+                    }
+                } catch {
+                    assertionFailure("regex expression is invalid")
+                }
+            }
+        }
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         let sendRequestAction = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
