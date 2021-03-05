@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class FriendListViewController: UIViewController, UITableViewDataSource, MessagePromptDelegate {
+class FriendListViewController: UIViewController, UITableViewDataSource, MessagePromptDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var friendRequestView: UIView!
@@ -21,9 +21,12 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
     var friends: [UserModel?] = []
     var requestUid = ""
     
-    // messagePrompt for friend message copied
+    // messagePrompt for friend message copied or send friend request button pressed
     var messagePrompt: MessagePrompt?
-    let promptView = UIView()
+    let uidPromptView = UIView()
+    let requestPromptView = UIView()
+    let requestTextField = UITextField()
+    let requestErrorMessageLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,9 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         // init message prompt
         messagePrompt = MessagePrompt(parentView: self)
         messagePrompt?.delegate = self
+        
+        requestTextField.delegate = self
+        requestErrorMessageLabel.numberOfLines = 2
         
         ref = Database.database().reference()
         
@@ -220,14 +226,16 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
     func sendFriendRequest(_ requestUid: String) {
         
         if requestUid == uid {
-            showInvalidRequestPrompt("You entered your own ID.")
+//            showInvalidRequestPrompt("You entered your own ID.")
+            requestErrorMessageLabel.text = "You entered your own ID."
             return
         }
         
         // Checks if the current user is already friends with the player
         let friendUids = friends.compactMap { $0?.id }
         if friendUids.contains(requestUid) {
-            showInvalidRequestPrompt("You are already friends with this player.")
+//            showInvalidRequestPrompt("You are already friends with this player.")
+            requestErrorMessageLabel.text = "You are already friends with this player."
             return
         }
         
@@ -241,16 +249,21 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
                 
                 if friendRequests.contains(self.uid) {
                     DispatchQueue.main.async {
-                        self.showInvalidRequestPrompt("You have already sent this player a friend request.")
+//                        self.showInvalidRequestPrompt("You have already sent this player a friend request.")
+                        self.requestErrorMessageLabel.text = "You have already sent this player a friend request."
                     }
                 } else {
                     friendRequests.append(self.uid)
                     self.ref.child("User/\(requestUid)/FriendRequests").setValue(friendRequests)
+                    DispatchQueue.main.async {
+                        self.requestPromptView.isHidden = true
+                    }
                 }
             } else {
                 // The requestUid entered does not belong to a user
                 DispatchQueue.main.async {
-                    self.showInvalidRequestPrompt()
+//                    self.showInvalidRequestPrompt()
+                    self.requestErrorMessageLabel.text = "The player ID you entered is invalid."
                 }
             }
         }
@@ -303,17 +316,94 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
     // Copies friend invitation message to pasteboard
     @IBAction func uidButtonPress() {
         UIPasteboard.general.string = generateFriendMessage(uid: uid)
-        promptView.isHidden = false
-        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: promptView)
-    }
-    
-    // MessagePromptDelegate implementation
-    func buttonPressed() {
-        promptView.isHidden = true
+        uidPromptView.isHidden = false
+        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: uidPromptView)
     }
     
     @IBAction func addFriendButtonPress() {
-        showFriendRequestPrompt()
+//        showFriendRequestPrompt()
+        
+        requestTextField.text = nil
+        
+        // Try to get UID from pasteboard
+        let strings = UIPasteboard.general.strings ?? []
+        
+        for str in strings {
+            do {
+                let pattern = NSRegularExpression.escapedPattern(for: "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. ") + "(.+)" + NSRegularExpression.escapedPattern(for: ".")
+                let regex = try NSRegularExpression(pattern: pattern)
+                
+                if let match = regex.firstMatch(in: str, range: NSMakeRange(0, str.count)) {
+                    // Found a match in pasteboard
+                    requestTextField.text = (str as NSString).substring(with: match.range(at: 1))
+                }
+            } catch {
+                assertionFailure("regex expression is invalid")
+            }
+        }
+        
+        requestErrorMessageLabel.text = nil
+        
+        requestPromptView.isHidden = false
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Please enter the ID of the player you would like to send a friend request to.", heightPercentage: 0.4, promptView: requestPromptView, textField: requestTextField, textFieldPlaceHoler: "", errorMessageLabel: requestErrorMessageLabel)
+    }
+    
+    // MARK: -MessagePromptDelegate implementation
+    func buttonPressed() {
+        uidPromptView.isHidden = true
+    }
+    
+    func textFieldLeftButtonPressed() {
+        requestPromptView.isHidden = true
+    }
+    
+    func textFieldRightButtonPressed() {
+        if let requestUid = requestTextField.text {
+            if requestUid == "" {
+                requestErrorMessageLabel.text = "Please enter a valid player ID."
+            } else {
+                sendFriendRequest(requestUid)
+            }
+        } else {
+            requestErrorMessageLabel.text = "Please enter a valid player ID."
+        }
+//        print("right button pressed")
+//        guard let newUserName = editUserNameTextField.text else { return }
+//        let newUserNameLength = newUserName.count
+//        if newUserNameLength == 0 {
+//            editUserNameErrorMessageLabel.text = "Please enter your user name"
+//        }
+//        else if newUserNameLength > userNameCharacterLimit {
+//            editUserNameErrorMessageLabel.text = "Please enter your user name"
+//        }
+//        else {
+//            guard let userId = Auth.auth().currentUser?.uid else {
+//                assertionFailure("Unable to get current logged in user")
+//                return
+//            }
+//            // push to database
+//            print(userId)
+//            self.ref.child("User/\(userId)/Name").setValue(newUserName)
+//
+//            // dismiss prompt if user name is successfully set
+//            promptView.isHidden = true
+//            view.endEditing(true)
+//            userNameLabelOutlet.text = newUserName
+//        }
+    }
+    
+    // MARK: -UITextFieldDelegate implementation
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let requestUid = requestTextField.text {
+            if requestUid == "" {
+                requestErrorMessageLabel.text = "Please enter a valid player ID."
+            } else {
+                sendFriendRequest(requestUid)
+            }
+        } else {
+            requestErrorMessageLabel.text = "Please enter a valid player ID."
+        }
+        return false
     }
     
 }

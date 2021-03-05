@@ -106,7 +106,7 @@ class MessagePrompt {
         promptView.addSubview(rightButton)
         
         //   create error message label and add to popup view
-        errorMessageLabel.frame = CGRect(x: 5, y: 5, width: promptView.frame.size.width - 60, height: 40)
+        errorMessageLabel.frame = CGRect(x: 5, y: 5, width: promptView.frame.size.width - 60, height: 60)
         errorMessageLabel.textColor = trivioRed
         errorMessageLabel.center = CGPoint(x: promptView.frame.size.width / 2, y: promptView.frame.size.height * 3 / 5)
         promptView.addSubview(errorMessageLabel)
