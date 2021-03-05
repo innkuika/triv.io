@@ -210,6 +210,11 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
     // Sends a friend request to the player with the given UID
     func sendFriendRequest(_ requestUid: String) {
         
+        if requestUid == uid {
+            showInvalidRequestPrompt("You entered your own ID.")
+            return
+        }
+        
         // Checks if the current user is already friends with the player
         let friendUids = friends.compactMap { $0?.id }
         if friendUids.contains(requestUid) {
