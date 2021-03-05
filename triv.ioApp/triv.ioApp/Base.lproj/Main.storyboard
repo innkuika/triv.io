@@ -623,9 +623,18 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Lz2-b6-HsG">
-                                        <rect key="frame" x="0.0" y="133" width="388" height="511"/>
+                                        <rect key="frame" x="0.0" y="133" width="388" height="480"/>
                                         <color key="backgroundColor" red="0.039764795450000001" green="0.098982088270000004" blue="0.21524551510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-dN-Vvl">
+                                        <rect key="frame" x="0.0" y="621" width="388" height="23"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" red="0.98088949920000001" green="0.74438947440000003" blue="0.018598327410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <state key="normal" title="  copy friend message" image="doc.on.clipboard" catalog="system"/>
+                                        <connections>
+                                            <action selector="uidButtonPress" destination="XwQ-qg-4Eb" eventType="touchUpInside" id="qtp-Ji-1cF"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                         </subviews>

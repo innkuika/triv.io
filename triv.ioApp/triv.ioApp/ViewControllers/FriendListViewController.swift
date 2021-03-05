@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class FriendListViewController: UIViewController, UITableViewDataSource {
+class FriendListViewController: UIViewController, UITableViewDataSource, MessagePromptDelegate {
 
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var friendRequestView: UIView!
@@ -21,6 +21,10 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
     var friends: [UserModel?] = []
     var requestUid = ""
     
+    // messagePrompt for friend message copied
+    var messagePrompt: MessagePrompt?
+    let promptView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +35,11 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
             return
         }
         uid = user.uid
+        
+        // init message prompt
+        messagePrompt = MessagePrompt(parentView: self)
+        messagePrompt?.delegate = self
+        
         ref = Database.database().reference()
         
         friendsTableView.dataSource = self
@@ -289,6 +298,18 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
         alert.preferredAction = sendRequestAction
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Copies friend invitation message to pasteboard
+    @IBAction func uidButtonPress() {
+        UIPasteboard.general.string = generateFriendMessage(uid: uid)
+        promptView.isHidden = false
+        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: promptView)
+    }
+    
+    // MessagePromptDelegate implementation
+    func buttonPressed() {
+        promptView.isHidden = true
     }
     
     @IBAction func addFriendButtonPress() {
