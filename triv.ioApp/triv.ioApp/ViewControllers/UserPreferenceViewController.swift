@@ -22,7 +22,8 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
     
     // messagePrompt for friend message copied
     var messagePrompt: MessagePrompt?
-    let promptView = UIView()
+    let uidPromptView = UIView()
+    let editUserNamePromptView = UIView()
     let editUserNameTextField = UITextField()
     let editUserNameErrorMessageLabel = UILabel()
     
@@ -94,24 +95,24 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
     }
     
     @IBAction func editUserNameButtonPressed(_ sender: Any) {
-        promptView.isHidden = false
-        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter you new user name.", heightPercentage: 0.4, promptView: promptView, textField: editUserNameTextField, textFieldPlaceHoler: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
+        editUserNamePromptView.isHidden = false
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter you new user name.", heightPercentage: 0.4, promptView: editUserNamePromptView, textField: editUserNameTextField, textFieldPlaceHoler: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
     }
     
     @IBAction func uidButtonPressed(_ sender: Any) {
         guard let unwarppedUserId = userId else { return }
         UIPasteboard.general.string = generateFriendMessage(uid: unwarppedUserId)
-        promptView.isHidden = false
-        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: promptView)
+        uidPromptView.isHidden = false
+        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: uidPromptView)
     }
     
     // message prompt implementation
     func buttonPressed() {
-        promptView.isHidden = true
+        uidPromptView.isHidden = true
     }
     
     func textFieldLeftButtonPressed(){
-        promptView.isHidden = true
+        editUserNamePromptView.isHidden = true
     }
     
     func textFieldRightButtonPressed(){
@@ -134,7 +135,7 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
             self.ref.child("User/\(userId)/Name").setValue(newUserName)
             
             // dismiss prompt if user name is successfully set
-            promptView.isHidden = true
+            editUserNamePromptView.isHidden = true
             view.endEditing(true)
             userNameLabelOutlet.text = newUserName
         }
