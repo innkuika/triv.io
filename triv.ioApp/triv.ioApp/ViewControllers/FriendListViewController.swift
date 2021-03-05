@@ -178,6 +178,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
+    
     @IBAction func declineButtonPress() {
         self.ref.child("User/\(uid)").getData { (error, snapshot) in
             if let error = error {
@@ -193,7 +194,28 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
+    
     @IBAction func addFriendButtonPress() {
+        let alert = UIAlertController(title: "Add New Friend", message: "Please enter the player ID that you would like to send a friend request to.", preferredStyle: .alert)
+        
+        alert.addTextField(configurationHandler: nil)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Send Friend Request", style: .default, handler: { _ in
+            guard let textFields = alert.textFields else { return }
+            let input = textFields[0].text ?? ""
+            self.ref.child("User").child(input).getData { (error, snapshot) in
+                if snapshot.exists() {
+                    let value = snapshot.value as? NSDictionary
+                    var friendRequests = value?["FriendRequests"] as? [String] ?? []
+                    friendRequests.append(self.uid)
+                    self.ref.child("User/\(input)/FriendRequests").setValue(friendRequests)
+                }
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
 }
