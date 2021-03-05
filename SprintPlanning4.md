@@ -44,9 +44,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 *
 
 ### Manprit Heer
-*
-*
-*
+* Universal Link Integration (In-Progress)
+* Work on Core Gaming Data (In-Progress)
+* Purchase Domain and Push up Website
 
 ### Roberto Lozano 
 *
