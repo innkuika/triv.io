@@ -119,13 +119,13 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         gameInstance?.updateCategories()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
-            assertionFailure("cannot instantiate spinWheelViewController")
+        guard let opponentSelectionViewController = storyboard.instantiateViewController(identifier: "opponentSelectionViewController") as? OpponentSelectionViewController else {
+            assertionFailure("cannot instantiate opponentSelectionViewController")
             return
         }
-        let viewControllers = [spinWheelViewController]
-        // pass game instance to categorySelectionViewController
-        spinWheelViewController.gameInstance = gameInstance
+        let viewControllers = [opponentSelectionViewController]
+        // pass game instance to opponentSelectionViewController
+        opponentSelectionViewController.gameInstance = gameInstance
         navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
