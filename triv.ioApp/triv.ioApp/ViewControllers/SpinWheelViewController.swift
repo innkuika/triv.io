@@ -21,7 +21,7 @@ class SpinWheelViewController: UIViewController {
     var SpinWheelColorArray = [trivioRed, trivioBlue, trivioYellow, trivioPurple, trivioGreen, trivioOrange]
     var finishIndex: Int?
     
-    // passed in from CategorySelectionViewController
+    // passed in from OpponentSelectionViewController
     var gameInstance: GameModel?
     
     // query from database
