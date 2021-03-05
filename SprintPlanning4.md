@@ -35,7 +35,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ## **Current Tasks** (03.04.21)
 ### Donald Lieu 
-  * Implement Leaderboard
+  * Implement Leaderboard: https://github.com/ECS189E/project-w21-triv-io/commit/d5acc3edd9860e1efe63fe88db368db9c360f60d, https://github.com/ECS189E/project-w21-triv-io/commit/8b77531d3381b48c962aea6a66ab0d7cfa2b1732
   *	Implement “Add New Questions/Submit for Approval”
 
 ### Jessica Wu 
@@ -51,7 +51,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Roberto Lozano 
 * Implement Notification System
 
-* Ensure that all login systems work compleletely
+* Ensure that all login systems work compleletely: https://github.com/ECS189E/project-w21-triv-io/commit/c98065a35ea5cc66b7a2a645e3a422ef31fd4606, https://github.com/ECS189E/project-w21-triv-io/commit/c2d13c884234e5b7a0cee12a6eec416c689b4060
 
 ### Jessica Ma 
 * Friend list and friend request UI: https://github.com/ECS189E/project-w21-triv-io/commit/4d1c04314edc1f54eea8fd054fea39bf5136965f
