@@ -210,23 +210,10 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         }
     }
     
-    // Configures and presents an alert indicating that the user entered an invalid UID
-    func showInvalidRequestPrompt(_ message: String? = nil) {
-        let message = message ?? "The player ID you entered is invalid."
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.showFriendRequestPrompt()
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     // Sends a friend request to the player with the given UID
     func sendFriendRequest(_ requestUid: String) {
         
         if requestUid == uid {
-//            showInvalidRequestPrompt("You entered your own ID.")
             requestErrorMessageLabel.text = "You entered your own ID."
             return
         }
@@ -234,7 +221,6 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         // Checks if the current user is already friends with the player
         let friendUids = friends.compactMap { $0?.id }
         if friendUids.contains(requestUid) {
-//            showInvalidRequestPrompt("You are already friends with this player.")
             requestErrorMessageLabel.text = "You are already friends with this player."
             return
         }
@@ -249,7 +235,6 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
                 
                 if friendRequests.contains(self.uid) {
                     DispatchQueue.main.async {
-//                        self.showInvalidRequestPrompt("You have already sent this player a friend request.")
                         self.requestErrorMessageLabel.text = "You have already sent this player a friend request."
                     }
                 } else {
@@ -262,55 +247,11 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
             } else {
                 // The requestUid entered does not belong to a user
                 DispatchQueue.main.async {
-//                    self.showInvalidRequestPrompt()
                     self.requestErrorMessageLabel.text = "The player ID you entered is invalid."
                 }
             }
         }
         
-    }
-    
-    // Configures and presents an alert prompting the user to send a friend request
-    func showFriendRequestPrompt() {
-        let alert = UIAlertController(title: "Add New Friend", message: "Please enter the ID of the player you would like to send a friend request to.", preferredStyle: .alert)
-        
-        alert.addTextField { (textField) in
-            // Try to get UID from pasteboard
-            let strings = UIPasteboard.general.strings ?? []
-            
-            for str in strings {
-                do {
-                    let pattern = NSRegularExpression.escapedPattern(for: "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. ") + "(.+)" + NSRegularExpression.escapedPattern(for: ".")
-                    let regex = try NSRegularExpression(pattern: pattern)
-                    
-                    if let match = regex.firstMatch(in: str, range: NSMakeRange(0, str.count)) {
-                        // Found a match in pasteboard
-                        textField.text = (str as NSString).substring(with: match.range(at: 1))
-                    }
-                } catch {
-                    assertionFailure("regex expression is invalid")
-                }
-            }
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        let sendRequestAction = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
-            guard let alertTextFields = alert.textFields else { return }
-            if let requestUid = alertTextFields[0].text {
-                if requestUid == "" {
-                    self.showInvalidRequestPrompt()
-                } else {
-                    self.sendFriendRequest(requestUid)
-                }
-            } else {
-                self.showInvalidRequestPrompt()
-            }
-        })
-        alert.addAction(sendRequestAction)
-        alert.preferredAction = sendRequestAction
-        
-        self.present(alert, animated: true, completion: nil)
     }
     
     // Copies friend invitation message to pasteboard
@@ -321,8 +262,6 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
     }
     
     @IBAction func addFriendButtonPress() {
-//        showFriendRequestPrompt()
-        
         requestTextField.text = nil
         
         // Try to get UID from pasteboard
@@ -367,29 +306,6 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         } else {
             requestErrorMessageLabel.text = "Please enter a valid player ID."
         }
-//        print("right button pressed")
-//        guard let newUserName = editUserNameTextField.text else { return }
-//        let newUserNameLength = newUserName.count
-//        if newUserNameLength == 0 {
-//            editUserNameErrorMessageLabel.text = "Please enter your user name"
-//        }
-//        else if newUserNameLength > userNameCharacterLimit {
-//            editUserNameErrorMessageLabel.text = "Please enter your user name"
-//        }
-//        else {
-//            guard let userId = Auth.auth().currentUser?.uid else {
-//                assertionFailure("Unable to get current logged in user")
-//                return
-//            }
-//            // push to database
-//            print(userId)
-//            self.ref.child("User/\(userId)/Name").setValue(newUserName)
-//
-//            // dismiss prompt if user name is successfully set
-//            promptView.isHidden = true
-//            view.endEditing(true)
-//            userNameLabelOutlet.text = newUserName
-//        }
     }
     
     // MARK: -UITextFieldDelegate implementation
