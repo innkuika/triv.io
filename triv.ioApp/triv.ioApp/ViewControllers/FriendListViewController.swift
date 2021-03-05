@@ -195,27 +195,76 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    @IBAction func addFriendButtonPress() {
-        let alert = UIAlertController(title: "Add New Friend", message: "Please enter the player ID that you would like to send a friend request to.", preferredStyle: .alert)
+    // Configures and presents an alert indicating that the user entered an invalid UID
+    func showInvalidRequestPrompt(_ message: String?) {
+        let message = message ?? "The player ID you entered is invalid."
         
-        alert.addTextField(configurationHandler: nil)
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        alert.addAction(UIAlertAction(title: "Send Friend Request", style: .default, handler: { _ in
-            guard let textFields = alert.textFields else { return }
-            let input = textFields[0].text ?? ""
-            self.ref.child("User").child(input).getData { (error, snapshot) in
-                if snapshot.exists() {
-                    let value = snapshot.value as? NSDictionary
-                    var friendRequests = value?["FriendRequests"] as? [String] ?? []
-                    friendRequests.append(self.uid)
-                    self.ref.child("User/\(input)/FriendRequests").setValue(friendRequests)
-                }
-            }
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.showFriendRequestPrompt()
         }))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Sends a friend request to the player with the given UID
+    func sendFriendRequest(_ requestUid: String) {
+        
+        // Checks if the current user is already friends with the player
+        let friendUids = friends.compactMap { $0?.id }
+        if friendUids.contains(requestUid) {
+            showInvalidRequestPrompt("You are already friends with this player.")
+            return
+        }
+        
+        self.ref.child("User/\(requestUid)").getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            } else if snapshot.exists() {
+                // Add friend request
+                guard let userDict = snapshot.value as? NSDictionary else { return }
+                var friendRequests = userDict["FriendRequests"] as? [String] ?? []
+                
+                if !friendRequests.contains(self.uid) {
+                    friendRequests.append(self.uid)
+                    self.ref.child("User/\(requestUid)/FriendRequests").setValue(friendRequests)
+                }
+            } else {
+                // The requestUid entered does not belong to a user
+                DispatchQueue.main.async {
+                    self.showInvalidRequestPrompt(nil)
+                }
+            }
+        }
+        
+    }
+    
+    // Configures and presents an alert prompting the user to send a friend request
+    func showFriendRequestPrompt() {
+        let alert = UIAlertController(title: "Add New Friend", message: "Please enter the ID of the player you would like to send a friend request to.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        let sendRequestAction = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
+            guard let alertTextFields = alert.textFields else { return }
+            if let requestUid = alertTextFields[0].text {
+                if requestUid == "" {
+                    self.showInvalidRequestPrompt(nil)
+                } else {
+                    self.sendFriendRequest(requestUid)
+                }
+            } else {
+                self.showInvalidRequestPrompt(nil)
+            }
+        })
+        alert.addAction(sendRequestAction)
+        alert.preferredAction = sendRequestAction
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func addFriendButtonPress() {
+        showFriendRequestPrompt()
     }
     
 }
