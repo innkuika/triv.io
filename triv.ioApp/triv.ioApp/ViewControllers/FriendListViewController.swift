@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class FriendListViewController: UIViewController, UITableViewDataSource {
+class FriendListViewController: UIViewController, UITableViewDataSource, MessagePromptDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var friendRequestView: UIView!
@@ -21,6 +21,13 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
     var friends: [UserModel?] = []
     var requestUid = ""
     
+    // messagePrompt for friend message copied or send friend request button pressed
+    var messagePrompt: MessagePrompt?
+    let uidPromptView = UIView()
+    let requestPromptView = UIView()
+    let requestTextField = UITextField()
+    let requestErrorMessageLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +38,14 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
             return
         }
         uid = user.uid
+        
+        // init message prompt
+        messagePrompt = MessagePrompt(parentView: self)
+        messagePrompt?.delegate = self
+        
+        requestTextField.delegate = self
+        requestErrorMessageLabel.numberOfLines = 2
+        
         ref = Database.database().reference()
         
         friendsTableView.dataSource = self
@@ -195,30 +210,18 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    // Configures and presents an alert indicating that the user entered an invalid UID
-    func showInvalidRequestPrompt(_ message: String? = nil) {
-        let message = message ?? "The player ID you entered is invalid."
-        
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.showFriendRequestPrompt()
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-    
     // Sends a friend request to the player with the given UID
     func sendFriendRequest(_ requestUid: String) {
         
         if requestUid == uid {
-            showInvalidRequestPrompt("You entered your own ID.")
+            requestErrorMessageLabel.text = "You entered your own ID."
             return
         }
         
         // Checks if the current user is already friends with the player
         let friendUids = friends.compactMap { $0?.id }
         if friendUids.contains(requestUid) {
-            showInvalidRequestPrompt("You are already friends with this player.")
+            requestErrorMessageLabel.text = "You are already friends with this player."
             return
         }
         
@@ -232,67 +235,91 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
                 
                 if friendRequests.contains(self.uid) {
                     DispatchQueue.main.async {
-                        self.showInvalidRequestPrompt("You have already sent this player a friend request.")
+                        self.requestErrorMessageLabel.text = "You have already sent this player a friend request."
                     }
                 } else {
                     friendRequests.append(self.uid)
                     self.ref.child("User/\(requestUid)/FriendRequests").setValue(friendRequests)
+                    DispatchQueue.main.async {
+                        self.requestPromptView.isHidden = true
+                    }
                 }
             } else {
                 // The requestUid entered does not belong to a user
                 DispatchQueue.main.async {
-                    self.showInvalidRequestPrompt()
+                    self.requestErrorMessageLabel.text = "The player ID you entered is invalid."
                 }
             }
         }
         
     }
     
-    // Configures and presents an alert prompting the user to send a friend request
-    func showFriendRequestPrompt() {
-        let alert = UIAlertController(title: "Add New Friend", message: "Please enter the ID of the player you would like to send a friend request to.", preferredStyle: .alert)
-        
-        alert.addTextField { (textField) in
-            // Try to get UID from pasteboard
-            let strings = UIPasteboard.general.strings ?? []
-            
-            for str in strings {
-                do {
-                    let pattern = NSRegularExpression.escapedPattern(for: "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. ") + "(.+)" + NSRegularExpression.escapedPattern(for: ".")
-                    let regex = try NSRegularExpression(pattern: pattern)
-                    
-                    if let match = regex.firstMatch(in: str, range: NSMakeRange(0, str.count)) {
-                        // Found a match in pasteboard
-                        textField.text = (str as NSString).substring(with: match.range(at: 1))
-                    }
-                } catch {
-                    assertionFailure("regex expression is invalid")
-                }
-            }
-        }
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        let sendRequestAction = UIAlertAction(title: "Send Request", style: .default, handler: { _ in
-            guard let alertTextFields = alert.textFields else { return }
-            if let requestUid = alertTextFields[0].text {
-                if requestUid == "" {
-                    self.showInvalidRequestPrompt()
-                } else {
-                    self.sendFriendRequest(requestUid)
-                }
-            } else {
-                self.showInvalidRequestPrompt()
-            }
-        })
-        alert.addAction(sendRequestAction)
-        alert.preferredAction = sendRequestAction
-        
-        self.present(alert, animated: true, completion: nil)
+    // Copies friend invitation message to pasteboard
+    @IBAction func uidButtonPress() {
+        UIPasteboard.general.string = generateFriendMessage(uid: uid)
+        uidPromptView.isHidden = false
+        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: uidPromptView)
     }
     
     @IBAction func addFriendButtonPress() {
-        showFriendRequestPrompt()
+        requestTextField.text = nil
+        
+        // Try to get UID from pasteboard
+        let strings = UIPasteboard.general.strings ?? []
+        
+        for str in strings {
+            do {
+                let pattern = NSRegularExpression.escapedPattern(for: "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. ") + "(.+)" + NSRegularExpression.escapedPattern(for: ".")
+                let regex = try NSRegularExpression(pattern: pattern)
+                
+                if let match = regex.firstMatch(in: str, range: NSMakeRange(0, str.count)) {
+                    // Found a match in pasteboard
+                    requestTextField.text = (str as NSString).substring(with: match.range(at: 1))
+                }
+            } catch {
+                assertionFailure("regex expression is invalid")
+            }
+        }
+        
+        requestErrorMessageLabel.text = nil
+        
+        requestPromptView.isHidden = false
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Please enter the ID of the player you would like to send a friend request to.", heightPercentage: 0.4, promptView: requestPromptView, textField: requestTextField, textFieldPlaceHoler: "", errorMessageLabel: requestErrorMessageLabel)
+    }
+    
+    // MARK: -MessagePromptDelegate implementation
+    func buttonPressed() {
+        uidPromptView.isHidden = true
+    }
+    
+    func textFieldLeftButtonPressed() {
+        requestPromptView.isHidden = true
+    }
+    
+    func textFieldRightButtonPressed() {
+        if let requestUid = requestTextField.text {
+            if requestUid == "" {
+                requestErrorMessageLabel.text = "Please enter a valid player ID."
+            } else {
+                sendFriendRequest(requestUid)
+            }
+        } else {
+            requestErrorMessageLabel.text = "Please enter a valid player ID."
+        }
+    }
+    
+    // MARK: -UITextFieldDelegate implementation
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let requestUid = requestTextField.text {
+            if requestUid == "" {
+                requestErrorMessageLabel.text = "Please enter a valid player ID."
+            } else {
+                sendFriendRequest(requestUid)
+            }
+        } else {
+            requestErrorMessageLabel.text = "Please enter a valid player ID."
+        }
+        return false
     }
     
 }
