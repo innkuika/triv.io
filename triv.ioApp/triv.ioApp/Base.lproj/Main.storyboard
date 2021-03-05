@@ -631,6 +631,17 @@
                                     <constraint firstAttribute="height" constant="40" id="nXf-T8-MsC"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVI-FU-YGQ">
+                                <rect key="frame" x="364" y="114" width="19.666666666666686" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GVI-FU-YGQ" secondAttribute="height" multiplier="25:26" id="1Zn-tx-Qrq"/>
+                                </constraints>
+                                <color key="tintColor" red="0.2324398704" green="1" blue="0.78393413069999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" backgroundImage="pencil.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="editUserNameButtonPressed:" destination="qgG-hx-vF4" eventType="touchUpInside" id="dEa-ja-9V3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="orp-tk-sLe"/>
                         <color key="backgroundColor" red="0.046311445530000002" green="0.098276488479999993" blue="0.2117765248" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -640,14 +651,16 @@
                             <constraint firstItem="8B9-U9-LuS" firstAttribute="bottom" secondItem="orp-tk-sLe" secondAttribute="bottom" id="Hk3-s7-TWQ"/>
                             <constraint firstItem="orp-tk-sLe" firstAttribute="trailing" secondItem="8B9-U9-LuS" secondAttribute="trailing" constant="64" id="Iwn-1y-sk1"/>
                             <constraint firstItem="8B9-U9-LuS" firstAttribute="leading" secondItem="orp-tk-sLe" secondAttribute="leading" constant="64" id="JVs-YR-Z4h"/>
+                            <constraint firstItem="GVI-FU-YGQ" firstAttribute="top" secondItem="U05-cc-b5e" secondAttribute="top" constant="7" id="On3-hw-hFo"/>
                             <constraint firstItem="orp-tk-sLe" firstAttribute="trailing" secondItem="mwv-55-dQd" secondAttribute="trailing" constant="20" id="Oqq-hh-7ek"/>
                             <constraint firstItem="hak-A2-0jk" firstAttribute="bottom" secondItem="q5N-tK-nf0" secondAttribute="bottom" constant="-10" id="Otr-3y-vlk"/>
                             <constraint firstItem="mwv-55-dQd" firstAttribute="leading" secondItem="hak-A2-0jk" secondAttribute="trailing" constant="8" symbolic="YES" id="Qdp-F4-ybD"/>
                             <constraint firstItem="U05-cc-b5e" firstAttribute="leading" secondItem="q5N-tK-nf0" secondAttribute="trailing" constant="28" id="ZqP-Km-34e"/>
+                            <constraint firstItem="GVI-FU-YGQ" firstAttribute="leading" secondItem="U05-cc-b5e" secondAttribute="trailing" constant="7.3300000000000001" id="iWT-NJ-AcO"/>
                             <constraint firstItem="q5N-tK-nf0" firstAttribute="leading" secondItem="orp-tk-sLe" secondAttribute="leading" constant="20" id="ifc-Tz-piP"/>
                             <constraint firstItem="hak-A2-0jk" firstAttribute="leading" secondItem="q5N-tK-nf0" secondAttribute="trailing" constant="22" id="kYS-0O-vmf"/>
+                            <constraint firstItem="orp-tk-sLe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GVI-FU-YGQ" secondAttribute="trailing" constant="8" id="q0F-Uk-8UA"/>
                             <constraint firstItem="q5N-tK-nf0" firstAttribute="top" secondItem="orp-tk-sLe" secondAttribute="top" constant="62" id="reX-D6-hxX"/>
-                            <constraint firstItem="orp-tk-sLe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U05-cc-b5e" secondAttribute="trailing" constant="20" id="zLq-R1-MDS"/>
                         </constraints>
                     </view>
                     <connections>
@@ -668,6 +681,7 @@
         <image name="Robot Avatars_1" width="512" height="512"/>
         <image name="doc.on.clipboard" catalog="system" width="116" height="128"/>
         <image name="leaderboardIcon" width="200" height="200"/>
+        <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <image name="userPreferenceIcon" width="16" height="16"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

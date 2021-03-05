@@ -15,11 +15,20 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var leaderboardButtonOutlet: UIButton!
     @IBOutlet weak var startNewGameButtonOutlet: UIButton!
     @IBOutlet weak var joinGameViaCodeButtonOutlet: UIButton!
-    
     @IBOutlet weak var userPreferenceButtonOutlet: UIButton!
+    
+    // query from db
+    var ref: DatabaseReference!
+    var avatarNumber: Int?
+    var userName: String?
+    var userId: String?
+    var coinNumber: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
         navigationItem.hidesBackButton = true
+        getUserProfileData()
         renderUI()
     }
     
@@ -60,7 +69,6 @@ class HomeViewController: UIViewController {
     }
     
     
-    
     @IBAction func userPreferenceButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let userPreferenceViewController = storyboard.instantiateViewController(identifier: "userPreferenceViewController") as? UserPreferenceViewController else {
@@ -68,19 +76,36 @@ class HomeViewController: UIViewController {
             return
         }
         self.navigationController?.pushViewController(userPreferenceViewController, animated: true)
-
-
-        
     }
     
-//    @IBAction func userPreferenceButtonPressed(_ sender: Any) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard let userPreferenceViewController = storyboard.instantiateViewController(identifier: "userPreferenceViewController") as? UserPreferenceViewController else {
-//            assertionFailure("cannot instantiate userPreferenceViewController")
-//            return
-//        }
-//        self.navigationController?.pushViewController(userPreferenceViewController, animated: true)
-//
-//    }
-    
+    func getUserProfileData(){
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return
+        }
+        self.userId = user.uid
+
+        self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                print("Got data \(snapshot.value!)")
+                let value = snapshot.value as? NSDictionary
+                // get user profile info
+                let unwrappedAvatarNumber = value?["AvatarNumber"] as? Int ?? 1
+                guard let unwrappedUserName = value?["Name"] as? String else { return }
+                let unwrappedCoinNumber = value?["CoinNumber"] as? Int ?? 0
+
+                self.userName = unwrappedUserName
+                self.avatarNumber = unwrappedAvatarNumber
+                self.coinNumber = unwrappedCoinNumber
+            }
+            else {
+                print("No data available")
+            }
+
+
+        }
+    }
 }
