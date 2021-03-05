@@ -35,9 +35,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ## **Current Tasks** (03.04.21)
 ### Donald Lieu 
-  *
-  *
-  *
+  * Implement Leaderboard
+  *	Implement “Add New Questions/Submit for Approval”
+
 ### Jessica Wu 
 *
 *
