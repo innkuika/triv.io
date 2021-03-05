@@ -248,13 +248,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
                 if let user = authDataResult?.user {
                     print("Signed in as \(user.uid), email: \(user.email ?? "email error")")
                     
-                    
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
-                        assertionFailure("cannot instantiate categorySelectionViewController")
-                        return
-                    }
-                    self.navigationController?.pushViewController(loginViewController, animated: true)
+                    NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
                 }
             }
         }
@@ -272,6 +266,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
             assertionFailure("Unable to get current logged in user")
             return
         }
+
         print("user signed in")
         self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
             if let error = error {
