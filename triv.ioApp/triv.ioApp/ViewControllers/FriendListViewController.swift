@@ -196,7 +196,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
     }
     
     // Configures and presents an alert indicating that the user entered an invalid UID
-    func showInvalidRequestPrompt(_ message: String?) {
+    func showInvalidRequestPrompt(_ message: String? = nil) {
         let message = message ?? "The player ID you entered is invalid."
         
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -230,14 +230,18 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
                 guard let userDict = snapshot.value as? NSDictionary else { return }
                 var friendRequests = userDict["FriendRequests"] as? [String] ?? []
                 
-                if !friendRequests.contains(self.uid) {
+                if friendRequests.contains(self.uid) {
+                    DispatchQueue.main.async {
+                        self.showInvalidRequestPrompt("You have already sent this player a friend request.")
+                    }
+                } else {
                     friendRequests.append(self.uid)
                     self.ref.child("User/\(requestUid)/FriendRequests").setValue(friendRequests)
                 }
             } else {
                 // The requestUid entered does not belong to a user
                 DispatchQueue.main.async {
-                    self.showInvalidRequestPrompt(nil)
+                    self.showInvalidRequestPrompt()
                 }
             }
         }
@@ -273,12 +277,12 @@ class FriendListViewController: UIViewController, UITableViewDataSource {
             guard let alertTextFields = alert.textFields else { return }
             if let requestUid = alertTextFields[0].text {
                 if requestUid == "" {
-                    self.showInvalidRequestPrompt(nil)
+                    self.showInvalidRequestPrompt()
                 } else {
                     self.sendFriendRequest(requestUid)
                 }
             } else {
-                self.showInvalidRequestPrompt(nil)
+                self.showInvalidRequestPrompt()
             }
         })
         alert.addAction(sendRequestAction)
