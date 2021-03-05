@@ -39,9 +39,11 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
   *	Implement “Add New Questions/Submit for Approval”
 
 ### Jessica Wu 
-*
-*
-*
+* Implement user profile page (with change user name and friend code feature), created protocol for custom popups: https://github.com/ECS189E/project-w21-triv-io/commit/ca7dcc664334475b9827ba73eb744459faa582c6
+* Avatar shop: WIP
+* Setted up firebase scheme and connected database to game instance: https://github.com/ECS189E/project-w21-triv-io/commit/f4e28756c73ee7423cf29fc329c16943bc2bd5c8
+* Designed and implemented UI for the whole app, abstracted common style functions: https://github.com/ECS189E/project-w21-triv-io/commit/11271b54ca2aa1bd259038bdc333219a9b3caf74, https://github.com/ECS189E/project-w21-triv-io/commit/20c2a80902d443d791b1de0a8745255b20ee3376
+* Pushed 3 builds to testfilght and gathered user feedback, fix various bugs based on feedback
 
 ### Manprit Heer
 * Universal Link Integration (In-Progress)
