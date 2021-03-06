@@ -88,18 +88,27 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") ?? UITableViewCell(style: .default, reuseIdentifier: "friendCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendTableViewCell ?? FriendTableViewCell(style: .default, reuseIdentifier: "friendCell")
         
-        let fname = friends[indexPath.row]?.name ?? "Player"
+        let fname = friends[indexPath.row]?.name ?? "guest"
         let fuid = friends[indexPath.row]?.id ?? ""
+        let avatarNumber = friends[indexPath.row]?.avatar_number ?? 1
         
-        cell.textLabel?.text = "\(fname) (\(fuid))"
+        cell.usernameLabel.text = fname
+        cell.uidLabel.text = "ID: \(fuid)"
         
         // TODO: Replace default image with player avatar
-        cell.imageView?.image = UIImage(systemName: "person.fill")
+        cell.avatarImageView.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
         
-        cell.textLabel?.textColor = UIColor.white
-        cell.imageView?.tintColor = UIColor.white
+        cell.usernameLabel.textColor = UIColor.white
+        cell.uidLabel.textColor = UIColor.white
+        cell.avatarImageView.tintColor = UIColor.white
+        
+        let playLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
+        playLabel.text = "Play"
+        playLabel.textColor = trivioGreen
+        cell.accessoryView = playLabel
+        
         cell.backgroundColor = trivioBackgroundColor
         
         let backgroundView = UIView()
@@ -110,6 +119,10 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     // MARK: -UITableViewDelegate implementation
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO
     }

@@ -118,7 +118,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
                             guard let userDict = snapshot.value as? NSDictionary else { return }
                             
                             DispatchQueue.main.async {
-                                self.friendRequestLabel.text = "\(userDict["Name"] as? String ?? "Player") (UID: \(self.requestUid)) has sent you a friend request."
+                                self.friendRequestLabel.text = "\(userDict["Name"] as? String ?? "Player") (ID: \(self.requestUid)) has sent you a friend request."
                                 self.friendRequestView.isHidden = false
                             }
                         }
@@ -144,12 +144,13 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
         
         let fname = friends[indexPath.row]?.name ?? "guest"
         let fuid = friends[indexPath.row]?.id ?? ""
+        let avatarNumber = friends[indexPath.row]?.avatar_number ?? 1
         
         cell.usernameLabel.text = fname
         cell.uidLabel.text = "ID: \(fuid)"
         
         // TODO: Replace default image with player avatar
-        cell.avatarImageView.image = UIImage(named: "Robot Avatars_1.png")
+        cell.avatarImageView.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
         
         cell.usernameLabel.textColor = UIColor.white
         cell.uidLabel.textColor = UIColor.white
