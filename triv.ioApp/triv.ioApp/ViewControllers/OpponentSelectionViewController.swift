@@ -62,7 +62,8 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
                                     name: userDict["Name"] as? String,
                                     streak_score: userDict["Streak"] as? Int,
                                     id: fuid,
-                                    database: 0
+                                    database: 0,
+                                    avatar_number: userDict["AvatarNumber"] as? Int
                                 ))
                                 accessSem.signal()
                                 

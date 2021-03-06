@@ -96,7 +96,7 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
     
     @IBAction func editUserNameButtonPressed(_ sender: Any) {
         editUserNamePromptView.isHidden = false
-        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter you new user name.", heightPercentage: 0.4, promptView: editUserNamePromptView, textField: editUserNameTextField, textFieldPlaceHoler: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter you new user name.", heightPercentage: 0.4, promptView: editUserNamePromptView, textField: editUserNameTextField, textFieldPlaceHolder: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
     }
     
     @IBAction func uidButtonPressed(_ sender: Any) {

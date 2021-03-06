@@ -634,20 +634,20 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wP6-JJ-h4A">
-                                                            <rect key="frame" x="20" y="12.666666666666664" width="75" height="75"/>
+                                                            <rect key="frame" x="20" y="15" width="70" height="70"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="75" id="Mjk-vS-oZ6"/>
-                                                                <constraint firstAttribute="height" constant="75" id="ogs-S8-w2x"/>
+                                                                <constraint firstAttribute="width" constant="70" id="Mjk-vS-oZ6"/>
+                                                                <constraint firstAttribute="height" constant="70" id="ogs-S8-w2x"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;USERNAME_LABEL&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MBC-1E-Z21">
-                                                            <rect key="frame" x="107" y="10.999999999999998" width="261" height="20.333333333333329"/>
+                                                            <rect key="frame" x="102" y="10.999999999999998" width="266" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;UID_LABEL&gt;" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqx-SQ-Hek">
-                                                            <rect key="frame" x="107" y="39.333333333333336" width="261" height="20.333333333333336"/>
+                                                            <rect key="frame" x="102" y="39.333333333333336" width="266" height="20.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>

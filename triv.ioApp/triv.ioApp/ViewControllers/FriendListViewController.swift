@@ -80,7 +80,8 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
                                     name: userDict["Name"] as? String,
                                     streak_score: userDict["Streak"] as? Int,
                                     id: fuid,
-                                    database: 0
+                                    database: 0,
+                                    avatar_number: userDict["AvatarNumber"] as? Int
                                 ))
                                 accessSem.signal()
                                 
@@ -292,7 +293,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
         requestErrorMessageLabel.text = nil
         
         requestPromptView.isHidden = false
-        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Please enter the ID of the player you would like to send a friend request to.", heightPercentage: 0.4, promptView: requestPromptView, textField: requestTextField, textFieldPlaceHoler: "", errorMessageLabel: requestErrorMessageLabel)
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Please enter the ID of the player you would like to send a friend request to.", heightPercentage: 0.4, promptView: requestPromptView, textField: requestTextField, textFieldPlaceHolder: "", errorMessageLabel: requestErrorMessageLabel)
     }
     
     // MARK: -MessagePromptDelegate implementation

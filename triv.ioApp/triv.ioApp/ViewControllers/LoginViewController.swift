@@ -279,7 +279,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
                 print("No data available")
                 // if user doesn't exist, create new user and push to database
                 // FIXME: try to access user name
-                self.ref.child("User").child(user.uid).setValue(["Name": "guest", "Streak": 0])
+                self.ref.child("User").child(user.uid).setValue(["Name": "Guest", "Streak": 0, "AvatarNumber": 1])
             }
         }
         
