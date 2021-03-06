@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class FriendListViewController: UIViewController, UITableViewDataSource, MessagePromptDelegate, UITextFieldDelegate {
+class FriendListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MessagePromptDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var friendRequestView: UIView!
@@ -49,6 +49,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         ref = Database.database().reference()
         
         friendsTableView.dataSource = self
+        friendsTableView.delegate = self
         
         loadFriends()
         loadFriendRequests()
@@ -79,7 +80,8 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
                                     name: userDict["Name"] as? String,
                                     streak_score: userDict["Streak"] as? Int,
                                     id: fuid,
-                                    database: 0
+                                    database: 0,
+                                    avatar_number: userDict["AvatarNumber"] as? Int
                                 ))
                                 accessSem.signal()
                                 
@@ -138,18 +140,20 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell") ?? UITableViewCell(style: .default, reuseIdentifier: "friendCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendTableViewCell ?? FriendTableViewCell(style: .default, reuseIdentifier: "friendCell")
         
-        let fname = friends[indexPath.row]?.name ?? "Player"
+        let fname = friends[indexPath.row]?.name ?? "guest"
         let fuid = friends[indexPath.row]?.id ?? ""
         
-        cell.textLabel?.text = "\(fname) (\(fuid))"
+        cell.usernameLabel.text = fname
+        cell.uidLabel.text = "ID: \(fuid)"
         
         // TODO: Replace default image with player avatar
-        cell.imageView?.image = UIImage(systemName: "person.fill")
+        cell.avatarImageView.image = UIImage(named: "Robot Avatars_1.png")
         
-        cell.textLabel?.textColor = UIColor.white
-        cell.imageView?.tintColor = UIColor.white
+        cell.usernameLabel.textColor = UIColor.white
+        cell.uidLabel.textColor = UIColor.white
+        cell.avatarImageView.tintColor = UIColor.white
         cell.backgroundColor = trivioBackgroundColor
         
         let backgroundView = UIView()
@@ -157,6 +161,11 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         cell.selectedBackgroundView = backgroundView
 
         return cell
+    }
+    
+    // MARK: -UITableViewDelegate implementation
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100)
     }
     
     // MARK: -UI action handlers
@@ -284,7 +293,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, Message
         requestErrorMessageLabel.text = nil
         
         requestPromptView.isHidden = false
-        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Please enter the ID of the player you would like to send a friend request to.", heightPercentage: 0.4, promptView: requestPromptView, textField: requestTextField, textFieldPlaceHoler: "", errorMessageLabel: requestErrorMessageLabel)
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Please enter the ID of the player you would like to send a friend request to.", heightPercentage: 0.4, promptView: requestPromptView, textField: requestTextField, textFieldPlaceHolder: "", errorMessageLabel: requestErrorMessageLabel)
     }
     
     // MARK: -MessagePromptDelegate implementation

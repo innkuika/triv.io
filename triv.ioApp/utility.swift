@@ -74,7 +74,7 @@ class MessagePrompt {
         promptView.addSubview(button)
     }
     
-    func displayMessageWithTextField(view: UIView, messageText: String, heightPercentage: Float, promptView: UIView, textField: UITextField, textFieldPlaceHoler: String, errorMessageLabel: UILabel){
+    func displayMessageWithTextField(view: UIView, messageText: String, heightPercentage: Float, promptView: UIView, textField: UITextField, textFieldPlaceHolder: String, errorMessageLabel: UILabel){
         
         basicSetup(view: view, messageText: messageText, heightPercentage: heightPercentage, yPosition: 0.4, promptView: promptView)
         
@@ -82,7 +82,7 @@ class MessagePrompt {
         textField.frame = CGRect(x: 5, y: 5, width: promptView.frame.size.width - 60, height: 40)
         textField.center = CGPoint(x: promptView.frame.size.width / 2, y: promptView.frame.size.height * 0.4)
         textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.placeholder = textFieldPlaceHoler
+        textField.placeholder = textFieldPlaceHolder
         promptView.addSubview(textField)
         
         // create left button and add to popup view
