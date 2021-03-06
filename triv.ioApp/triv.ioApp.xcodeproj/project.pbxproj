@@ -12,6 +12,7 @@
 		2C686B6325F2009600671310 /* OpponentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C686B6225F2009600671310 /* OpponentSelectionViewController.swift */; };
 		2C99252625F17D0B000BE67F /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C99252525F17D0B000BE67F /* FriendListViewController.swift */; };
 		2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */; };
+		2CD402E425F4320D007B7100 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD402E325F4320D007B7100 /* FriendTableViewCell.swift */; };
 		44A5745425DF65760053E990 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745325DF65760053E990 /* HomeViewController.swift */; };
 		44A5745E25DF7C070053E990 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745D25DF7C070053E990 /* UserModel.swift */; };
 		44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5746525DF7CB90053E990 /* UserProtocol.swift */; };
@@ -70,6 +71,7 @@
 		2C686B6225F2009600671310 /* OpponentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentSelectionViewController.swift; sourceTree = "<group>"; };
 		2C99252525F17D0B000BE67F /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
+		2CD402E325F4320D007B7100 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
 		44A5745325DF65760053E990 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		44A5745D25DF7C070053E990 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		44A5746525DF7CB90053E990 /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				8287C42F25D78EF500729808 /* LaunchScreen.storyboard */,
 				8287C43225D78EF500729808 /* Info.plist */,
 				8287C42A25D78EF200729808 /* triv_ioApp.xcdatamodeld */,
+				2CD402E325F4320D007B7100 /* FriendTableViewCell.swift */,
 			);
 			path = triv.ioApp;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				49162F8825F021390018A88F /* UserPreferenceViewController.swift in Sources */,
 				44DE40BD25EF80000000CBAC /* LeaderboardViewController.swift in Sources */,
 				44A5745425DF65760053E990 /* HomeViewController.swift in Sources */,
+				2CD402E425F4320D007B7100 /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
