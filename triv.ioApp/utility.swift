@@ -22,6 +22,7 @@ let trivioBackgroundColor = UIColor(red: 12/255, green: 25/255, blue: 54/255, al
 let userNameCharacterLimit = 20
 
 
+
 func styleButton(button: UIButton){
     button.layer.cornerRadius = 10
     button.titleLabel?.font =  UIFont.boldSystemFont(ofSize: 25)
@@ -33,8 +34,20 @@ func styleCircleButton(button: UIButton){
     button.clipsToBounds = true
 }
 
+func pendingMessageShareGameLink(gameLink: String) -> String {
+    return "Game created! Send this code to your friend and play together: \(gameLink)"
+}
+
 func generateFriendMessage(uid: String) -> String{
     return "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. \(uid)."
+}
+
+func generateNotYourTurnMessage() -> String{
+    return "It's not your turn yet, we'll send you a notification when it's your turn."
+}
+
+func generateFlipTurnMessage() -> String{
+    return "Oops, you got it wrong. We'll send you a notification when it's your turn."
 }
 
 

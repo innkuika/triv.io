@@ -25,25 +25,53 @@ class GameModel {
     var players: [String: Player]
     var ref = Database.database().reference()
     var gameInstanceId: String?
+    var gameStatus: String
     
     
-    init(userId: String){
+    init?(userId: String){
         self.currentTurn = userId
         self.playerIds = [userId, "bot"]
         let UserPlayer = Player(playerID: userId, streak: 0, score: [])
         let BotPlayer = Player(playerID: "bot", streak: 0, score: [])
         self.players = [userId: UserPlayer, "bot": BotPlayer]
+        self.gameStatus = "init"
         
         // create a game instance and push to database
         let gameInstanceRef = self.ref.child("GameInstance").childByAutoId()
         guard let unwrappedKey = gameInstanceRef.key else { return }
         self.gameInstanceId = unwrappedKey
-        gameInstanceRef.setValue(["CurrentTurn": userId,
+        gameInstanceRef.setValue(["GameStatus": "init",
+                                  "CurrentTurn": userId,
                                   "PlayerIds": [userId, "bot"],
                                   "Players": [userId: ["Score": [], "Streak": 0],
                                               "bot": ["Score": [], "Streak": 0]],
                                   "Categories": []])
+        var gameInstanceIds: [String] = []
+        let workerGroup = DispatchGroup()
+        workerGroup.enter()
+        workerGroup.notify(queue: DispatchQueue.main) {
+            self.ref.child("User/\(userId)/Game").setValue(gameInstanceIds)
+        }
         
+        self.ref.child("User/\(userId)/Game").getData{ (error, snapshot) in
+            let unwrappedGameInstanceIds = snapshot.value as? [String] ?? []
+            gameInstanceIds = unwrappedGameInstanceIds
+            gameInstanceIds.append(unwrappedKey)
+            workerGroup.leave()
+        }
+    }
+    
+    init?(gameStatus: String?, currentTurn: String?, playerIds: [String]?, players: [String:Player]?, categories: [String]?, gameInstanceId: String?){
+        guard let gameStatus = gameStatus, let currentTurn = currentTurn, let playerIds = playerIds, let players = players, let gameInstanceId = gameInstanceId else { return nil }
+        
+        let categories = categories ?? [] // categories may not be set yet
+        
+        self.selectedCategories = categories
+        self.currentTurn = currentTurn
+        self.playerIds = playerIds
+        self.players = players
+        self.gameInstanceId = gameInstanceId
+        self.gameStatus = gameStatus
     }
     
     // push next player info to database
@@ -74,10 +102,13 @@ class GameModel {
                 }
                 
                 // get latest currentTurn
-                guard let unwrappedCurrentTurn = value?["CurrentTurn"] as? String else {
-                    return
-                }
+                guard let unwrappedCurrentTurn = value?["CurrentTurn"] as? String else { return }
                 self.currentTurn = unwrappedCurrentTurn
+            
+                // get latest game status
+                guard let unwrappedGameStatus = value?["GameStatus"] as? String else { return }
+                self.gameStatus = unwrappedGameStatus
+            
         })
         workerGroup.leave()
     }
@@ -120,3 +151,4 @@ class GameModel {
     }
     
 }
+

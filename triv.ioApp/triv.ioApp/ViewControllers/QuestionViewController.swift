@@ -131,8 +131,7 @@ class QuestionViewController: UIViewController {
                 // give user time to see the result
                 sleep(2)
             
-                // TODO: push result (user and bot) to database
-                let botAnswerCorrect = self.answerArray[2] == self.key
+//                let botAnswerCorrect = self.answerArray[2] == self.key
                 let userAnswerCorrect = sender.titleLabel?.text == self.key
                 guard let unwrappedGameInstanceID = self.gameInstance?.gameInstanceId else { return }
                 guard let unwrappedQuestionCategory = self.questionCategory else { return }
@@ -141,17 +140,32 @@ class QuestionViewController: UIViewController {
                     return
                 }
                 
-                if botAnswerCorrect {
-                    self.gameInstance?.getUserPlayer(id: "bot")?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
-                }
+//                if botAnswerCorrect {
+//                    self.gameInstance?.getUserPlayer(id: "bot")?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
+//                }
                 if userAnswerCorrect{
                     self.gameInstance?.getUserPlayer(id: user.uid)?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
                 }
                 
                 // determine if we need to flip turn
-                guard let currentPlayer = self.gameInstance?.currentTurn else { return }
-                if (currentPlayer == user.uid && !userAnswerCorrect)||(currentPlayer != user.uid && !botAnswerCorrect) {
+//                guard let currentPlayer = self.gameInstance?.currentTurn else { return }
+//                if (currentPlayer == user.uid && !userAnswerCorrect)||(currentPlayer != user.uid && !botAnswerCorrect) {
+//                    self.gameInstance?.flipTurn()
+//                }
+                
+                if (!userAnswerCorrect){
                     self.gameInstance?.flipTurn()
+                    
+                    // navigate to pendingMessageViewController
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let pendingMessageViewController = storyboard.instantiateViewController(identifier: "pendingMessageViewController") as? PendingMessageViewController else {
+                        assertionFailure("cannot instantiate pendingMessageViewController")
+                        return
+                    }
+                    pendingMessageViewController.displayMessage = generateFlipTurnMessage()
+                    
+                    self.navigationController?.pushViewController(pendingMessageViewController, animated: true)
+                    
                 }
                 
                 // navigate back to spinWheelViewController
