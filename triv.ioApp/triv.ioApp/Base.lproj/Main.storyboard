@@ -494,14 +494,6 @@
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.046311445530000002" green="0.098276488479999993" blue="0.2117765248" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-p3-ZRD">
-                                <rect key="frame" x="351" y="587" width="43" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="leaderboardIcon"/>
-                                <connections>
-                                    <action selector="leaderboardButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="RuN-Lw-odd"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqp-kb-1Ej">
                                 <rect key="frame" x="368" y="64" width="40" height="40"/>
                                 <constraints>
@@ -513,12 +505,27 @@
                                     <action selector="userPreferenceButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="sLd-v9-ihj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dbv-9g-BrT">
-                                <rect key="frame" x="347" y="639" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dbv-9g-BrT">
+                                <rect key="frame" x="348" y="676" width="49" height="48.666666666666629"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6No-gT-hu8"/>
+                                    <constraint firstAttribute="width" secondItem="Dbv-9g-BrT" secondAttribute="height" multiplier="50:51" id="s2p-55-HSg"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="person.2.circle.fill" catalog="system"/>
                                 <connections>
                                     <action selector="friendsButtonPressed" destination="mth-ET-o9K" eventType="touchUpInside" id="EMA-l9-f3D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-p3-ZRD">
+                                <rect key="frame" x="351" y="615" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bnf-p3-ZRD" secondAttribute="height" multiplier="1:1" id="5l4-Ab-AdA"/>
+                                    <constraint firstAttribute="height" constant="43" id="7AA-Bj-ReR"/>
+                                    <constraint firstAttribute="width" constant="43" id="O04-cE-NKb"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="leaderboardIcon"/>
+                                <connections>
+                                    <action selector="leaderboardButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="RuN-Lw-odd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -530,9 +537,13 @@
                             <constraint firstItem="2l2-Xt-0kq" firstAttribute="top" secondItem="xqp-kb-1Ej" secondAttribute="bottom" constant="32" id="Bvp-Ot-vOO"/>
                             <constraint firstItem="2l2-Xt-0kq" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="20" id="C7Z-xi-G1D"/>
                             <constraint firstItem="eha-VO-uCb" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="64" id="FMy-qK-xH6"/>
+                            <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="bnf-p3-ZRD" secondAttribute="trailing" constant="34" id="FOT-mb-tOB"/>
+                            <constraint firstItem="bnf-p3-ZRD" firstAttribute="top" secondItem="2l2-Xt-0kq" secondAttribute="bottom" constant="19" id="HbA-Cc-EFa"/>
                             <constraint firstItem="kRn-2S-DUr" firstAttribute="top" secondItem="eha-VO-uCb" secondAttribute="bottom" constant="28" id="Kp8-ou-16y"/>
                             <constraint firstItem="kRn-2S-DUr" firstAttribute="bottom" secondItem="YDP-xd-bwu" secondAttribute="bottom" id="MoR-h6-voy"/>
                             <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="xqp-kb-1Ej" secondAttribute="trailing" constant="20" id="N1o-92-UBl"/>
+                            <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="Dbv-9g-BrT" secondAttribute="trailing" constant="31" id="N8l-oe-EDI"/>
+                            <constraint firstItem="Dbv-9g-BrT" firstAttribute="top" secondItem="bnf-p3-ZRD" secondAttribute="bottom" constant="17" id="Pac-Or-2xA"/>
                             <constraint firstItem="eha-VO-uCb" firstAttribute="centerX" secondItem="oUd-Rj-dzJ" secondAttribute="centerX" id="RYA-bo-rWZ"/>
                             <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="2l2-Xt-0kq" secondAttribute="trailing" constant="20" id="ibL-O4-aWQ"/>
                             <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="eha-VO-uCb" secondAttribute="trailing" constant="64" id="n99-eE-afn"/>
@@ -977,16 +988,6 @@
                                     <constraint firstAttribute="width" constant="154" id="YH8-fr-FPN"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbt-3b-e5b">
-                                <rect key="frame" x="125" y="436.5" width="164" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="tintColor" red="0.98088949920000001" green="0.74438947440000003" blue="0.018598327410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="  copy friend message" image="doc.on.clipboard" catalog="system"/>
-                                <connections>
-                                    <action selector="uidButtonPressed:" destination="qgG-hx-vF4" eventType="touchUpInside" id="DNv-Cj-1Dg"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;user name&gt;" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U05-cc-b5e">
                                 <rect key="frame" x="202" y="106" width="154.66666666666663" height="30"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
@@ -1043,7 +1044,6 @@
                         <outlet property="avatarImageViewOutlet" destination="q5N-tK-nf0" id="019-Uu-16E"/>
                         <outlet property="coinNumberLabelOutlet" destination="mwv-55-dQd" id="Htz-oR-4e9"/>
                         <outlet property="logoutButtonOutlet" destination="8B9-U9-LuS" id="aaN-AP-Qfr"/>
-                        <outlet property="uidButtonOutlet" destination="sbt-3b-e5b" id="FLy-oj-0Rl"/>
                         <outlet property="userNameLabelOutlet" destination="U05-cc-b5e" id="xQY-ws-Mqh"/>
                     </connections>
                 </viewController>

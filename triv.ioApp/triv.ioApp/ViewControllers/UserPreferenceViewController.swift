@@ -15,14 +15,12 @@ import FBSDKLoginKit
 class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
     @IBOutlet weak var avatarImageViewOutlet: UIImageView!
     @IBOutlet weak var userNameLabelOutlet: UILabel!
-    @IBOutlet weak var uidButtonOutlet: UIButton!
     @IBOutlet weak var coinNumberLabelOutlet: UILabel!
     
     let workerGroup = DispatchGroup()
     
     // messagePrompt for friend message copied
     var messagePrompt: MessagePrompt?
-    let uidPromptView = UIView()
     let editUserNamePromptView = UIView()
     let editUserNameTextField = UITextField()
     let editUserNameErrorMessageLabel = UILabel()
@@ -44,7 +42,6 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
         workerGroup.notify(queue: DispatchQueue.main) {
             self.renderUI()
         }
-        
     }
     
     func renderUI(){
@@ -68,7 +65,7 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
             return
         }
         self.userId = user.uid
-
+        
         self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
             if let error = error {
                 print("Error getting data \(error)")
@@ -80,7 +77,7 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
                 let unwrappedAvatarNumber = value?["AvatarNumber"] as? Int ?? 1
                 guard let unwrappedUserName = value?["Name"] as? String else { return }
                 let unwrappedCoinNumber = value?["CoinNumber"] as? Int ?? 0
-
+                
                 self.userName = unwrappedUserName
                 self.avatarNumber = unwrappedAvatarNumber
                 self.coinNumber = unwrappedCoinNumber
@@ -88,27 +85,13 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
             }
             else {
                 print("No data available")
-            }
-
-
+            }    
         }
     }
     
     @IBAction func editUserNameButtonPressed(_ sender: Any) {
         editUserNamePromptView.isHidden = false
         messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter you new user name.", heightPercentage: 0.4, promptView: editUserNamePromptView, textField: editUserNameTextField, textFieldPlaceHolder: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
-    }
-    
-    @IBAction func uidButtonPressed(_ sender: Any) {
-        guard let unwarppedUserId = userId else { return }
-        UIPasteboard.general.string = generateFriendMessage(uid: unwarppedUserId)
-        uidPromptView.isHidden = false
-        messagePrompt?.displayMessageWithButton(view: self.view, messageText: "Copied friend message! Send it to your friend and get connected.", heightPercentage: 0.25, buttonText: "Got it", promptView: uidPromptView)
-    }
-    
-    // message prompt implementation
-    func buttonPressed() {
-        uidPromptView.isHidden = true
     }
     
     func textFieldLeftButtonPressed(){
@@ -123,7 +106,7 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
             editUserNameErrorMessageLabel.text = "Please enter your user name"
         }
         else if newUserNameLength > userNameCharacterLimit {
-            editUserNameErrorMessageLabel.text = "Please enter your user name"
+            editUserNameErrorMessageLabel.text = "Your user name is too long!"
         }
         else {
             guard let userId = Auth.auth().currentUser?.uid else {
@@ -144,12 +127,10 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
     
     @IBAction func logoutButtonPressed(_ sender: Any) {
         print("Log out button pressed")
-       
+        
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            
-            
             if let tokenString = AccessToken.current?.tokenString{
                 print("facebook logged in")
                 let loginManager = LoginManager()
@@ -159,15 +140,12 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
                 print("no facebook login")
             }
             
-            
-            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController") as? LoginViewController else {
                 assertionFailure("cannot instantiate categorySelectionViewController")
                 return
             }
             self.navigationController?.pushViewController(loginViewController, animated: true)
-            
             
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
