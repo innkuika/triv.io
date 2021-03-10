@@ -10,6 +10,7 @@ import UIKit
 import SwiftFortuneWheel
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 let trivioRed = UIColor(red: 233/255, green: 70/255, blue: 60/255, alpha: 1.0)
 let trivioOrange = UIColor(red: 239/255, green: 135/255, blue: 57/255, alpha: 1.0)
@@ -58,6 +59,14 @@ func generateFlipTurnMessage() -> String{
     // implement if using displayMessageWithTextField
     @objc optional func textFieldLeftButtonPressed()
     @objc optional func textFieldRightButtonPressed()
+}
+
+func getCurrentUserId() -> String?{
+    guard let user = Auth.auth().currentUser else {
+        assertionFailure("Unable to get current logged in user")
+        return nil
+    }
+    return user.uid
 }
 
 

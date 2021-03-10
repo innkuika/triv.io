@@ -29,7 +29,7 @@ class SpinWheelViewController: UIViewController {
     var SpinWheelTextArray: [String] = []
     var isUserTurn = true
     var userScore: [String] = []
-    var botScore: [String] = []
+    var opponentScore: [String] = []
      
     override func viewDidLoad() {
         
@@ -55,20 +55,24 @@ class SpinWheelViewController: UIViewController {
         }
         if userScore.count == 5 {
             resultViewController.playerDidWin = true
+            gameInstance?.updateGameStatus(status: "finished")
             self.navigationController?.pushViewController(resultViewController, animated: true)
         }
-        else if botScore.count == 5 {
-            resultViewController.playerDidWin = false
-            self.navigationController?.pushViewController(resultViewController, animated: true)
-        }
+//        else if opponentScore.count == 5 {
+//            resultViewController.playerDidWin = false
+//            self.navigationController?.pushViewController(resultViewController, animated: true)
+//        }
     }
     
     func renderUI() {
         navigationItem.hidesBackButton = true
         
         // query current game state (userScore, botScore, isUserTurn) from database and render accordingly
-        guard let unwrappedSpinWheelTextArray = gameInstance?.selectedCategories else { return }
+//        gameInstance?.setCurrentGameCategories()
+        print("current categories: \(gameInstance?.currentCategories)")
+        guard let unwrappedSpinWheelTextArray = gameInstance?.currentCategories else { return }
         SpinWheelTextArray = unwrappedSpinWheelTextArray
+        
         
         guard let user = Auth.auth().currentUser else {
             assertionFailure("Unable to get current logged in user")
@@ -78,14 +82,14 @@ class SpinWheelViewController: UIViewController {
         guard let unwrappedUserScore = gameInstance?.getUserPlayer(id: user.uid) else { return }
         userScore = unwrappedUserScore.score
         
-        guard let unwrappedBotScore = gameInstance?.getUserPlayer(id: "bot") else { return }
-        botScore = unwrappedBotScore.score
+        guard let unwrappedOpponentScore = gameInstance?.getOpponentPlayer() else { return }
+        opponentScore = unwrappedOpponentScore.score
         
-        if user.uid == gameInstance?.currentTurn {
-            isUserTurn = true
-        } else {
-            isUserTurn = false
-        }
+//        if user.uid == gameInstance?.currentTurn {
+//            isUserTurn = true
+//        } else {
+//            isUserTurn = false
+//        }
         
         // style spin button
         spinButtonOutlet.frame = CGRect(x: 0, y: 0, width: view.frame.width * 0.7, height: 50)
@@ -98,7 +102,7 @@ class SpinWheelViewController: UIViewController {
         scoreBoardUIViewOutlet.center = CGPoint(x: view.frame.width * 0.5, y: view.frame.height * 0.1)
         
         renderWheel()
-        renderScoreBoard(userScore: userScore, botScore: botScore)
+        renderScoreBoard(userScore: userScore, botScore: opponentScore)
         let newFinishIndex = Int.random(in: 0 ..< SpinWheelTextArray.count)
         finishIndex = newFinishIndex
         
@@ -111,14 +115,14 @@ class SpinWheelViewController: UIViewController {
         questionViewController.gameInstance = self.gameInstance
         
         // if it's not user's turn, it's bot's turn and will spin automatically
-        if !isUserTurn{
-            spinButtonOutlet.isEnabled = false
-            guard let unwrappedFinishedIndex = self.finishIndex else { return }
-            fortuneWheelViewOutlet.startRotationAnimation(finishIndex: unwrappedFinishedIndex, continuousRotationTime: 1) { (finished) in
-            questionViewController.questionCategory = self.SpinWheelTextArray[unwrappedFinishedIndex]
-            self.navigationController?.pushViewController(questionViewController, animated: true)
-                }
-        }
+//        if !isUserTurn{
+//            spinButtonOutlet.isEnabled = false
+//            guard let unwrappedFinishedIndex = self.finishIndex else { return }
+//            fortuneWheelViewOutlet.startRotationAnimation(finishIndex: unwrappedFinishedIndex, continuousRotationTime: 1) { (finished) in
+//            questionViewController.questionCategory = self.SpinWheelTextArray[unwrappedFinishedIndex]
+//            self.navigationController?.pushViewController(questionViewController, animated: true)
+//                }
+//        }
     }
     
     func renderWheel() {

@@ -31,14 +31,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ref = Database.database().reference()
         navigationItem.hidesBackButton = true
         getUserProfileData()
-        // loadGameInstances()
+        loadGameInstances()
         
         renderUI()
         gameInstanceTableViewOutlet.dataSource = self
         
         gameInstanceTableViewOutlet.delegate = self
         
-        
+//        let loadGameInstancesTimer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(loadGameInstances), userInfo: nil, repeats: true)
         }
     
     func renderUI(){
@@ -46,6 +46,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         styleButton(button: joinGameViaCodeButtonOutlet)
         styleCircleButton(button: leaderboardButtonOutlet)
     }
+    
+    @IBAction func joinGameViaCodeButtonPressed(_ sender: Any) {
+        // navigate to joinGameViaCodeViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let joinGameViaCodeViewController = storyboard.instantiateViewController(identifier: "joinGameViaCodeViewController") as? JoinGameViaCodeViewController else {
+            assertionFailure("cannot instantiate joinGameViaCodeViewController")
+            return
+        }
+        
+        navigationController?.pushViewController(joinGameViaCodeViewController, animated: true)
+        
+    }
+    
     
     // MARK: -UI action handlers
     @IBAction func startGameButtonPress() {
@@ -96,7 +109,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.pushViewController(userPreferenceViewController, animated: true)
     }
     
-    func loadGameInstances() {
+    @objc func loadGameInstances() {
+//        if !(navigationController?.topViewController?.isKind(of: HomeViewController.self) ?? false){
+//            // do nothing if player is not in homeViewController
+//            return
+//        }
         guard let unwrappedUserId = self.userId else { return }
         self.gameInstances = []
         self.ref.child("User").child(unwrappedUserId).child("Game").observe(.value) { (snapshot) in
@@ -170,7 +187,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: check game status here
         let selectedGameInstance = gameInstances[indexPath.row]
-        if selectedGameInstance.currentTurn != userId {
+        if selectedGameInstance.gameStatus == "pending"{
+            // if still waiting for response. navigate to pendingMessageViewController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let pendingMessageViewController = storyboard.instantiateViewController(identifier: "pendingMessageViewController") as? PendingMessageViewController else {
+                assertionFailure("cannot instantiate pendingMessageViewController")
+                return
+            }
+            pendingMessageViewController.displayMessage = pendingMessageShareGameLink(gameLink: selectedGameInstance.gameInstanceId ?? "")
+            navigationController?.pushViewController(pendingMessageViewController, animated: true)
+            
+        }
+        else if selectedGameInstance.currentTurn != userId {
             // if not user's turn, navigate to pendingMessageViewController
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let pendingMessageViewController = storyboard.instantiateViewController(identifier: "pendingMessageViewController") as? PendingMessageViewController else {

@@ -129,6 +129,9 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     
     // MARK: -UI action handlers
     @IBAction func shareLinkButtonPress() {
+        // set game status to pending
+        guard let unwrappedGameInstanceId = gameInstance?.gameInstanceId else { return }
+        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/GameStatus").setValue("pending")
         // navigate to pendingMessageViewController
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let pendingMessageViewController = storyboard.instantiateViewController(identifier: "pendingMessageViewController") as? PendingMessageViewController else {

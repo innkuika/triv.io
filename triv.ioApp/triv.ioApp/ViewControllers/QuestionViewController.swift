@@ -145,6 +145,17 @@ class QuestionViewController: UIViewController {
 //                }
                 if userAnswerCorrect{
                     self.gameInstance?.getUserPlayer(id: user.uid)?.updatePlayerScore(gameInstanceID: unwrappedGameInstanceID, newScore: unwrappedQuestionCategory)
+                    
+                    // navigate back to spinWheelViewController
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
+                        assertionFailure("cannot instantiate spinWheelViewController")
+                        return
+                    }
+                    spinWheelViewController.gameInstance = self.gameInstance
+                    self.navigationController?.pushViewController(spinWheelViewController, animated: true)
+                    
+                    
                 }
                 
                 // determine if we need to flip turn
@@ -167,15 +178,6 @@ class QuestionViewController: UIViewController {
                     self.navigationController?.pushViewController(pendingMessageViewController, animated: true)
                     
                 }
-                
-                // navigate back to spinWheelViewController
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
-                    assertionFailure("cannot instantiate spinWheelViewController")
-                    return
-                }
-                spinWheelViewController.gameInstance = self.gameInstance
-                self.navigationController?.pushViewController(spinWheelViewController, animated: true)
     
             }
         

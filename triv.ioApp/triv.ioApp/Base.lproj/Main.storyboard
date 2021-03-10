@@ -388,6 +388,71 @@
             </objects>
             <point key="canvasLocation" x="3538" y="134"/>
         </scene>
+        <!--Join Game Via Code View Controller-->
+        <scene sceneID="RhC-Od-tgA">
+            <objects>
+                <viewController storyboardIdentifier="joinGameViaCodeViewController" id="8ia-Tc-HcC" customClass="JoinGameViaCodeViewController" customModule="triv_ioApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CY4-RL-du5">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter game code to join" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrQ-4o-Zcf">
+                                <rect key="frame" x="20" y="134" width="234" height="27"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <color key="textColor" red="0.97137291150000005" green="1" blue="0.98473740399999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bfe-97-jBF">
+                                <rect key="frame" x="20" y="204" width="388" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;error message&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRX-cB-F52">
+                                <rect key="frame" x="20" y="272" width="388" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.43830079928768972" blue="0.34827970125750263" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCz-zu-Uj9">
+                                <rect key="frame" x="20" y="341" width="388" height="50"/>
+                                <color key="backgroundColor" red="0.027057221159999999" green="1" blue="0.54501742119999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ZMr-52-VpL"/>
+                                </constraints>
+                                <state key="normal" title="Join">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="joinButtonPressed:" destination="8ia-Tc-HcC" eventType="touchUpInside" id="beT-RB-zPf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="v8w-uP-0DI"/>
+                        <color key="backgroundColor" red="0.042736001310000001" green="0.093939222399999994" blue="0.2156985998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="xCz-zu-Uj9" firstAttribute="top" secondItem="yRX-cB-F52" secondAttribute="bottom" constant="48" id="2q6-ex-ncj"/>
+                            <constraint firstItem="Bfe-97-jBF" firstAttribute="top" secondItem="jrQ-4o-Zcf" secondAttribute="bottom" constant="43" id="AM7-Hr-6l0"/>
+                            <constraint firstItem="v8w-uP-0DI" firstAttribute="trailing" secondItem="xCz-zu-Uj9" secondAttribute="trailing" constant="20" id="N96-dN-hcw"/>
+                            <constraint firstItem="yRX-cB-F52" firstAttribute="top" secondItem="Bfe-97-jBF" secondAttribute="bottom" constant="34" id="S0t-d9-bav"/>
+                            <constraint firstItem="v8w-uP-0DI" firstAttribute="trailing" secondItem="yRX-cB-F52" secondAttribute="trailing" constant="20" id="UVt-Rs-YBF"/>
+                            <constraint firstItem="jrQ-4o-Zcf" firstAttribute="leading" secondItem="v8w-uP-0DI" secondAttribute="leading" constant="20" id="WqQ-2x-eA4"/>
+                            <constraint firstItem="xCz-zu-Uj9" firstAttribute="leading" secondItem="v8w-uP-0DI" secondAttribute="leading" constant="20" id="bGo-Oe-aAh"/>
+                            <constraint firstItem="jrQ-4o-Zcf" firstAttribute="top" secondItem="v8w-uP-0DI" secondAttribute="top" constant="90" id="faB-kx-ut8"/>
+                            <constraint firstItem="v8w-uP-0DI" firstAttribute="trailing" secondItem="Bfe-97-jBF" secondAttribute="trailing" constant="20" id="off-zy-Rm3"/>
+                            <constraint firstItem="yRX-cB-F52" firstAttribute="leading" secondItem="v8w-uP-0DI" secondAttribute="leading" constant="20" id="uXh-3j-NUC"/>
+                            <constraint firstItem="Bfe-97-jBF" firstAttribute="leading" secondItem="v8w-uP-0DI" secondAttribute="leading" constant="20" id="uu9-0K-At6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="errorMessageLabelOutlet" destination="yRX-cB-F52" id="YFU-bC-0Al"/>
+                        <outlet property="gameCodeTextFieldOutlet" destination="Bfe-97-jBF" id="dGg-vH-zJJ"/>
+                        <outlet property="joinButtonOutlet" destination="xCz-zu-Uj9" id="EGI-ZP-bxJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T6H-dN-H2N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4383.6448598130837" y="-594.16846652267827"/>
+        </scene>
         <!--Home View Controller-->
         <scene sceneID="ciR-3J-sbJ">
             <objects>
@@ -398,13 +463,16 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRn-2S-DUr">
                                 <rect key="frame" x="64" y="842" width="300" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.46620023249999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.027057221159999999" green="1" blue="0.54501742119999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="md2-28-F9u"/>
                                 </constraints>
                                 <state key="normal" title="Join Game via Code">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="joinGameViaCodeButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="VJw-FN-4QL"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eha-VO-uCb">
                                 <rect key="frame" x="64" y="764" width="300" height="50"/>

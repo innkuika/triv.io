@@ -32,6 +32,7 @@
 		49162F8825F021390018A88F /* UserPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49162F8725F021390018A88F /* UserPreferenceViewController.swift */; };
 		49A7687C25E9F1280068A130 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7687B25E9F1280068A130 /* PlayerModel.swift */; };
 		49A7688725EB7FFD0068A130 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7688625EB7FFD0068A130 /* ResultViewController.swift */; };
+		49BA84CD25F82F5E002A0235 /* JoinGameViaCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BA84CC25F82F5E002A0235 /* JoinGameViaCodeViewController.swift */; };
 		49CA93DC25E58E54001038F5 /* utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CA93DB25E58E54001038F5 /* utility.swift */; };
 		49FADC9525F6F0B4008EF923 /* PendingMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FADC9425F6F0B4008EF923 /* PendingMessageViewController.swift */; };
 		5DAD835D25E4A45000B3BA98 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAD835C25E4A45000B3BA98 /* LoginViewController.swift */; };
@@ -92,6 +93,7 @@
 		49162F8725F021390018A88F /* UserPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferenceViewController.swift; sourceTree = "<group>"; };
 		49A7687B25E9F1280068A130 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		49A7688625EB7FFD0068A130 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		49BA84CC25F82F5E002A0235 /* JoinGameViaCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGameViaCodeViewController.swift; sourceTree = "<group>"; };
 		49CA93DB25E58E54001038F5 /* utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utility.swift; sourceTree = "<group>"; };
 		49FADC9425F6F0B4008EF923 /* PendingMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingMessageViewController.swift; sourceTree = "<group>"; };
 		5D985AED25EF100600AD8CA2 /* triv.ioApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = triv.ioApp.entitlements; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				2C99252525F17D0B000BE67F /* FriendListViewController.swift */,
 				2C686B6225F2009600671310 /* OpponentSelectionViewController.swift */,
 				49FADC9425F6F0B4008EF923 /* PendingMessageViewController.swift */,
+				49BA84CC25F82F5E002A0235 /* JoinGameViaCodeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				44A5749F25DF90C80053E990 /* BotUser.swift in Sources */,
 				44A5748A25DF862B0053E990 /* GameStateProtocol.swift in Sources */,
 				49A7687C25E9F1280068A130 /* PlayerModel.swift in Sources */,
+				49BA84CD25F82F5E002A0235 /* JoinGameViaCodeViewController.swift in Sources */,
 				44D9658025E379D60030382A /* GameModel.swift in Sources */,
 				44A5747D25DF83620053E990 /* GameInstanceProtocol.swift in Sources */,
 				44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */,
