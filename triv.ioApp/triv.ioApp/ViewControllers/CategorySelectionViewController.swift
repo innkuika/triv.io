@@ -124,7 +124,19 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         categorySelectionWorkerGroup.notify(queue: DispatchQueue.main) {
             // if there are two players, go straight to the spinWheelView
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if self.gameInstance?.playerIds.count == 2 {
+            if self.gameInstance?.currentCategories?.count == 6 {
+                // update user's game
+                guard let user = Auth.auth().currentUser else {
+                    assertionFailure("Unable to get current logged in user")
+                    return
+                }
+                
+                guard let unwrappedGameInstanceId = self.gameInstance?.gameInstanceId else { return }
+                self.gameInstance?.userGameInstanceUpdate(userId: user.uid, gameInstanceId: unwrappedGameInstanceId)
+                
+                // update playerIds, players in game instance, set current turn to new player
+                self.gameInstance?.addNewPlayer(newPlayerId: user.uid)
+                
                 // update game status to active
                 self.gameInstance?.updateGameStatus(status: "active")
                 guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
