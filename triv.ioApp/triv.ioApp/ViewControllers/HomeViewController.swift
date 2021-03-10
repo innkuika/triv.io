@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         gameInstanceTableViewOutlet.delegate = self
         
-//        let loadGameInstancesTimer = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(loadGameInstances), userInfo: nil, repeats: true)
+        let loadGameInstancesTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(loadGameInstances), userInfo: nil, repeats: true)
         }
     
     func renderUI(){
@@ -110,10 +110,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func loadGameInstances() {
-//        if !(navigationController?.topViewController?.isKind(of: HomeViewController.self) ?? false){
-//            // do nothing if player is not in homeViewController
-//            return
-//        }
+        if !(navigationController?.topViewController?.isKind(of: HomeViewController.self) ?? false){
+            // do nothing if player is not in homeViewController
+            return
+        }
         guard let unwrappedUserId = self.userId else { return }
         self.gameInstances = []
         self.ref.child("User").child(unwrappedUserId).child("Game").observe(.value) { (snapshot) in
@@ -198,7 +198,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             navigationController?.pushViewController(pendingMessageViewController, animated: true)
             
         }
-        else if selectedGameInstance.currentTurn != userId {
+        else if selectedGameInstance.gameStatus == "active" && selectedGameInstance.currentTurn != userId {
             // if not user's turn, navigate to pendingMessageViewController
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let pendingMessageViewController = storyboard.instantiateViewController(identifier: "pendingMessageViewController") as? PendingMessageViewController else {
@@ -207,7 +207,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             pendingMessageViewController.displayMessage = generateNotYourTurnMessage()
             navigationController?.pushViewController(pendingMessageViewController, animated: true)
-        } else {
+        } else if selectedGameInstance.gameStatus == "active" && selectedGameInstance.currentTurn == userId {
             // if user's turn, navigate to spinWheelViewController
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {

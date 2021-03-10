@@ -96,8 +96,6 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         return cell
     }
     
-    
-    
     // MARK: -UITableViewDelegate implementation
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if selectedCategories.count == 3 {

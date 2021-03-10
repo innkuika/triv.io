@@ -154,8 +154,6 @@ class QuestionViewController: UIViewController {
                     }
                     spinWheelViewController.gameInstance = self.gameInstance
                     self.navigationController?.pushViewController(spinWheelViewController, animated: true)
-                    
-                    
                 }
                 
                 // determine if we need to flip turn
