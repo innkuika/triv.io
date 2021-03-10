@@ -10,6 +10,7 @@ import UIKit
 import SwiftFortuneWheel
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 let trivioRed = UIColor(red: 233/255, green: 70/255, blue: 60/255, alpha: 1.0)
 let trivioOrange = UIColor(red: 239/255, green: 135/255, blue: 57/255, alpha: 1.0)
@@ -20,6 +21,7 @@ let trivioPurple = UIColor(red: 92/255, green: 61/255, blue: 245/255, alpha: 1.0
 let trivioBackgroundColor = UIColor(red: 12/255, green: 25/255, blue: 54/255, alpha: 1.0)
 
 let userNameCharacterLimit = 20
+
 
 
 func styleButton(button: UIButton){
@@ -33,8 +35,20 @@ func styleCircleButton(button: UIButton){
     button.clipsToBounds = true
 }
 
+func pendingMessageShareGameLink(gameLink: String) -> String {
+    return "Game created! Send this code to your friend and play together: \(gameLink)"
+}
+
 func generateFriendMessage(uid: String) -> String{
     return "[triv.io] Add me as a friend in triv.io! Copy this whole message and go to add new friend page. \(uid)."
+}
+
+func generateNotYourTurnMessage() -> String{
+    return "It's not your turn yet, we'll send you a notification when it's your turn."
+}
+
+func generateFlipTurnMessage() -> String{
+    return "Oops, you got it wrong. We'll send you a notification when it's your turn."
 }
 
 
@@ -45,6 +59,14 @@ func generateFriendMessage(uid: String) -> String{
     // implement if using displayMessageWithTextField
     @objc optional func textFieldLeftButtonPressed()
     @objc optional func textFieldRightButtonPressed()
+}
+
+func getCurrentUserId() -> String?{
+    guard let user = Auth.auth().currentUser else {
+        assertionFailure("Unable to get current logged in user")
+        return nil
+    }
+    return user.uid
 }
 
 
