@@ -57,9 +57,9 @@ class GameModel {
     init?(gameStatus: String?, currentTurn: String?, playerIds: [String]?, players: [String:Player]?, categories: [String]?, gameInstanceId: String?){
         guard let gameStatus = gameStatus, let currentTurn = currentTurn, let playerIds = playerIds, let players = players, let gameInstanceId = gameInstanceId else { return nil }
         
-//        let categories = categories ?? [] // categories may not be set yet
+        let categories = categories ?? [] // categories may not be set yet
         
-        //        self.selectedCategories = categories
+        self.currentCategories = categories
         self.currentTurn = currentTurn
         self.playerIds = playerIds
         self.players = players
@@ -170,26 +170,26 @@ class GameModel {
         
     }
     
-//    // set before using
-//    func setCurrentGameCategories(){
-//        var categories: [String] = []
-//        guard let unwrappedGameInstanceId = gameInstanceId else { return }
-//        let workerGroup = DispatchGroup()
-//        workerGroup.enter()
-//        
-//        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").getData{ (error, snapshot) in
-//            if snapshot.exists(){
-//                let unwrappedCategories = snapshot.value as? [String] ?? []
-//                categories = unwrappedCategories
-//                print("categories in db: \(categories)")
-//                workerGroup.leave()
-//            }
-//        }
-//        
-//        workerGroup.notify(queue: DispatchQueue.main) {
-//            self.currentCategories = categories
-//        }
-//    }
+    //    // set before using
+    //    func setCurrentGameCategories(){
+    //        var categories: [String] = []
+    //        guard let unwrappedGameInstanceId = gameInstanceId else { return }
+    //        let workerGroup = DispatchGroup()
+    //        workerGroup.enter()
+    //
+    //        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").getData{ (error, snapshot) in
+    //            if snapshot.exists(){
+    //                let unwrappedCategories = snapshot.value as? [String] ?? []
+    //                categories = unwrappedCategories
+    //                print("categories in db: \(categories)")
+    //                workerGroup.leave()
+    //            }
+    //        }
+    //
+    //        workerGroup.notify(queue: DispatchQueue.main) {
+    //            self.currentCategories = categories
+    //        }
+    //    }
     
     func updateGameStatus(status: String){
         guard let unwrappedGameInstanceId = gameInstanceId else { return }
@@ -197,35 +197,13 @@ class GameModel {
     }
     
     func updateCategories(syncWorkerGroup: DispatchGroup){
-        //        if playerIds.contains("bot"){
-        //            // FIXME: implement bot selection logic here later
-        //            selectedCategories.append("History")
-        //            selectedCategories.append("Pop Culture")
-        //            selectedCategories.append("UC Davis")
-        //        }
-        var categories: [String] = []
         guard let unwrappedGameInstanceId = gameInstanceId else { return }
-        let workerGroup = DispatchGroup()
-        workerGroup.enter()
+        let unwrappedCurrentCategories = currentCategories ?? []
+        currentCategories = unwrappedCurrentCategories + selectedCategories
         
-        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").getData{ (error, snapshot) in
-            if snapshot.exists(){
-                print("snap shot exist")
-                let unwrappedCategories = snapshot.value as? [String] ?? []
-                categories = unwrappedCategories
-                categories = categories + self.selectedCategories
-                print("categories in db: \(categories)")
-                workerGroup.leave()
-            }
-        }
-        
-        workerGroup.notify(queue: DispatchQueue.main) {
-            print("all categories: \(categories)")
-            self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").setValue(categories)
-            syncWorkerGroup.leave()
-        }
-        
-        
+        print("all categories: \(currentCategories)")
+        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").setValue(currentCategories)
+        syncWorkerGroup.leave()
         
     }
     
