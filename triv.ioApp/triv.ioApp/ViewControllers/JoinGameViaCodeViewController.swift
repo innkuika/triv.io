@@ -56,15 +56,15 @@ class JoinGameViaCodeViewController: UIViewController{
                                                  gameInstanceId: gameInstanceId)
                 guard let unwrappedGameModel = tempGameInstance else { return }
                 
-                // update user's game
-                guard let user = Auth.auth().currentUser else {
-                    assertionFailure("Unable to get current logged in user")
-                    return
-                }
-                unwrappedGameModel.userGameInstanceUpdate(userId: user.uid, gameInstanceId: gameInstanceId)
-                
-                // update playerIds, players in game instance, set current turn to new player
-                unwrappedGameModel.addNewPlayer(newPlayerId: user.uid)
+//                // update user's game
+//                guard let user = Auth.auth().currentUser else {
+//                    assertionFailure("Unable to get current logged in user")
+//                    return
+//                }
+//                unwrappedGameModel.userGameInstanceUpdate(userId: user.uid, gameInstanceId: gameInstanceId)
+//                
+//                // update playerIds, players in game instance, set current turn to new player
+//                unwrappedGameModel.addNewPlayer(newPlayerId: user.uid)
                 
                 DispatchQueue.main.sync {
                     // pass game instance to categorySelectionViewController and navigate

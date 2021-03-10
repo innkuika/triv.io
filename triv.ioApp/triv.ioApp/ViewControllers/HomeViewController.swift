@@ -217,6 +217,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             // pass game instance to spinWheelViewController
             spinWheelViewController.gameInstance = selectedGameInstance
             navigationController?.pushViewController(spinWheelViewController, animated: true)
+        } else if selectedGameInstance.gameStatus == "finished" && selectedGameInstance.currentTurn != userId {
+            // the user lost
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let resultViewController = storyboard.instantiateViewController(identifier: "resultViewController") as? ResultViewController else {
+                assertionFailure("cannot instantiate resultViewController")
+                return
+            }
+            resultViewController.playerDidWin = false
+            self.navigationController?.pushViewController(resultViewController, animated: true)
+            
+        } else if selectedGameInstance.gameStatus == "finished" && selectedGameInstance.currentTurn == userId {
+            // user win
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let resultViewController = storyboard.instantiateViewController(identifier: "resultViewController") as? ResultViewController else {
+                assertionFailure("cannot instantiate resultViewController")
+                return
+            }
+            resultViewController.playerDidWin = true
+            self.navigationController?.pushViewController(resultViewController, animated: true)
         }
         
     }
