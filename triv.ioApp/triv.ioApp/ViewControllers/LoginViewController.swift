@@ -25,7 +25,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     @IBOutlet weak var errorDescription: UILabel!
     var ref: DatabaseReference!
     let AppleButton = ASAuthorizationAppleIDButton()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -33,10 +33,10 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         setUpSignInButton()
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
-    
+        
         FaceBookButton.delegate = self
         FaceBookButton.permissions = ["public_profile", "email"]
-       
+        
         renderUI()
         
         
@@ -45,6 +45,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
+        if Auth.auth().currentUser != nil {
+            NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
+        }
     }
     
     deinit {
@@ -58,7 +61,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         AppleButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
         AppleButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.70)
         view.addSubview(AppleButton)
-
+        
         FaceBookButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
         FaceBookButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.80)
         
@@ -103,7 +106,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     func fireBaseFaceBookLogin(accessToken: String) {
         //        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
         let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
-                
+        
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error {
                 print("Unsuccessful Authentication \(error)")
@@ -122,10 +125,10 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     //MARK: - Apple Authentication
     
     func setUpSignInButton() {
-//        let button = ASAuthorizationAppleIDButton()
+        //        let button = ASAuthorizationAppleIDButton()
         AppleButton.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
-//        button.center = view.center
-//        view.addSubview(button)
+        //        button.center = view.center
+        //        view.addSubview(button)
     }
     
     @objc func handleSignInWithAppleTapped() {
@@ -154,7 +157,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         
         authorizationController.delegate = self
         authorizationController.presentationContextProvider = self
-    
+        
         authorizationController.performRequests()
     }
     
@@ -175,51 +178,51 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
     // Creates random Number Used Once to give to Firebase
     private func randomNonceString(length: Int = 32) -> String {
-      precondition(length > 0)
-      let charset: Array<Character> =
-          Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-      var result = ""
-      var remainingLength = length
-
-      while remainingLength > 0 {
-        let randoms: [UInt8] = (0 ..< 16).map { _ in
-          var random: UInt8 = 0
-          let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-          if errorCode != errSecSuccess {
-            fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
-          }
-          return random
+        precondition(length > 0)
+        let charset: Array<Character> =
+            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
+        var result = ""
+        var remainingLength = length
+        
+        while remainingLength > 0 {
+            let randoms: [UInt8] = (0 ..< 16).map { _ in
+                var random: UInt8 = 0
+                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
+                if errorCode != errSecSuccess {
+                    fatalError("Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)")
+                }
+                return random
+            }
+            
+            randoms.forEach { random in
+                if remainingLength == 0 {
+                    return
+                }
+                
+                if random < charset.count {
+                    result.append(charset[Int(random)])
+                    remainingLength -= 1
+                }
+            }
         }
-
-        randoms.forEach { random in
-          if remainingLength == 0 {
-            return
-          }
-
-          if random < charset.count {
-            result.append(charset[Int(random)])
-            remainingLength -= 1
-          }
-        }
-      }
-
-      return result
+        
+        return result
     }
     
     
     // Unhashed nonce.
     fileprivate var currentNonce: String?
-
+    
     //hashing function needed for nonce
     @available(iOS 13, *)
     private func sha256(_ input: String) -> String {
-      let inputData = Data(input.utf8)
-      let hashedData = SHA256.hash(data: inputData)
-      let hashString = hashedData.compactMap {
-        return String(format: "%02x", $0)
-      }.joined()
-
-      return hashString
+        let inputData = Data(input.utf8)
+        let hashedData = SHA256.hash(data: inputData)
+        let hashString = hashedData.compactMap {
+            return String(format: "%02x", $0)
+        }.joined()
+        
+        return hashString
     }
     
     //Protocol for ASAuthorizationControllerDelegate
@@ -245,11 +248,21 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
             
             Auth.auth().signIn(with: credential) { (authDataResult, error) in
-                if let user = authDataResult?.user {
-                    print("Signed in as \(user.uid), email: \(user.email ?? "email error")")
-                    
-                    NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
+                //                if let user = authDataResult?.user {
+                //                    print("Signed in as \(user.uid), email: \(user.email ?? "email error")")
+                //
+                //                    NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
+                //                }
+                if let errorVar = error {
+                    // Error. If error.code == .MissingOrInvalidNonce, make sure
+                    // you're sending the SHA256-hashed nonce as a hex string with
+                    // your request to Apple.
+                    print(errorVar.localizedDescription)
+                    return
                 }
+                // User is signed in to Firebase with Apple.
+                // ...
+                NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
             }
         }
     }
@@ -266,7 +279,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
             assertionFailure("Unable to get current logged in user")
             return
         }
-
+        
         print("user signed in")
         self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
             if let error = error {
