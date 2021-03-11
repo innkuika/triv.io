@@ -53,34 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       
         if let gameID = components.queryItems?.first(where: {$0.name == "id"} )?.value {
 
-            //find this game instance in database
-            self.ref.child("GameInstance/\(gameID)").getData{ (error, snapshot) in
-                if let error = error {
-                    print("Error getting data \(error)")
-                } else if snapshot.exists() {
-                    
-                    guard let GameInstanceDict = snapshot.value as? NSDictionary else { return }
-                
-                    //if user does not exist
-                    
-                    
-                    
-                    
-                    //if user already exists
-                    
-                    
-                    
-                    
-                    //become current player
-                    
-                    
-                    
-                    
-                        
-                    }
-                }
+            //Set up homeVC
+            guard Auth.auth().currentUser != nil,
+                let navigationController = application.windows[0].rootViewController as! UINavigationController else { return false 
             }
-        }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController")
+      
+            //Set up joinGameVC and fill in the code from the link
+            guard let joinGameViaCodeViewController = storyboard.instantiateViewController(identifier: "joinGameViaCodeViewController") as? JoinGameViaCodeViewController else {
+                assertionFailure("cannot instantiate joinGameViaCodeViewController")
+                return false
+            }
+            joinGameViewCodeViewController.gameCodeTextFieldOutlet.text = gameID
+            navigationController?.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
+            return true
         
       return false
         
