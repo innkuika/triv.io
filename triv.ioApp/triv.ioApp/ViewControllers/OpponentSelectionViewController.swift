@@ -70,9 +70,9 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
                                     avatar_number: userDict["AvatarNumber"] as? Int
                                 ))
                                 accessSem.signal()
-                                
-                                waitSem.signal()
                             }
+                            
+                            waitSem.signal()
                         }
                     }
                 }
@@ -94,14 +94,13 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendTableViewCell ?? FriendTableViewCell(style: .default, reuseIdentifier: "friendCell")
         
-        let fname = friends[indexPath.row]?.name ?? "guest"
+        let fname = friends[indexPath.row]?.name ?? "Guest"
         let fuid = friends[indexPath.row]?.id ?? ""
         let avatarNumber = friends[indexPath.row]?.avatar_number ?? 1
         
         cell.usernameLabel.text = fname
         cell.uidLabel.text = "ID: \(fuid)"
         
-        // TODO: Replace default image with player avatar
         cell.avatarImageView.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
         
         cell.usernameLabel.textColor = UIColor.white

@@ -24,7 +24,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var userName: String?
     var userId: String?
     var coinNumber: Int?
-    var gameInstances: [GameModel] = []
+    var gameInstances: [[GameModel]] = [[], [], []] // holds active, pending, and finished
+    var opponents: [String?: UserModel] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,12 +117,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             return
         }
         guard let unwrappedUserId = self.userId else { return }
-        self.gameInstances = []
         self.ref.child("User").child(unwrappedUserId).child("Game").observe(.value) { (snapshot) in
+            self.gameInstances = [[], [], []]
+            self.opponents = [:]
             if snapshot.exists(){
                 guard let gameInstanceIds = snapshot.value as? [String] else { return }
-                // Initialize semaphores for accessing gameInstance array and reloading data inside the table view
+                // Initialize semaphores for accessing gameInstance and opponent arrays and reloading data inside the table view
                 let accessSem = DispatchSemaphore(value: 1)
+                let opponentsAccessSem = DispatchSemaphore(value: 1)
                 let waitSem = DispatchSemaphore(value: 0)
                 
                 // Retrieve user data of each gameInstance
@@ -132,7 +135,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                 print("Error getting data \(error)")
                             } else if snapshot.exists() {
                                 guard let GameInstanceDict = snapshot.value as? NSDictionary else { return }
-                                accessSem.wait()
                                 
                                 // get latest players info
                                 var tempPlayers:[String:Player] = [:]
@@ -143,6 +145,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     let updatedStreak = playerDict?["Streak"] as? Int ?? 0
                                     let updatedScore: [String] = playerDict?["Score"] as? [String] ?? []
                                     tempPlayers[unwrappedPlayerId] = Player(playerID: unwrappedPlayerId, streak: updatedStreak, score: updatedScore)
+                                    if unwrappedPlayerId != self.userId {
+                                        // Add to opponent list
+                                        self.ref.child("User/\(unwrappedPlayerId)").getData { (error, snapshot) in
+                                            if let error = error {
+                                                print("Error getting data \(error)")
+                                            } else if snapshot.exists() {
+                                                guard let userDict = snapshot.value as? NSDictionary else { return }
+                                                opponentsAccessSem.wait()
+                                                self.opponents[gameInstanceId] = UserModel(
+                                                    name: userDict["Name"] as? String,
+                                                    streak_score: userDict["Streak"] as? Int,
+                                                    id: unwrappedPlayerId,
+                                                    database: 0,
+                                                    avatar_number: userDict["AvatarNumber"] as? Int
+                                                )
+                                                opponentsAccessSem.signal()
+                                                waitSem.signal()
+                                            }
+                                        }
+                                    }
                                 }
                                 
                                 let tempGameInstance = GameModel(gameStatus: GameInstanceDict["GameStatus"] as? String,
@@ -152,42 +174,105 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                                  categories: GameInstanceDict["Categories"]  as?[String],
                                                                  gameInstanceId: gameInstanceId)
                                 guard let unwrappedGameModel = tempGameInstance else { return }
-                                self.gameInstances.append(unwrappedGameModel)
+                                accessSem.wait()
+                                if unwrappedGameModel.gameStatus == "active" {
+                                    self.gameInstances[0].append(unwrappedGameModel)
+                                } else if unwrappedGameModel.gameStatus == "pending" {
+                                    self.gameInstances[1].append(unwrappedGameModel)
+                                } else {
+                                    self.gameInstances[2].append(unwrappedGameModel)
+                                }
                                 accessSem.signal()
-                                
-                                waitSem.signal()
                             }
+                            
+                            waitSem.signal()
                         }
                     }
                 }
-                for _ in 1...gameInstanceIds.count {
+                for _ in 1...(gameInstanceIds.count * 2) {
                     waitSem.wait()
+                }
+                for i in 1...self.gameInstances.count {
+                    self.gameInstances[i-1].sort() { $0.gameInstanceId ?? "" < $1.gameInstanceId ?? "" }
                 }
                 self.gameInstanceTableViewOutlet.reloadData()
             }
         }
     }
     
-    // MARK: -UITableViewDelegate implementation
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("cell number: \(gameInstances.count)")
+    // MARK: -UITableViewDataSource implementation
+    func numberOfSections(in tableView: UITableView) -> Int {
         return gameInstances.count
     }
     
-    // MARK: -UITableViewDelegate implementation
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return gameInstances[section].count
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "gameInstanceCell") ?? UITableViewCell(style: .value1, reuseIdentifier: "gameInstanceCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "gameInstanceCell") as? GameInstanceTableViewCell ?? GameInstanceTableViewCell(style: .value1, reuseIdentifier: "gameInstanceCell")
         
-        cell.textLabel?.text = String(indexPath.row + 1) + ". " + gameInstances[indexPath.row].currentTurn
+        let gameInstance = gameInstances[indexPath.section][indexPath.row]
+        let gameInstanceId = gameInstance.gameInstanceId
+        
+        let username = opponents[gameInstanceId]?.name ?? "Guest"
+        let uid = opponents[gameInstanceId]?.id ?? ""
+        let avatarNumber = opponents[gameInstanceId]?.avatar_number ?? 1
+        
+        cell.usernameLabel.text = username
+        cell.uidLabel.text = "ID: \(uid)"
+        
+        let userId = self.userId ?? ""
+        let userScore = gameInstance.players[userId]?.score.count ?? 0
+        let opponentScore = gameInstance.players[uid]?.score.count ?? 0
+        cell.scoreLabel.text = "\(userScore)-\(opponentScore)"
+        
+        cell.avatarImageView.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
+        
+        cell.usernameLabel.textColor = UIColor.white
+        cell.uidLabel.textColor = UIColor.white
+        cell.avatarImageView.tintColor = UIColor.white
+        cell.scoreLabel.textColor = trivioGreen
+        
         cell.backgroundColor = trivioBackgroundColor
-        cell.textLabel?.textColor = UIColor.white
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = trivioBlue
+        cell.selectedBackgroundView = backgroundView
+        
+//        cell.textLabel?.text = String(indexPath.row + 1) + ". " + gameInstances[indexPath.row].currentTurn
         return cell
     }
     
     // MARK: -UITableViewDelegate implementation
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = trivioBlue
+        let headerLabel = UILabel(frame: CGRect(x: 20, y: 0, width: 200, height: 50))
+        if section == 0 {
+            headerLabel.text = "Active Games"
+        } else if section == 1 {
+            headerLabel.text = "Pending Games"
+        } else {
+            headerLabel.text = "Finished Games"
+        }
+        headerLabel.textColor = trivioGreen
+        headerLabel.backgroundColor = trivioBlue
+        headerView.addSubview(headerLabel)
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(100)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // TODO: check game status here
-        let selectedGameInstance = gameInstances[indexPath.row]
+        let selectedGameInstance = gameInstances[indexPath.section][indexPath.row]
         if selectedGameInstance.gameStatus == "pending"{
             // if still waiting for response. navigate to pendingMessageViewController
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
