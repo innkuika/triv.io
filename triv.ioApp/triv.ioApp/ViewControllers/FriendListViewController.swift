@@ -15,6 +15,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var friendRequestView: UIView!
     @IBOutlet weak var friendRequestLabel: UILabel!
     @IBOutlet weak var friendsTableView: UITableView!
+    @IBOutlet weak var addNewFriendButtonOutlet: UIButton!
     
     var uid = ""
     var ref: DatabaseReference!
@@ -30,7 +31,8 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        styleButton(button: addNewFriendButtonOutlet)
         friendRequestView.isHidden = true
         
         guard let user = Auth.auth().currentUser else {

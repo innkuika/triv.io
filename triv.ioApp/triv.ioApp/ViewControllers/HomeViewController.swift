@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         gameInstanceTableViewOutlet.delegate = self
         
+        // refreshes home page every 10 seconds
         let loadGameInstancesTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(loadGameInstances), userInfo: nil, repeats: true)
         }
     
@@ -261,6 +262,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.userName = unwrappedUserName
                 self.avatarNumber = unwrappedAvatarNumber
                 self.coinNumber = unwrappedCoinNumber
+                
+                DispatchQueue.main.async {
+                    guard let unwrappedAvatarNumber = self.avatarNumber else { return }
+                    self.userPreferenceButtonOutlet.setBackgroundImage(UIImage(named: "Robot Avatars_\(unwrappedAvatarNumber).png"), for: .normal)
+                }
             }
             else {
                 print("No data available")

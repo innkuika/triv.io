@@ -36,7 +36,7 @@ class JoinGameViaCodeViewController: UIViewController{
                 print("Error getting data \(error)")
             } else if snapshot.exists() {
                 guard let GameInstanceDict = snapshot.value as? NSDictionary else { return }
-    
+                
                 // get latest players info
                 var tempPlayers:[String:Player] = [:]
                 guard let unwrappedPlayersArray = GameInstanceDict["Players"] as? NSDictionary else { return }
@@ -56,15 +56,15 @@ class JoinGameViaCodeViewController: UIViewController{
                                                  gameInstanceId: gameInstanceId)
                 guard let unwrappedGameModel = tempGameInstance else { return }
                 
-//                // update user's game
-//                guard let user = Auth.auth().currentUser else {
-//                    assertionFailure("Unable to get current logged in user")
-//                    return
-//                }
-//                unwrappedGameModel.userGameInstanceUpdate(userId: user.uid, gameInstanceId: gameInstanceId)
-//                
-//                // update playerIds, players in game instance, set current turn to new player
-//                unwrappedGameModel.addNewPlayer(newPlayerId: user.uid)
+                //                // update user's game
+                //                guard let user = Auth.auth().currentUser else {
+                //                    assertionFailure("Unable to get current logged in user")
+                //                    return
+                //                }
+                //                unwrappedGameModel.userGameInstanceUpdate(userId: user.uid, gameInstanceId: gameInstanceId)
+                //
+                //                // update playerIds, players in game instance, set current turn to new player
+                //                unwrappedGameModel.addNewPlayer(newPlayerId: user.uid)
                 
                 DispatchQueue.main.sync {
                     // pass game instance to categorySelectionViewController and navigate
@@ -77,16 +77,14 @@ class JoinGameViaCodeViewController: UIViewController{
                     categorySelectionViewController.gameInstance = unwrappedGameModel
                     
                     self.navigationController?.pushViewController(categorySelectionViewController, animated: true)
-                }
-                
-                
+                }  
             }
             else {
                 print("No data available")
-                self.errorMessageLabelOutlet.text = "Oops, game not found, please try again."
+                DispatchQueue.main.sync {
+                    self.errorMessageLabelOutlet.text = "Oops, game not found, please try again."
+                }
             }
-
-
         }
         
     }
