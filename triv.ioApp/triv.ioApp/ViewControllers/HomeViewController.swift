@@ -166,6 +166,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                         }
                                     }
                                 }
+                                if unwrappedPlayersArray.count == 1 {
+                                    waitSem.signal()
+                                }
                                 
                                 let tempGameInstance = GameModel(gameStatus: GameInstanceDict["GameStatus"] as? String,
                                                                  currentTurn: GameInstanceDict["CurrentTurn"] as? String,
