@@ -16,11 +16,25 @@ class JoinGameViaCodeViewController: UIViewController{
     @IBOutlet weak var joinButtonOutlet: UIButton!
     
     var ref: DatabaseReference!
+    var prefillGameId: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
         renderUI()
+        
+        if let gameId = prefillGameId {
+            gameCodeTextFieldOutlet.text = gameId
+        }
+    }
+    
+    @objc func setGameId(_ notification: NSNotification){
+        print(notification.userInfo ?? "")
+        if let dict = notification.userInfo as NSDictionary? {
+            if let gameID = dict["gameId"] as? String{
+                prefillGameId = gameID
+            }
+        }
     }
     
     func renderUI(){
