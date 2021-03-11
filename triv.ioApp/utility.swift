@@ -30,6 +30,12 @@ func styleButton(button: UIButton){
     button.titleLabel?.textColor = trivioBackgroundColor
 }
 
+func styleSmallButton(button: UIButton){
+    button.layer.cornerRadius = 10
+    button.titleLabel?.font =  UIFont.boldSystemFont(ofSize: 14)
+    button.titleLabel?.textColor = trivioBackgroundColor
+}
+
 func styleCircleButton(button: UIButton){
     button.layer.cornerRadius =  button.frame.size.width / 2
     button.clipsToBounds = true

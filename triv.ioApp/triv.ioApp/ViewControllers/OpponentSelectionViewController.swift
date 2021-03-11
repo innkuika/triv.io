@@ -11,6 +11,8 @@ import FirebaseDatabase
 
 class OpponentSelectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var randomMatchButtonOutlet: UIButton!
+    @IBOutlet weak var shareGameLinkButtonOutlet: UIButton!
     @IBOutlet weak var friendsTableView: UITableView!
     
     // Passed in from CategorySelectionViewController
@@ -22,6 +24,8 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        styleSmallButton(button: shareGameLinkButtonOutlet)
+        styleSmallButton(button: randomMatchButtonOutlet)
 
         guard let user = Auth.auth().currentUser else {
             assertionFailure("Unable to get current logged in user")
