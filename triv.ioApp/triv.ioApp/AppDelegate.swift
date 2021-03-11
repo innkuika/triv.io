@@ -54,7 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let url = url,
            let decodedURL = URLComponents(url: url, resolvingAgainstBaseURL: true),
            let gameID = decodedURL.queryItems?.first(where: {$0.name == "id"} )?.value{
-            print(gameID)
 
             //find this game instance in database
             self.ref.child("GameInstance/\(gameID)").getData{ (error, snapshot) in
