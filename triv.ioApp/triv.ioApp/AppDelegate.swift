@@ -45,16 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         
         
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "playtrivio.com"
-        components.path = "/join"
-        components.queryItems = [
-            URLQueryItem(name: "gameID", value: String(100))
-        ]
-        
-        let url = components.url
-        print(url as Any)
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL,
+            let components = URLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {
+            return false
+        }
       
         if let url = url,
            let decodedURL = URLComponents(url: url, resolvingAgainstBaseURL: true),
@@ -214,4 +209,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
 }
       
-
