@@ -7,7 +7,7 @@ Our app, triv.io is a generic Trivia App that allows users to play with their fr
 ## Triv.io Trello Board Link: 
 https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app-project
 
-## Previous Tasks (02.25.21)
+## Previous Tasks (03.04.21)
 
 ### Donald Lieu 
   * Implement Leaderboard: https://github.com/ECS189E/project-w21-triv-io/commit/d5acc3edd9860e1efe63fe88db368db9c360f60d, https://github.com/ECS189E/project-w21-triv-io/commit/8b77531d3381b48c962aea6a66ab0d7cfa2b1732
