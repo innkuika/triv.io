@@ -170,6 +170,11 @@ class GameModel {
         
     }
     
+    func setCurrentTurn(playerId: String) {
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        ref.child("GameInstance/\(unwrappedInstanceId)/CurrentTurn").setValue(playerId)
+    }
+    
     //    // set before using
     //    func setCurrentGameCategories(){
     //        var categories: [String] = []

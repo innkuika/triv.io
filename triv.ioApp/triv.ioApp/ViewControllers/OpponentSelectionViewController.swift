@@ -127,7 +127,33 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
+        guard let friendUid = friends[indexPath.row]?.id else { return }
+        
+        guard let unwrappedGameInstanceId = self.gameInstance?.gameInstanceId else { return }
+        self.gameInstance?.userGameInstanceUpdate(userId: friendUid, gameInstanceId: unwrappedGameInstanceId)
+        
+        // update playerIds, players in game instance, set current turn to new player
+        gameInstance?.addNewPlayer(newPlayerId: friendUid)
+        
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return
+        }
+        gameInstance?.setCurrentTurn(playerId: user.uid)
+        
+        // update game status to active
+        self.gameInstance?.updateGameStatus(status: "active")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
+            assertionFailure("cannot instantiate spinWheelViewController")
+            return
+        }
+        let viewControllers = [spinWheelViewController]
+        
+        // pass game instance to spinWheelViewController
+        spinWheelViewController.gameInstance = self.gameInstance
+        self.navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
     // MARK: -UI action handlers
