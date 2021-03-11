@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0888F7DCE18B0614F19B8A7A /* Pods_triv_ioAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19BA3F2E861759BA0CF849A2 /* Pods_triv_ioAppTests.framework */; };
 		2428DAE29FE1E80C0F8B6484 /* Pods_triv_ioApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B416A6ABB4CC21CE9BB2F41 /* Pods_triv_ioApp.framework */; };
+		2C589C0425F989A300AFB576 /* GameInstanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C589C0325F989A300AFB576 /* GameInstanceTableViewCell.swift */; };
 		2C686B6325F2009600671310 /* OpponentSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C686B6225F2009600671310 /* OpponentSelectionViewController.swift */; };
 		2C99252625F17D0B000BE67F /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C99252525F17D0B000BE67F /* FriendListViewController.swift */; };
 		2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */; };
@@ -70,6 +71,7 @@
 		19BA3F2E861759BA0CF849A2 /* Pods_triv_ioAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_triv_ioAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EAA11BEE2995BFA9FE4B093 /* Pods-triv.ioApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp.debug.xcconfig"; path = "Target Support Files/Pods-triv.ioApp/Pods-triv.ioApp.debug.xcconfig"; sourceTree = "<group>"; };
 		20ADDF9018A0608611852932 /* Pods-triv.ioApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-triv.ioApp.release.xcconfig"; path = "Target Support Files/Pods-triv.ioApp/Pods-triv.ioApp.release.xcconfig"; sourceTree = "<group>"; };
+		2C589C0325F989A300AFB576 /* GameInstanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInstanceTableViewCell.swift; sourceTree = "<group>"; };
 		2C686B6225F2009600671310 /* OpponentSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpponentSelectionViewController.swift; sourceTree = "<group>"; };
 		2C99252525F17D0B000BE67F /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				8287C43225D78EF500729808 /* Info.plist */,
 				8287C42A25D78EF200729808 /* triv_ioApp.xcdatamodeld */,
 				2CD402E325F4320D007B7100 /* FriendTableViewCell.swift */,
+				2C589C0325F989A300AFB576 /* GameInstanceTableViewCell.swift */,
 			);
 			path = triv.ioApp;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				49A7687C25E9F1280068A130 /* PlayerModel.swift in Sources */,
 				49BA84CD25F82F5E002A0235 /* JoinGameViaCodeViewController.swift in Sources */,
 				44D9658025E379D60030382A /* GameModel.swift in Sources */,
+				2C589C0425F989A300AFB576 /* GameInstanceTableViewCell.swift in Sources */,
 				44A5747D25DF83620053E990 /* GameInstanceProtocol.swift in Sources */,
 				44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */,
 				49FADC9525F6F0B4008EF923 /* PendingMessageViewController.swift in Sources */,
