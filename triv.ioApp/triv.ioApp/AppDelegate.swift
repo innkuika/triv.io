@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 return false
             }
             joinGameViewCodeViewController.gameCodeTextFieldOutlet.text = gameID
-            navigationController?.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
+            navigationController.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
             return true
         
       return false
