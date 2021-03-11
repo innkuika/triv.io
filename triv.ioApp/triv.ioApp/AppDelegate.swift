@@ -41,36 +41,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
       continue userActivity: NSUserActivity,
       restorationHandler: @escaping ([UIUserActivityRestoring]?
     ) -> Void) -> Bool {
-        
-        
-        
-        
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
             let incomingURL = userActivity.webpageURL,
-            let components = URLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {
+            let components = URLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+            let gameID = components.queryItems?.first(where: {$0.name == "id"} )?.value else {
             return false
         }
-      
-        if let gameID = components.queryItems?.first(where: {$0.name == "id"} )?.value {
-
-            //Set up homeVC
-            guard Auth.auth().currentUser != nil,
-                let navigationController = application.windows[0].rootViewController as! UINavigationController else { return false 
-            }
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController")
-      
-            //Set up joinGameVC and fill in the code from the link
-            guard let joinGameViaCodeViewController = storyboard.instantiateViewController(identifier: "joinGameViaCodeViewController") as? JoinGameViaCodeViewController else {
-                assertionFailure("cannot instantiate joinGameViaCodeViewController")
-                return false
-            }
-            joinGameViewCodeViewController.gameCodeTextFieldOutlet.text = gameID
-            navigationController.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
-            return true
-        
-      return false
-        
+        //Set up homeVC
+        guard Auth.auth().currentUser != nil,
+            let navigationController = UIApplication.shared.windows.first?.rootViewController as? UINavigationController else {
+            return false
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController") as? HomeViewController else {
+            assertionFailure("cannot instantiate homeViewController")
+            return false
+        }
+  
+        //Set up joinGameVC and fill in the code from the link
+        guard let joinGameViaCodeViewController = storyboard.instantiateViewController(identifier: "joinGameViaCodeViewController") as? JoinGameViaCodeViewController else {
+            assertionFailure("cannot instantiate joinGameViaCodeViewController")
+            return false
+        }
+        joinGameViaCodeViewController.gameCodeTextFieldOutlet.text = gameID
+        navigationController.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
+        return true
     }
     
     
