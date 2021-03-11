@@ -35,7 +35,15 @@ class PendingMessageViewController: UIViewController{
     
     @IBAction func copyGameCodeButtonPressed(_ sender: Any) {
         guard let unwrappedGameInstanceId = gameInstanceId else { return }
-        UIPasteboard.general.string = unwrappedGameInstanceId   
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "playtrivio.com"
+        components.path = "/join"
+        components.queryItems = [
+            URLQueryItem(name: "id", value: unwrappedGameInstanceId),
+        ]
+        guard let url = components.url else { return }
+        UIPasteboard.general.string = url.absoluteString
     }
     
     @IBAction func goBackToHomeButtonPressed(_ sender: Any) {

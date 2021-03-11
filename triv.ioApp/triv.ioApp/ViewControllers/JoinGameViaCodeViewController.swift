@@ -28,15 +28,6 @@ class JoinGameViaCodeViewController: UIViewController{
         }
     }
     
-    @objc func setGameId(_ notification: NSNotification){
-        print(notification.userInfo ?? "")
-        if let dict = notification.userInfo as NSDictionary? {
-            if let gameID = dict["gameId"] as? String{
-                prefillGameId = gameID
-            }
-        }
-    }
-    
     func renderUI(){
         styleButton(button: joinButtonOutlet)
         errorMessageLabelOutlet.text = ""

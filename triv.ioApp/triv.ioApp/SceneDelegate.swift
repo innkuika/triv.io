@@ -54,11 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         joinGameViaCodeViewController.prefillGameId = gameID
         navigationController.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
         
-//        DispatchQueue.main.async {
-        NotificationCenter.default.addObserver(joinGameViaCodeViewController, selector: #selector(joinGameViaCodeViewController.setGameId(_:)), name: NSNotification.Name(rawValue: "setGameId"), object: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "setGameId"), object: nil, userInfo: ["gameId":gameID])
-//        }
-        
         return
     }
     
