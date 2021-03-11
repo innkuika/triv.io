@@ -284,6 +284,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return
             }
             pendingMessageViewController.displayMessage = pendingMessageShareGameLink(gameLink: selectedGameInstance.gameInstanceId ?? "")
+            pendingMessageViewController.gameInstanceId = selectedGameInstance.gameInstanceId
+            pendingMessageViewController.displayCopyGameCodeButton = true
             navigationController?.pushViewController(pendingMessageViewController, animated: true)
             
         }

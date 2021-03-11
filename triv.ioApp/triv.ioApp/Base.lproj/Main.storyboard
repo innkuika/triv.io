@@ -1001,20 +1001,33 @@ coming soon</string>
                                 <color key="textColor" red="0.97137291149499017" green="1" blue="0.98473740397454645" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X6i-Cz-0ox">
+                                <rect key="frame" x="16" y="506" width="396" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="tintColor" red="0.98088949920000001" green="0.74438947440000003" blue="0.018598327410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="copy game code" image="doc.on.clipboard" catalog="system"/>
+                                <connections>
+                                    <action selector="copyGameCodeButtonPressed:" destination="UMR-AF-8t4" eventType="touchUpInside" id="oSc-TV-U8z"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dn1-Pm-kY3"/>
                         <color key="backgroundColor" red="0.042736001310000001" green="0.093939222399999994" blue="0.2156985998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="dn1-Pm-kY3" firstAttribute="trailing" secondItem="you-uQ-tZ2" secondAttribute="trailing" constant="20" id="5LT-XD-7F4"/>
+                            <constraint firstItem="X6i-Cz-0ox" firstAttribute="leading" secondItem="dn1-Pm-kY3" secondAttribute="leading" constant="16" id="Bb7-07-sdl"/>
                             <constraint firstItem="dn1-Pm-kY3" firstAttribute="trailing" secondItem="CNa-yf-TAd" secondAttribute="trailing" constant="20" id="Cy0-6j-OOH"/>
                             <constraint firstItem="CNa-yf-TAd" firstAttribute="leading" secondItem="dn1-Pm-kY3" secondAttribute="leading" constant="28" id="E3H-wd-34I"/>
                             <constraint firstItem="you-uQ-tZ2" firstAttribute="bottom" secondItem="dn1-Pm-kY3" secondAttribute="bottom" id="In2-cE-a2S"/>
                             <constraint firstItem="CNa-yf-TAd" firstAttribute="top" secondItem="dn1-Pm-kY3" secondAttribute="top" constant="118" id="LH0-Av-Pxl"/>
+                            <constraint firstItem="X6i-Cz-0ox" firstAttribute="top" secondItem="CNa-yf-TAd" secondAttribute="bottom" constant="26" id="VPW-og-9Qg"/>
                             <constraint firstItem="you-uQ-tZ2" firstAttribute="top" secondItem="CNa-yf-TAd" secondAttribute="bottom" constant="346" id="dYl-Gk-xBY"/>
                             <constraint firstItem="you-uQ-tZ2" firstAttribute="leading" secondItem="dn1-Pm-kY3" secondAttribute="leading" constant="20" id="ieC-Uv-ZeS"/>
+                            <constraint firstItem="dn1-Pm-kY3" firstAttribute="trailing" secondItem="X6i-Cz-0ox" secondAttribute="trailing" constant="16" id="lcA-0n-lfY"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="copyGameCodeButtonOutlet" destination="X6i-Cz-0ox" id="5Gc-KE-dWk"/>
                         <outlet property="displayMessageOutlet" destination="CNa-yf-TAd" id="lhk-BI-uvH"/>
                         <outlet property="goBackToHomeButtonOutlet" destination="you-uQ-tZ2" id="WAx-lR-PpC"/>
                     </connections>

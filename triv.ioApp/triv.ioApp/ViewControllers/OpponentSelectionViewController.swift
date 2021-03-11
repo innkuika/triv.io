@@ -143,6 +143,8 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
         }
         guard let unwrappedGameId = gameInstance?.gameInstanceId else { return }
         pendingMessageViewController.displayMessage = pendingMessageShareGameLink(gameLink: unwrappedGameId)
+        pendingMessageViewController.gameInstanceId = unwrappedGameInstanceId
+        pendingMessageViewController.displayCopyGameCodeButton = true
         
         navigationController?.pushViewController(pendingMessageViewController, animated: true)
     }

@@ -10,8 +10,11 @@ import UIKit
 
 class PendingMessageViewController: UIViewController{
     var displayMessage: String?
+    var gameInstanceId: String?
+    var displayCopyGameCodeButton: Bool?
     @IBOutlet weak var displayMessageOutlet: UILabel!
     @IBOutlet weak var goBackToHomeButtonOutlet: UIButton!
+    @IBOutlet weak var copyGameCodeButtonOutlet: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +23,19 @@ class PendingMessageViewController: UIViewController{
     }
     
     func renderUI(){
+        let willDisplayCopyGameCodeButton = displayCopyGameCodeButton ?? false
+        if !willDisplayCopyGameCodeButton {
+            copyGameCodeButtonOutlet.isHidden = true
+        }
+        
         styleButton(button: goBackToHomeButtonOutlet)
         guard let unwrappedDisplayMessage = displayMessage else { return }
         displayMessageOutlet.text = unwrappedDisplayMessage
+    }
+    
+    @IBAction func copyGameCodeButtonPressed(_ sender: Any) {
+        guard let unwrappedGameInstanceId = gameInstanceId else { return }
+        UIPasteboard.general.string = unwrappedGameInstanceId   
     }
     
     @IBAction func goBackToHomeButtonPressed(_ sender: Any) {
