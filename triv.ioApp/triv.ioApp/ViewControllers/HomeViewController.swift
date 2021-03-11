@@ -136,6 +136,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             } else if snapshot.exists() {
                                 guard let GameInstanceDict = snapshot.value as? NSDictionary else { return }
                                 
+                                if GameInstanceDict["GameStatus"] as? String == "init" {
+                                    waitSem.signal()
+                                    waitSem.signal()
+                                    return
+                                }
+                                
                                 // get latest players info
                                 var tempPlayers:[String:Player] = [:]
                                 guard let unwrappedPlayersArray = GameInstanceDict["Players"] as? NSDictionary else { return }
@@ -182,7 +188,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                     self.gameInstances[0].append(unwrappedGameModel)
                                 } else if unwrappedGameModel.gameStatus == "pending" {
                                     self.gameInstances[1].append(unwrappedGameModel)
-                                } else {
+                                } else if unwrappedGameModel.gameStatus == "finished" {
                                     self.gameInstances[2].append(unwrappedGameModel)
                                 }
                                 accessSem.signal()
@@ -218,18 +224,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let gameInstance = gameInstances[indexPath.section][indexPath.row]
         let gameInstanceId = gameInstance.gameInstanceId
         
-        let username = opponents[gameInstanceId]?.name ?? "Guest"
-        let uid = opponents[gameInstanceId]?.id ?? ""
+        if gameInstance.gameStatus == "pending" {
+            cell.usernameLabel.text = "Waiting for opponent to join"
+            cell.uidLabel.text = "Click here for the game code!"
+            cell.uidLabel.lineBreakMode = .byWordWrapping
+            cell.scoreLabel.text = nil
+        } else {
+            let username = opponents[gameInstanceId]?.name ?? "Guest"
+            let uid = opponents[gameInstanceId]?.id ?? ""
+            
+            cell.usernameLabel.text = username
+            cell.uidLabel.text = "ID: \(uid)"
+            cell.uidLabel.lineBreakMode = .byCharWrapping
+            
+            let userId = self.userId ?? ""
+            let userScore = gameInstance.players[userId]?.score.count ?? 0
+            let opponentScore = gameInstance.players[uid]?.score.count ?? 0
+            cell.scoreLabel.text = "\(userScore)-\(opponentScore)"
+        }
+        
         let avatarNumber = opponents[gameInstanceId]?.avatar_number ?? 1
-        
-        cell.usernameLabel.text = username
-        cell.uidLabel.text = "ID: \(uid)"
-        
-        let userId = self.userId ?? ""
-        let userScore = gameInstance.players[userId]?.score.count ?? 0
-        let opponentScore = gameInstance.players[uid]?.score.count ?? 0
-        cell.scoreLabel.text = "\(userScore)-\(opponentScore)"
-        
         cell.avatarImageView.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
         
         cell.usernameLabel.textColor = UIColor.white
