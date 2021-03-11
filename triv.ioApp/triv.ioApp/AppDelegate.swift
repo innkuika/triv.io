@@ -14,7 +14,86 @@ import FBSDKCoreKit
 //@main
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-            
+    
+    var ref: DatabaseReference!
+    // universal link functions
+//    func presentProperViewController(_ gameID: gameIstanceID) {
+//      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//      guard
+//        let categoryVC = storyboard
+//          .instantiateViewController(withIdentifier: "CategorySelectionViewController")
+//            as? CategorySelectionViewController,
+//
+//        let navigationVC = storyboard
+//          .instantiateViewController(withIdentifier: "NavigationController")
+//            as? UINavigationController
+//      else { return }
+//
+//        categoryVC.item = computer
+//      navigationVC.modalPresentationStyle = .formSheet
+//      navigationVC.pushViewController(categoryVC, animated: true)
+//    }
+    
+
+    func application(
+      _ application: UIApplication,
+      continue userActivity: NSUserActivity,
+      restorationHandler: @escaping ([UIUserActivityRestoring]?
+    ) -> Void) -> Bool {
+        
+        
+        
+        
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "playtrivio.com"
+        components.path = "/join"
+        components.queryItems = [
+            URLQueryItem(name: "gameID", value: String(100))
+        ]
+        
+        let url = components.url
+        print(url as Any)
+      
+        if let url = url,
+           let decodedURL = URLComponents(url: url, resolvingAgainstBaseURL: true),
+           let gameID = decodedURL.queryItems?.first(where: {$0.name == "id"} )?.value{
+            print(gameID)
+
+            //find this game instance in database
+            self.ref.child("GameInstance/\(gameID)").getData{ (error, snapshot) in
+                if let error = error {
+                    print("Error getting data \(error)")
+                } else if snapshot.exists() {
+                    
+                    guard let GameInstanceDict = snapshot.value as? NSDictionary else { return }
+                
+                    //if user does not exist
+                    
+                    
+                    
+                    
+                    //if user already exists
+                    
+                    
+                    
+                    
+                    //become current player
+                    
+                    
+                    
+                    
+                        
+                    }
+                }
+            }
+        }
+        
+      return false
+        
+    }
+    
     
     // MARK: - Google Sign In
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
