@@ -53,5 +53,5 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Jessica Ma 
  * Polished friend request UI: https://github.com/ECS189E/project-w21-triv-io/commit/85d52b5e4b40b62fa2642a8236e1831ac8389ce9
  * Custom cell for friend list table view: https://github.com/ECS189E/project-w21-triv-io/commit/6815ca3c91c4fce416d7b0f6d1bcf66a4c57f6e0
- * Opponent selection from friend list (WIP): https://github.com/ECS189E/project-w21-triv-io/commit/2edf216aa0383438e64495446afd5a6f0a7a40e6, https://github.com/ECS189E/project-w21-triv-io/commit/27543d9e7e19365b86024fe1bce4dcc3b2bbf52a
+ * Opponent selection from friend list (in progress): https://github.com/ECS189E/project-w21-triv-io/commit/2edf216aa0383438e64495446afd5a6f0a7a40e6, https://github.com/ECS189E/project-w21-triv-io/commit/27543d9e7e19365b86024fe1bce4dcc3b2bbf52a
  * Custom cell for game instances table view, display opponent info: https://github.com/ECS189E/project-w21-triv-io/commit/e2c4f8da8c17f48f4295cdd55e73a1c95078130d
