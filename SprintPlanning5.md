@@ -48,5 +48,6 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Manprit Heer
  * Worked on Universal Link Set-Up: https://github.com/ECS189E/project-w21-triv-io/tree/mh-universal-link
  * Pushed up UL file to domain hosting site
+ * Created Demo Video: https://youtu.be/jH_Q7q-pp3Q
 ### Roberto Loza
 ### Jessica Ma 
