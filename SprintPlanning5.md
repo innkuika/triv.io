@@ -42,8 +42,10 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 ## **Current Tasks** (03.11.21) [Meeting to take place before 03/16 deadline]
 
-
 ### Donald Lieu 
+ * Finish up Universal Link and deal with bugs: https://github.com/ECS189E/project-w21-triv-io/commit/63b35f62f86ae171594cb9291c2752f4d3324b3e
+ * Continue working on category/question creation view: https://github.com/ECS189E/project-w21-triv-io/tree/categoryCreation
+
 ### Jessica Wu 
 ### Manprit Heer
  * Worked on Universal Link Set-Up: https://github.com/ECS189E/project-w21-triv-io/tree/mh-universal-link
