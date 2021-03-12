@@ -47,6 +47,13 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
  * Continue working on category/question creation view: https://github.com/ECS189E/project-w21-triv-io/tree/categoryCreation
 
 ### Jessica Wu 
+* Helped testing and implementing UL: https://github.com/ECS189E/project-w21-triv-io/commit/d6b592c8d2672274ecfd8ed061852c12d0a71c66
+* Implemented multi player feature, as well as view controllers for showing different game statuses, a timer to refresh the home page: https://github.com/ECS189E/project-w21-triv-io/commit/45db19a71fc49be5e545865d49df63609fbdcb9d
+* Implemented game instance view table:https://github.com/ECS189E/project-w21-triv-io/commit/7723d7198da67796fce045dd641526c7de77e789
+* Polished UI throughout the app:https://github.com/ECS189E/project-w21-triv-io/commit/f8efe0aff38b247688f4de66ad947648df296d6f, https://github.com/ECS189E/project-w21-triv-io/commit/371ff745ba26ed5865dec69941b4a27a7452ad4f
+* Prepared for demo
+* Pushed build 4 to testflight
+
 ### Manprit Heer
  * Worked on Universal Link Set-Up: https://github.com/ECS189E/project-w21-triv-io/tree/mh-universal-link
  * Pushed up UL file to domain hosting site
