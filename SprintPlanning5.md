@@ -40,7 +40,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 
 
 
-## **Current Tasks** (03.11.21)
+## **Current Tasks** (03.11.21) [Meeting to take place before 03/16 deadline]
 
 
 ### Donald Lieu 
