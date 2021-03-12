@@ -59,8 +59,9 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
  * Pushed up UL file to domain hosting site
  * Created Demo Video: https://youtu.be/jH_Q7q-pp3Q
 ### Roberto Lozano
- * Finish debugging Notifications/ Firestore Cloud Messaging
+ * Worked on Notifications/ Firestore Cloud Messaging (Still debugging)
  * Set up Cloud Functions to Send notifications on Database Change
+ * Change so if user already signed in go to home VC automatically
 ### Jessica Ma 
  * Polished friend request UI: https://github.com/ECS189E/project-w21-triv-io/commit/85d52b5e4b40b62fa2642a8236e1831ac8389ce9
  * Custom cell for friend list table view: https://github.com/ECS189E/project-w21-triv-io/commit/6815ca3c91c4fce416d7b0f6d1bcf66a4c57f6e0
