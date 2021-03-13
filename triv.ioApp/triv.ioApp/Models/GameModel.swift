@@ -16,7 +16,7 @@ protocol GameModelUpdates: class {
 
 class GameModel {
     // reserved History, Pop Culture and UC Davis category for bot to pick, can fix this later
-    var categories: [String] =  ["Art and Literature", "Sports", "Technology", "Video Games", "History", "Pop Culture", "UC Davis"]
+    var categories: [String] =  []
     var currentCategories: [String]?
     
     var selectedCategories: [String] = []
@@ -213,7 +213,18 @@ class GameModel {
     }
     
     func loadCategories() {
-        delegate?.categoriesDidLoad(categories)
+        self.ref.child("Categories").getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            } else if snapshot.exists() {
+                guard let categoriesDict = snapshot.value as? NSDictionary else { return }
+                self.categories = categoriesDict.allKeys as? [String] ?? []
+                self.categories.sort()
+            }
+            DispatchQueue.main.async {
+                self.delegate?.categoriesDidLoad(self.categories)
+            }
+        }
     }
     
     func selectCategory(_ category: String) {

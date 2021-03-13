@@ -82,10 +82,20 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") ?? UITableViewCell(style: .default, reuseIdentifier: "categoryCell")
+        
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "plus.circle")
-        cell.imageView?.tintColor = UIColor.white
-        cell.textLabel?.textColor = UIColor.white
+        
+        if gameInstance?.currentCategories?.contains(categories[indexPath.row]) ?? false {
+            cell.imageView?.tintColor = UIColor.gray
+            cell.textLabel?.textColor = UIColor.gray
+            cell.isUserInteractionEnabled = false
+        } else {
+            cell.imageView?.tintColor = UIColor.white
+            cell.textLabel?.textColor = UIColor.white
+            cell.isUserInteractionEnabled = true
+        }
+        
         cell.backgroundColor = trivioBackgroundColor
         
         // style selected Cell
@@ -125,20 +135,23 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
             // if there are two players, go straight to the spinWheelView
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             if self.gameInstance?.currentCategories?.count == 6 {
-                // update user's game
-                guard let user = Auth.auth().currentUser else {
-                    assertionFailure("Unable to get current logged in user")
-                    return
+                if self.gameInstance?.gameStatus == "pending" {
+                    // update user's game
+                    guard let user = Auth.auth().currentUser else {
+                        assertionFailure("Unable to get current logged in user")
+                        return
+                    }
+                    
+                    guard let unwrappedGameInstanceId = self.gameInstance?.gameInstanceId else { return }
+                    self.gameInstance?.userGameInstanceUpdate(userId: user.uid, gameInstanceId: unwrappedGameInstanceId)
+                    
+                    // update playerIds, players in game instance, set current turn to new player
+                    self.gameInstance?.addNewPlayer(newPlayerId: user.uid)
+                    
+                    // update game status to active
+                    self.gameInstance?.updateGameStatus(status: "active")
                 }
                 
-                guard let unwrappedGameInstanceId = self.gameInstance?.gameInstanceId else { return }
-                self.gameInstance?.userGameInstanceUpdate(userId: user.uid, gameInstanceId: unwrappedGameInstanceId)
-                
-                // update playerIds, players in game instance, set current turn to new player
-                self.gameInstance?.addNewPlayer(newPlayerId: user.uid)
-                
-                // update game status to active
-                self.gameInstance?.updateGameStatus(status: "active")
                 guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
                     assertionFailure("cannot instantiate spinWheelViewController")
                     return

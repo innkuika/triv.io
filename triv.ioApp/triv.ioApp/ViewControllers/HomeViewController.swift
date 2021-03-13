@@ -288,7 +288,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: check game status here
         let selectedGameInstance = gameInstances[indexPath.section][indexPath.row]
         if selectedGameInstance.gameStatus == "pending"{
             // if still waiting for response. navigate to pendingMessageViewController
@@ -313,15 +312,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             pendingMessageViewController.displayMessage = generateNotYourTurnMessage()
             navigationController?.pushViewController(pendingMessageViewController, animated: true)
         } else if selectedGameInstance.gameStatus == "active" && selectedGameInstance.currentTurn == userId {
-            // if user's turn, navigate to spinWheelViewController
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
-                assertionFailure("cannot instantiate spinWheelViewController")
-                return
+            if selectedGameInstance.currentCategories?.count == 6 {
+                // if user's turn and category selection is complete, navigate to spinWheelViewController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
+                    assertionFailure("cannot instantiate spinWheelViewController")
+                    return
+                }
+                // pass game instance to spinWheelViewController
+                spinWheelViewController.gameInstance = selectedGameInstance
+                navigationController?.pushViewController(spinWheelViewController, animated: true)
+            } else {
+                // if user's turn and category selection is not complete, navigate to categorySelectionViewController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let categorySelectionViewController = storyboard.instantiateViewController(identifier: "categorySelectionViewController") as? CategorySelectionViewController else {
+                    assertionFailure("cannot instantiate categorySelectionViewController")
+                    return
+                }
+                // pass game instance to spinWheelViewController
+                categorySelectionViewController.gameInstance = selectedGameInstance
+                navigationController?.pushViewController(categorySelectionViewController, animated: true)
             }
-            // pass game instance to spinWheelViewController
-            spinWheelViewController.gameInstance = selectedGameInstance
-            navigationController?.pushViewController(spinWheelViewController, animated: true)
         } else if selectedGameInstance.gameStatus == "finished" && selectedGameInstance.currentTurn != userId {
             // the user lost
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
