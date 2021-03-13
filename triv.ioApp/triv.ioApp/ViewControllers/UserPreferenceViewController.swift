@@ -91,16 +91,18 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
     
     @IBAction func editUserNameButtonPressed(_ sender: Any) {
         editUserNamePromptView.isHidden = false
-        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter you new user name.", heightPercentage: 0.4, promptView: editUserNamePromptView, textField: editUserNameTextField, textFieldPlaceHolder: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
+        editUserNameErrorMessageLabel.text = nil
+        messagePrompt?.displayMessageWithTextField(view: self.view, messageText: "Hello, please enter your new username.", heightPercentage: 0.4, promptView: editUserNamePromptView, textField: editUserNameTextField, textFieldPlaceHolder: "Enter your new username", errorMessageLabel: editUserNameErrorMessageLabel)
     }
     
     func textFieldLeftButtonPressed(){
+        editUserNameTextField.endEditing(true)
         editUserNamePromptView.isHidden = true
     }
     
     func textFieldRightButtonPressed(){
         print("right button pressed")
-        guard let newUserName = editUserNameTextField.text else { return }
+        let newUserName = editUserNameTextField.text ?? ""
         let newUserNameLength = newUserName.count
         if newUserNameLength == 0 {
             editUserNameErrorMessageLabel.text = "Please enter your user name"
@@ -118,10 +120,36 @@ class UserPreferenceViewController: UIViewController, MessagePromptDelegate{
             self.ref.child("User/\(userId)/Name").setValue(newUserName)
             
             // dismiss prompt if user name is successfully set
+            editUserNameTextField.endEditing(true)
             editUserNamePromptView.isHidden = true
-            view.endEditing(true)
             userNameLabelOutlet.text = newUserName
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let newUserName = editUserNameTextField.text ?? ""
+        let newUserNameLength = newUserName.count
+        if newUserNameLength == 0 {
+            editUserNameErrorMessageLabel.text = "Please enter your user name"
+        }
+        else if newUserNameLength > userNameCharacterLimit {
+            editUserNameErrorMessageLabel.text = "Your user name is too long!"
+        }
+        else {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                assertionFailure("Unable to get current logged in user")
+                return false
+            }
+            // push to database
+            print(userId)
+            self.ref.child("User/\(userId)/Name").setValue(newUserName)
+            
+            // dismiss prompt if user name is successfully set
+            editUserNameTextField.endEditing(true)
+            editUserNamePromptView.isHidden = true
+            userNameLabelOutlet.text = newUserName
+        }
+        return false
     }
     
     

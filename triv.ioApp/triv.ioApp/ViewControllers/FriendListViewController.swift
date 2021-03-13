@@ -253,6 +253,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
                     friendRequests.append(self.uid)
                     self.ref.child("User/\(requestUid)/FriendRequests").setValue(friendRequests)
                     DispatchQueue.main.async {
+                        self.requestTextField.endEditing(true)
                         self.requestPromptView.isHidden = true
                     }
                 }
@@ -305,6 +306,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func textFieldLeftButtonPressed() {
+        requestTextField.endEditing(true)
         requestPromptView.isHidden = true
     }
     
