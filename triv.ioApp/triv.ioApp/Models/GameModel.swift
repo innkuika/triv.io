@@ -238,5 +238,26 @@ class GameModel {
         delegate?.selectedCategoriesDidChange(selectedCategories)
     }
     
+    func removePlayer(_ playerId: String) {
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        self.ref.child("User").child(playerId).child("Game").observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                guard var gameInstanceIds = snapshot.value as? [String] else { return }
+                if let index = gameInstanceIds.firstIndex(of: unwrappedInstanceId) {
+                    gameInstanceIds.remove(at: index)
+                }
+                self.ref.child("User").child(playerId).child("Game").setValue(gameInstanceIds)
+            }
+        }
+    }
+    
+    func destroy() {
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        for playerId in playerIds {
+            removePlayer(playerId)
+        }
+        ref.child("GameInstance").child(unwrappedInstanceId).removeValue()
+    }
+    
 }
 

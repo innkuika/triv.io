@@ -43,7 +43,11 @@ class PendingMessageViewController: UIViewController{
             URLQueryItem(name: "id", value: unwrappedGameInstanceId),
         ]
         guard let url = components.url else { return }
-        UIPasteboard.general.string = url.absoluteString
+        
+        // Show activity view controller (open share sheet)
+        let inviteMessage = "[triv.io] Click this link to join my triv.io game! \(url.absoluteString)"
+        let activityViewController = UIActivityViewController(activityItems: [inviteMessage], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func goBackToHomeButtonPressed(_ sender: Any) {

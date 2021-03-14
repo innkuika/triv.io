@@ -113,6 +113,7 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         }
         return indexPath
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         gameInstance?.selectCategory(categories[indexPath.row])
     }
@@ -123,8 +124,16 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     
     // MARK: -UI action handlers
     @IBAction func cancelButtonPress(_ sender: Any) {
+        guard let gameInstance = gameInstance else {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+        if gameInstance.playerIds.count < 2 {
+            gameInstance.destroy()
+        }
         navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func startButtonPress() {
         let categorySelectionWorkerGroup = DispatchGroup()
         categorySelectionWorkerGroup.enter()

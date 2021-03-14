@@ -41,7 +41,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // refreshes home page every 10 seconds
         let loadGameInstancesTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(loadGameInstances), userInfo: nil, repeats: true)
-        }
+    }
     
     func renderUI(){
         styleButton(button: startNewGameButtonOutlet)
