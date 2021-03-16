@@ -2,13 +2,10 @@
 # triv.io
 
 ## Summary of Project: 
-Our app, triv.io is a generic Trivia App that allows users to play with their friends and create new categories or even add to existing ones. We hope to build an interface that gives a generic user experience for all kinds of categories in order to reach a wider audience. The app will allow users to send instances of the quiz game to their friends, and allows them to test their knowledge of the particular category.
-
-## Documentation:
-TODO
-Test Account: UCDtrivio@gmail.com, UCDtrivio2021
+Our app, triv.io is a generic Trivia App that allows users to play with their friends and create new categories or even add to existing ones. We hope to build an interface that gives a generic user experience for all kinds of categories in order to reach a wider audience. The app will allow users to send instances of the quiz game to their friends, and allows them to test their knowledge of the particular category
 
 ## Notes:
+* Test Account: UCDtrivio@gmail.com, UCDtrivio2021
 * Universal Link only works while app is in background
 * Universal Link may not work immediately upon installation because iOS needs to fetch the proper associations in the background.
 
