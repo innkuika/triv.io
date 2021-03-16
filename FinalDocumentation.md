@@ -29,6 +29,11 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ## Overall contributions to app by project member
 
 ### Donald Lieu 
+* Helped connect project to database
+* Created model classes/protocols to map to database
+* Implemented leaderboard
+* Implemented question/category submission
+* Completed UL/ worked out bugs
 
 ### Jessica Wu 
 * Wireframing
