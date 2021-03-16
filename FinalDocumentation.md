@@ -4,9 +4,6 @@
 ## Summary of Project: 
 Our app, triv.io is a generic Trivia App that allows users to play with their friends and create new categories or even add to existing ones. We hope to build an interface that gives a generic user experience for all kinds of categories in order to reach a wider audience. The app will allow users to send instances of the quiz game to their friends, and allows them to test their knowledge of the particular category.
 
-## Documentation:
-TODO
-
 ## Triv.io Trello Board Link: 
 https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app-project
 
@@ -52,12 +49,12 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Roberto Lozano
 
 ### Jessica Ma 
-* Category selection / CategorySelectionViewController (each player must select 3 categories of questions to be added to the game)
-* Displaying the user's games on their home screen (HomeViewController)
+* Category selection – CategorySelectionViewController (each player must select 3 categories of questions to be added to the game)
+* Displaying the user's games on their home screen – HomeViewController
     * Table view UI
     * Retrieving the player data that is displayed inside each cell
 * Friend system:
-    * Displaying the user's list of friends (FriendListViewController, OpponentSelectionViewController)
+    * Displaying the user's list of friends – FriendListViewController, OpponentSelectionViewController
     * Sending friend requests to other users
     * Receiving and accepting/declining friend requests
     * Update to game logic that allows a user to start a game with a player on their friend list
