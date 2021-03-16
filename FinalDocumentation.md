@@ -15,7 +15,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ## Tasks completed since Sprint Planning 5 (03.11.21)
 
 ### Donald Lieu 
-* Fixed UL
+* Continued working UL
 * Implemented question/category submission feature
 
 ### Jessica Wu 
@@ -39,6 +39,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Helped connect project to database
 * Created model classes/protocols to map to database
 * Implemented leaderboard
+	* View controller & efficient queries
 * Implemented question/category submission
 	* View controller
 	* Database query/update calls
