@@ -7,12 +7,18 @@ Our app, triv.io is a generic Trivia App that allows users to play with their fr
 ## Documentation:
 TODO
 
+## Notes:
+* Universal Link only works while app is in background
+* Universal Link may not work immediately upon installation because iOS needs to fetch the proper associations in the background.
+
 ## Triv.io Trello Board Link: 
 https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app-project
 
 ## Tasks completed since Sprint Planning 5 (03.11.21)
 
 ### Donald Lieu 
+* Fixed UL
+* Implemented question/category submission feature
 
 ### Jessica Wu 
 * Pushed build 4 to testfilght and collected user feedback
@@ -33,6 +39,8 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Created model classes/protocols to map to database
 * Implemented leaderboard
 * Implemented question/category submission
+	* View controller
+	* Database query/update calls
 * Completed UL/ worked out bugs
 
 ### Jessica Wu 
