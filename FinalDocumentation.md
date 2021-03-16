@@ -15,6 +15,8 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Donald Lieu 
 
 ### Jessica Wu 
+* Pushed build 4 to testfilght and collected user feedback
+* Fixed UL with Donald
 
 ### Manprit Heer
 
