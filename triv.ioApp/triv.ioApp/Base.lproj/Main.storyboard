@@ -489,7 +489,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2l2-Xt-0kq">
-                                <rect key="frame" x="20" y="136" width="388" height="466"/>
+                                <rect key="frame" x="20" y="136" width="388" height="521"/>
                                 <color key="backgroundColor" red="0.046311445530000002" green="0.098276488479999993" blue="0.2117765248" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.046311445530000002" green="0.098276488479999993" blue="0.2117765248" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -563,18 +563,6 @@
                                     <action selector="userPreferenceButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="sLd-v9-ihj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-p3-ZRD">
-                                <rect key="frame" x="365" y="621" width="43" height="43"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="bnf-p3-ZRD" secondAttribute="height" multiplier="1:1" id="5l4-Ab-AdA"/>
-                                    <constraint firstAttribute="height" constant="43" id="7AA-Bj-ReR"/>
-                                    <constraint firstAttribute="width" constant="43" id="O04-cE-NKb"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="leaderboardIcon"/>
-                                <connections>
-                                    <action selector="leaderboardButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="RuN-Lw-odd"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW6-1z-57w">
                                 <rect key="frame" x="64" y="764" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.016299951819999998" green="1" blue="0.49009621139999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -589,8 +577,20 @@
                                     <action selector="addCategoryPress:" destination="mth-ET-o9K" eventType="touchUpInside" id="r7Z-qK-GzO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bnf-p3-ZRD">
+                                <rect key="frame" x="71" y="60" width="43" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bnf-p3-ZRD" secondAttribute="height" multiplier="1:1" id="5l4-Ab-AdA"/>
+                                    <constraint firstAttribute="height" constant="43" id="7AA-Bj-ReR"/>
+                                    <constraint firstAttribute="width" constant="43" id="O04-cE-NKb"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="leaderboardIcon"/>
+                                <connections>
+                                    <action selector="leaderboardButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="RuN-Lw-odd"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dbv-9g-BrT">
-                                <rect key="frame" x="314" y="622" width="43" height="41.666666666666629"/>
+                                <rect key="frame" x="20" y="61.000000000000007" width="43" height="41.666666666666664"/>
                                 <color key="tintColor" red="0.99654132129999995" green="0.50316578150000002" blue="0.089892141519999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" backgroundImage="person.2.circle.fill" catalog="system"/>
                                 <connections>
@@ -608,8 +608,6 @@
                             <constraint firstItem="2l2-Xt-0kq" firstAttribute="top" secondItem="xqp-kb-1Ej" secondAttribute="bottom" constant="32" id="Bvp-Ot-vOO"/>
                             <constraint firstItem="2l2-Xt-0kq" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="20" id="C7Z-xi-G1D"/>
                             <constraint firstItem="eha-VO-uCb" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="64" id="FMy-qK-xH6"/>
-                            <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="bnf-p3-ZRD" secondAttribute="trailing" constant="20" id="FOT-mb-tOB"/>
-                            <constraint firstItem="bnf-p3-ZRD" firstAttribute="top" secondItem="2l2-Xt-0kq" secondAttribute="bottom" constant="19" id="HbA-Cc-EFa"/>
                             <constraint firstItem="bnf-p3-ZRD" firstAttribute="width" secondItem="Dbv-9g-BrT" secondAttribute="width" id="IRB-fP-GMb"/>
                             <constraint firstItem="kRn-2S-DUr" firstAttribute="bottom" secondItem="YDP-xd-bwu" secondAttribute="bottom" id="MoR-h6-voy"/>
                             <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="xqp-kb-1Ej" secondAttribute="trailing" constant="20" id="N1o-92-UBl"/>
@@ -617,18 +615,21 @@
                             <constraint firstItem="pW6-1z-57w" firstAttribute="width" secondItem="eha-VO-uCb" secondAttribute="width" id="OfU-zb-IIB"/>
                             <constraint firstItem="eha-VO-uCb" firstAttribute="centerX" secondItem="oUd-Rj-dzJ" secondAttribute="centerX" id="RYA-bo-rWZ"/>
                             <constraint firstItem="bnf-p3-ZRD" firstAttribute="leading" secondItem="Dbv-9g-BrT" secondAttribute="trailing" constant="8" symbolic="YES" id="YvN-pr-Tc5"/>
+                            <constraint firstItem="Dbv-9g-BrT" firstAttribute="top" secondItem="YDP-xd-bwu" secondAttribute="top" constant="16" id="dvU-0m-FSd"/>
+                            <constraint firstItem="Dbv-9g-BrT" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="20" id="gZI-bv-abq"/>
                             <constraint firstItem="pW6-1z-57w" firstAttribute="top" secondItem="eha-VO-uCb" secondAttribute="bottom" constant="28" id="h9p-w5-9NN"/>
                             <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="2l2-Xt-0kq" secondAttribute="trailing" constant="20" id="ibL-O4-aWQ"/>
                             <constraint firstItem="kRn-2S-DUr" firstAttribute="top" secondItem="pW6-1z-57w" secondAttribute="bottom" constant="28" id="jh5-Sc-Auj"/>
                             <constraint firstItem="bnf-p3-ZRD" firstAttribute="height" secondItem="Dbv-9g-BrT" secondAttribute="height" id="msg-uQ-HuC"/>
                             <constraint firstAttribute="centerX" secondItem="oUd-Rj-dzJ" secondAttribute="centerX" id="n5M-gl-wQI"/>
                             <constraint firstItem="YDP-xd-bwu" firstAttribute="trailing" secondItem="eha-VO-uCb" secondAttribute="trailing" constant="64" id="n99-eE-afn"/>
-                            <constraint firstItem="eha-VO-uCb" firstAttribute="top" secondItem="2l2-Xt-0kq" secondAttribute="bottom" constant="84" id="usC-xV-7xH"/>
+                            <constraint firstItem="eha-VO-uCb" firstAttribute="top" secondItem="2l2-Xt-0kq" secondAttribute="bottom" constant="29" id="usC-xV-7xH"/>
                             <constraint firstItem="xqp-kb-1Ej" firstAttribute="top" secondItem="YDP-xd-bwu" secondAttribute="top" id="uss-iD-FY6"/>
                             <constraint firstItem="kRn-2S-DUr" firstAttribute="leading" secondItem="YDP-xd-bwu" secondAttribute="leading" constant="64" id="zi8-DC-Z3t"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BJ8-Bd-pdv"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addCategoryButton" destination="pW6-1z-57w" id="t87-VZ-uaC"/>
                         <outlet property="gameInstanceTableViewOutlet" destination="2l2-Xt-0kq" id="Eqw-pq-hmS"/>
@@ -1259,6 +1260,7 @@ coming soon</string>
                         <outlet property="categoryTable" destination="Z0v-RK-U8F" id="hkG-0l-MqF"/>
                         <outlet property="errorLabel" destination="2ew-F3-3qD" id="xvN-dN-tzS"/>
                         <outlet property="questionText" destination="6jP-vO-7ZY" id="ihj-so-W36"/>
+                        <outlet property="submitQuestionButtonOutlet" destination="JAP-nA-g3B" id="J03-uq-7yT"/>
                         <outletCollection property="incorrectFields" destination="QqU-td-vjo" collectionClass="NSMutableArray" id="SHM-Od-GUK"/>
                         <outletCollection property="incorrectFields" destination="GuZ-93-Z51" collectionClass="NSMutableArray" id="9q7-Di-SZB"/>
                         <outletCollection property="incorrectFields" destination="nuP-x2-f3Y" collectionClass="NSMutableArray" id="jwy-Pz-iyB"/>

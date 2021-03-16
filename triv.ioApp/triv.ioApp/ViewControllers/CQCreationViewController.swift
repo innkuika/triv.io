@@ -11,6 +11,7 @@ import FirebaseDatabase
 class CQCreationViewController: UIViewController, UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var categoryTable: UITableView!
+    @IBOutlet weak var submitQuestionButtonOutlet: UIButton!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         categories.count
@@ -42,6 +43,7 @@ class CQCreationViewController: UIViewController, UISearchBarDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        styleButton(button: submitQuestionButtonOutlet)
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tap)
