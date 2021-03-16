@@ -6,6 +6,6 @@
 //
 
 protocol Category {
-    var id: Int { get }
+    var id: String { get }
     var name: String { get }
 }

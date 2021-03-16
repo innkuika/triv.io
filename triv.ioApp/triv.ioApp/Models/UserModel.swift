@@ -28,8 +28,6 @@ class UserModel: User {
         }
     }
     let id: String
-    //FIXME: Create a database type for the models to communicate with.
-    let database: Int
     
     //TODO: Figure out how to notify the device of the user associated with this id
     func promptForMove() {
@@ -41,14 +39,13 @@ class UserModel: User {
         // Use ID to fetch data from database and populate fields
     }
     
-    init?(name: String?, streak_score: Int?, id: String?, database: Int?, avatar_number: Int?) {
-        guard let name = name, let streak_score = streak_score,  let id = id, let database = database, let avatar_number = avatar_number else {
+    init?(name: String?, streak_score: Int?, id: String?, avatar_number: Int?) {
+        guard let name = name, let streak_score = streak_score,  let id = id, let avatar_number = avatar_number else {
             return nil
         }
         self.name = name
         self.streak_score = streak_score
         self.id = id
-        self.database = database
         self.avatar_number = avatar_number
     }
 
