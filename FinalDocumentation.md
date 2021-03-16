@@ -57,10 +57,11 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Helped setup APN/Apple identifiers for notification, login with Apple, Universal link features and helped testing
 
 ### Manprit Heer
-* Schema design for Firebase
+* Schema design for Firebase data
+* Set up Firebase
 * Helped connect models to database
-* Universal link setup
-* App website (playtrivio.com) and UL file
+* Created app website (playtrivio.com)
+* Universal link setup: UL file for domain hosting site
 
 ### Roberto Lozano
 * Authenticate Log-In System
