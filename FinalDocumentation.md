@@ -18,6 +18,8 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Manprit Heer
 
 ### Roberto Lozano
+* Had been working on getting Push Notifications working through Apple's APN system however ran into troubles especially with debugging given a developer account is needed for running on physical device
+* Was also working on setting up cloud messaging through Firebase to send remote notification based off of database triggers.
 
 ### Jessica Ma 
 * Retrieve list of categories from the database, fix game setup flow when opponent is selected from friend list: https://github.com/ECS189E/project-w21-triv-io/commit/bc354f33ea265924afdb665d2a6ca72fcd6a1941
@@ -51,8 +53,13 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * App website (playtrivio.com) and UL file
 
 ### Roberto Lozano
-* Had been working on getting Push Notifications working through Apple's APN system however ran into troubles especially with debugging given a developer account is needed for running on physical device
-* Was also working on setting up cloud messaging through Firebase to send remote notification based off of database triggers.
+* Authenticate Log-In System
+   * Login screen UI
+   * Google, Facebook, and Apple login/authentication
+   * Connecting logged in users to database
+* Notification System
+   *  Firestore Cloud Messaging
+   *  Cloud Functions to send notifications on database change
 
 ### Jessica Ma 
 * Category selection – CategorySelectionViewController (each player must select 3 categories of questions to be added to the game)
