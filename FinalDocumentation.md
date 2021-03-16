@@ -6,6 +6,7 @@ Our app, triv.io is a generic Trivia App that allows users to play with their fr
 
 ## Documentation:
 TODO
+Test Account: UCDtrivio@gmail.com, UCDtrivio2021
 
 ## Notes:
 * Universal Link only works while app is in background
@@ -23,6 +24,7 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Jessica Wu 
 * Pushed build 4 to testfilght and collected user feedback
 * Fixed UL with Donald
+* Polished UI https://github.com/ECS189E/project-w21-triv-io/commit/fde65bfc25cdc0da336b0edf1bb3be20fef550b3
 
 ### Manprit Heer
 
