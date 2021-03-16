@@ -1024,7 +1024,7 @@ coming soon</string>
                                 <rect key="frame" x="16" y="506" width="396" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" red="0.98088949920000001" green="0.74438947440000003" blue="0.018598327410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title=" share game code" image="doc.on.clipboard" catalog="system"/>
+                                <state key="normal" title=" share game link" image="doc.on.clipboard" catalog="system"/>
                                 <connections>
                                     <action selector="copyGameCodeButtonPressed:" destination="UMR-AF-8t4" eventType="touchUpInside" id="oSc-TV-U8z"/>
                                 </connections>
