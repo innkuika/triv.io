@@ -42,7 +42,7 @@ func styleCircleButton(button: UIButton){
 }
 
 func pendingMessageShareGameLink(gameLink: String) -> String {
-    return "Game created! Send this code to your friend and play together: \(gameLink)"
+    return "Game created! Share the game link with your friend!"
 }
 
 func generateFriendMessage(uid: String) -> String{
@@ -50,11 +50,11 @@ func generateFriendMessage(uid: String) -> String{
 }
 
 func generateNotYourTurnMessage() -> String{
-    return "It's not your turn yet, we'll send you a notification when it's your turn."
+    return "It's not your turn yet, come back later when it's your turn."
 }
 
 func generateFlipTurnMessage() -> String{
-    return "Oops, you got it wrong. We'll send you a notification when it's your turn."
+    return "Oops, you got it wrong. Come back later when it's your turn."
 }
 
 

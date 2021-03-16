@@ -24,7 +24,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     let FaceBookButton = FBLoginButton()
     @IBOutlet weak var errorDescription: UILabel!
     var ref: DatabaseReference!
-    let AppleButton = ASAuthorizationAppleIDButton()
+//    let AppleButton = ASAuthorizationAppleIDButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,9 +58,9 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         let frameWidth = view.frame.width
         let frameHeight = view.frame.height
         
-        AppleButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
-        AppleButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.70)
-        view.addSubview(AppleButton)
+//        AppleButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
+//        AppleButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.70)
+//        view.addSubview(AppleButton)
         
         FaceBookButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
         FaceBookButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.80)
@@ -126,7 +126,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
     
     func setUpSignInButton() {
         //        let button = ASAuthorizationAppleIDButton()
-        AppleButton.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
+//        AppleButton.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
         //        button.center = view.center
         //        view.addSubview(button)
     }

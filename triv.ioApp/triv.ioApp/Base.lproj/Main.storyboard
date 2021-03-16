@@ -884,7 +884,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOh-ik-E5N">
-                                <rect key="frame" x="20" y="822" width="184" height="50"/>
+                                <rect key="frame" x="20" y="822" width="388" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.46620023249999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="fDp-Ms-vc9"/>
@@ -895,22 +895,6 @@
                                 <connections>
                                     <action selector="addFriendButtonPress" destination="XwQ-qg-4Eb" eventType="touchUpInside" id="HOB-Vz-TZq"/>
                                     <action selector="shareLinkButtonPress" destination="diW-lZ-i4X" eventType="touchUpInside" id="woe-iA-s5x"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Gnf-B1-2kl">
-                                <rect key="frame" x="224" y="822" width="184" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.46620023249999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="e4p-aw-WOI"/>
-                                </constraints>
-                                <state key="normal">
-                                    <string key="title">Random Match 
-coming soon</string>
-                                    <color key="titleColor" systemColor="labelColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="addFriendButtonPress" destination="XwQ-qg-4Eb" eventType="touchUpInside" id="cLF-Rw-ZjO"/>
-                                    <action selector="randomMatchButtonPress" destination="diW-lZ-i4X" eventType="touchUpInside" id="aTu-uw-Uao"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-7a-Frm">
@@ -971,21 +955,17 @@ coming soon</string>
                             <constraint firstItem="EvX-e1-6hl" firstAttribute="top" secondItem="xT3-9R-seR" secondAttribute="top" constant="20" id="404-Hz-f9D"/>
                             <constraint firstItem="xT3-9R-seR" firstAttribute="trailing" secondItem="EvX-e1-6hl" secondAttribute="trailing" constant="32" id="8yP-4i-j17"/>
                             <constraint firstItem="Llh-7a-Frm" firstAttribute="top" secondItem="EvX-e1-6hl" secondAttribute="bottom" constant="20" id="CDW-53-J4F"/>
-                            <constraint firstItem="xT3-9R-seR" firstAttribute="bottom" secondItem="Gnf-B1-2kl" secondAttribute="bottom" constant="20" id="JlX-vA-RA6"/>
                             <constraint firstItem="Llh-7a-Frm" firstAttribute="leading" secondItem="xT3-9R-seR" secondAttribute="leading" constant="20" id="WhA-y7-MRD"/>
                             <constraint firstItem="xT3-9R-seR" firstAttribute="bottom" secondItem="hOh-ik-E5N" secondAttribute="bottom" constant="20" id="ZT1-rK-K5D"/>
                             <constraint firstItem="hOh-ik-E5N" firstAttribute="leading" secondItem="xT3-9R-seR" secondAttribute="leading" constant="20" id="bGY-yb-gZN"/>
+                            <constraint firstItem="xT3-9R-seR" firstAttribute="trailing" secondItem="hOh-ik-E5N" secondAttribute="trailing" constant="20" id="cwl-WN-Iob"/>
                             <constraint firstItem="hOh-ik-E5N" firstAttribute="top" secondItem="Llh-7a-Frm" secondAttribute="bottom" constant="20" id="m7o-Hn-sCY"/>
-                            <constraint firstItem="Gnf-B1-2kl" firstAttribute="width" secondItem="hOh-ik-E5N" secondAttribute="width" id="sXk-2l-bNW"/>
-                            <constraint firstItem="Gnf-B1-2kl" firstAttribute="leading" secondItem="hOh-ik-E5N" secondAttribute="trailing" constant="20" id="sbD-AQ-YIU"/>
-                            <constraint firstItem="xT3-9R-seR" firstAttribute="trailing" secondItem="Gnf-B1-2kl" secondAttribute="trailing" constant="20" id="wO3-B6-sAU"/>
                             <constraint firstItem="EvX-e1-6hl" firstAttribute="leading" secondItem="xT3-9R-seR" secondAttribute="leading" constant="32" id="ww3-wf-zJl"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="friendsTableView" destination="Llh-7a-Frm" id="c87-Lh-kkX"/>
-                        <outlet property="randomMatchButtonOutlet" destination="Gnf-B1-2kl" id="iYf-gX-LjL"/>
                         <outlet property="shareGameLinkButtonOutlet" destination="hOh-ik-E5N" id="pfv-7Y-f7Y"/>
                     </connections>
                 </viewController>
@@ -1024,7 +1004,7 @@ coming soon</string>
                                 <rect key="frame" x="16" y="506" width="396" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="tintColor" red="0.98088949920000001" green="0.74438947440000003" blue="0.018598327410000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title=" share game code" image="doc.on.clipboard" catalog="system"/>
+                                <state key="normal" title=" share game link" image="doc.on.clipboard" catalog="system"/>
                                 <connections>
                                     <action selector="copyGameCodeButtonPressed:" destination="UMR-AF-8t4" eventType="touchUpInside" id="oSc-TV-U8z"/>
                                 </connections>
