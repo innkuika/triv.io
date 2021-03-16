@@ -82,7 +82,6 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
                                     name: userDict["Name"] as? String,
                                     streak_score: userDict["Streak"] as? Int,
                                     id: fuid,
-                                    database: 0,
                                     avatar_number: userDict["AvatarNumber"] as? Int
                                 ))
                                 accessSem.signal()

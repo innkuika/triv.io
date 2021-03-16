@@ -17,7 +17,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var joinGameViaCodeButtonOutlet: UIButton!
     @IBOutlet weak var userPreferenceButtonOutlet: UIButton!
     @IBOutlet weak var gameInstanceTableViewOutlet: UITableView!
-    
+    @IBOutlet weak var addCategoryButton: UIButton!
+
     // query from db
     var ref: DatabaseReference!
     var avatarNumber: Int?
@@ -46,6 +47,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func renderUI(){
         styleButton(button: startNewGameButtonOutlet)
         styleButton(button: joinGameViaCodeButtonOutlet)
+        styleButton(button: addCategoryButton)
         styleCircleButton(button: leaderboardButtonOutlet)
     }
     
@@ -64,7 +66,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: -UI action handlers
     
-    @IBAction func addAQuestionButton(_ sender: Any) {
+    @IBAction func addCategoryPress(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let cqCreationViewController = storyboard.instantiateViewController(identifier: "cqCreationViewController") as? CQCreationViewController else {
             assertionFailure("cannot instantiate cqCreationViewController")
@@ -173,7 +175,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                     name: userDict["Name"] as? String,
                                                     streak_score: userDict["Streak"] as? Int,
                                                     id: unwrappedPlayerId,
-                                                    database: 0,
                                                     avatar_number: userDict["AvatarNumber"] as? Int
                                                 )
                                                 opponentsAccessSem.signal()
