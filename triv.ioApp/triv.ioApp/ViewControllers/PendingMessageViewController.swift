@@ -45,7 +45,7 @@ class PendingMessageViewController: UIViewController{
         guard let url = components.url else { return }
         
         // Show activity view controller (open share sheet)
-        let inviteMessage = "[triv.io] Click this link to join my triv.io game! \(url.absoluteString)"
+        let inviteMessage = "Click this link to join my game! \(url.absoluteString)"
         let activityViewController = UIActivityViewController(activityItems: [inviteMessage], applicationActivities: nil)
         present(activityViewController, animated: true, completion: nil)
     }
