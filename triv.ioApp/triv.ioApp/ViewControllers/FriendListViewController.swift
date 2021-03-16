@@ -15,6 +15,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     @IBOutlet weak var friendRequestView: UIView!
     @IBOutlet weak var friendRequestLabel: UILabel!
     @IBOutlet weak var friendsTableView: UITableView!
+    @IBOutlet weak var addNewFriendButtonOutlet: UIButton!
     
     var uid = ""
     var ref: DatabaseReference!
@@ -30,7 +31,8 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        styleButton(button: addNewFriendButtonOutlet)
         friendRequestView.isHidden = true
         
         guard let user = Auth.auth().currentUser else {
@@ -251,6 +253,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
                     friendRequests.append(self.uid)
                     self.ref.child("User/\(requestUid)/FriendRequests").setValue(friendRequests)
                     DispatchQueue.main.async {
+                        self.requestTextField.endEditing(true)
                         self.requestPromptView.isHidden = true
                     }
                 }
@@ -303,6 +306,7 @@ class FriendListViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func textFieldLeftButtonPressed() {
+        requestTextField.endEditing(true)
         requestPromptView.isHidden = true
     }
     

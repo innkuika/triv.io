@@ -16,8 +16,9 @@ protocol GameModelUpdates: class {
 
 class GameModel {
     // reserved History, Pop Culture and UC Davis category for bot to pick, can fix this later
-    var categories: [String] =  ["Art and Literature", "Sports", "Technology", "Video Games"]
-
+    var categories: [String] =  []
+    var currentCategories: [String]?
+    
     var selectedCategories: [String] = []
     weak var delegate: GameModelUpdates?
     var currentTurn: String
@@ -25,25 +26,62 @@ class GameModel {
     var players: [String: Player]
     var ref = Database.database().reference()
     var gameInstanceId: String?
+    var gameStatus: String
     
     
-    init(userId: String){
+    init?(userId: String){
         self.currentTurn = userId
-        self.playerIds = [userId, "bot"]
+        //        self.playerIds = [userId, "bot"]
+        self.playerIds = [userId]
         let UserPlayer = Player(playerID: userId, streak: 0, score: [])
-        let BotPlayer = Player(playerID: "bot", streak: 0, score: [])
-        self.players = [userId: UserPlayer, "bot": BotPlayer]
+        //        let BotPlayer = Player(playerID: "bot", streak: 0, score: [])
+        self.players = [userId: UserPlayer]
+        //        self.players = [userId: UserPlayer, "bot": BotPlayer]
+        self.gameStatus = "init"
         
         // create a game instance and push to database
         let gameInstanceRef = self.ref.child("GameInstance").childByAutoId()
         guard let unwrappedKey = gameInstanceRef.key else { return }
         self.gameInstanceId = unwrappedKey
-        gameInstanceRef.setValue(["CurrentTurn": userId,
-                                  "PlayerIds": [userId, "bot"],
-                                  "Players": [userId: ["Score": [], "Streak": 0],
-                                              "bot": ["Score": [], "Streak": 0]],
+        gameInstanceRef.setValue(["GameStatus": "init",
+                                  "CurrentTurn": userId,
+                                  //                                  "PlayerIds": [userId, "bot"],
+                                  "PlayerIds": [userId],
+                                  "Players": [userId: ["Score": [], "Streak": 0]],
+                                  //                                              "bot": ["Score": [], "Streak": 0]],
                                   "Categories": []])
         
+        userGameInstanceUpdate(userId: userId, gameInstanceId: unwrappedKey)
+    }
+    
+    init?(gameStatus: String?, currentTurn: String?, playerIds: [String]?, players: [String:Player]?, categories: [String]?, gameInstanceId: String?){
+        guard let gameStatus = gameStatus, let currentTurn = currentTurn, let playerIds = playerIds, let players = players, let gameInstanceId = gameInstanceId else { return nil }
+        
+        let categories = categories ?? [] // categories may not be set yet
+        
+        self.currentCategories = categories
+        self.currentTurn = currentTurn
+        self.playerIds = playerIds
+        self.players = players
+        self.gameInstanceId = gameInstanceId
+        self.gameStatus = gameStatus
+    }
+    
+    func userGameInstanceUpdate(userId: String, gameInstanceId: String){
+        // update user's game instance
+        var gameInstanceIds: [String] = []
+        let workerGroup = DispatchGroup()
+        workerGroup.enter()
+        workerGroup.notify(queue: DispatchQueue.main) {
+            self.ref.child("User/\(userId)/Game").setValue(gameInstanceIds)
+        }
+        
+        self.ref.child("User/\(userId)/Game").getData{ (error, snapshot) in
+            let unwrappedGameInstanceIds = snapshot.value as? [String] ?? []
+            gameInstanceIds = unwrappedGameInstanceIds
+            gameInstanceIds.append(gameInstanceId)
+            workerGroup.leave()
+        }
     }
     
     // push next player info to database
@@ -61,23 +99,29 @@ class GameModel {
     // get latest data from database
     func updateGameInstance(workerGroup: DispatchGroup){
         self.ref.child("GameInstance/\(self.gameInstanceId ?? "")").observe(DataEventType.value, with: { (snapshot) in
-                let value = snapshot.value as? NSDictionary
-                
-                // get latest players info
-                guard let unwrappedPlayersArray = value?["Players"] as? NSDictionary else { return }
-                for (playerId, playerDictStr) in unwrappedPlayersArray{
-                    guard let unwrappedPlayerId = playerId as? String else { return }
-                    let playerDict = playerDictStr as? NSDictionary
-                    let updatedStreak = playerDict?["Streak"] as? Int ?? 0
-                    let updatedScore: [String] = playerDict?["Score"] as? [String] ?? []
-                    self.players[unwrappedPlayerId] = Player(playerID: unwrappedPlayerId, streak: updatedStreak, score: updatedScore)
-                }
-                
-                // get latest currentTurn
-                guard let unwrappedCurrentTurn = value?["CurrentTurn"] as? String else {
-                    return
-                }
-                self.currentTurn = unwrappedCurrentTurn
+            let value = snapshot.value as? NSDictionary
+            
+            // get latest players info
+            guard let unwrappedPlayersArray = value?["Players"] as? NSDictionary else { return }
+            for (playerId, playerDictStr) in unwrappedPlayersArray{
+                guard let unwrappedPlayerId = playerId as? String else { return }
+                let playerDict = playerDictStr as? NSDictionary
+                let updatedStreak = playerDict?["Streak"] as? Int ?? 0
+                let updatedScore: [String] = playerDict?["Score"] as? [String] ?? []
+                self.players[unwrappedPlayerId] = Player(playerID: unwrappedPlayerId, streak: updatedStreak, score: updatedScore)
+            }
+            
+            // get latest currentTurn
+            guard let unwrappedCurrentTurn = value?["CurrentTurn"] as? String else { return }
+            self.currentTurn = unwrappedCurrentTurn
+            
+            // get latest game status
+            guard let unwrappedGameStatus = value?["GameStatus"] as? String else { return }
+            self.gameStatus = unwrappedGameStatus
+            
+            // get current category
+            self.currentCategories = value?["Categories"] as? [String]
+            
         })
         workerGroup.leave()
     }
@@ -92,20 +136,95 @@ class GameModel {
         return nil
     }
     
-    func updateCategories(){
-        if playerIds.contains("bot"){
-            // FIXME: implement bot selection logic here later
-            selectedCategories.append("History")
-            selectedCategories.append("Pop Culture")
-            selectedCategories.append("UC Davis")
+    func getOpponentPlayer() -> Player?{
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return nil
         }
-        
-        self.ref.child("GameInstance/\(self.gameInstanceId ?? "")/Categories").setValue(selectedCategories)
+        let currentUserId = user.uid
+        for (playerId, player) in players{
+            print("playerid\(playerId)")
+            if playerId != currentUserId {
+                return player
+            }
+        }
+        assertionFailure("cannot find current user in game instance")
+        return nil
+    }
     
+    func addNewPlayer(newPlayerId: String){
+        // updates playerIds and players
+        playerIds.append(newPlayerId)
+        players[newPlayerId] = Player(playerID: newPlayerId, streak: 0, score: [])
+        currentTurn = newPlayerId
+        
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        ref.child("GameInstance/\(unwrappedInstanceId)/PlayerIds").setValue(self.playerIds)
+        
+        var playersDict: [String : Any] = [:]
+        playersDict[playerIds[0]] = ["Score": [], "Streak": 0]
+        playersDict[playerIds[1]] = ["Score": [], "Streak": 0]
+        ref.child("GameInstance/\(unwrappedInstanceId)/Players").setValue(playersDict)
+        
+        ref.child("GameInstance/\(unwrappedInstanceId)/CurrentTurn").setValue(newPlayerId)
+        
+    }
+    
+    func setCurrentTurn(playerId: String) {
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        ref.child("GameInstance/\(unwrappedInstanceId)/CurrentTurn").setValue(playerId)
+    }
+    
+    //    // set before using
+    //    func setCurrentGameCategories(){
+    //        var categories: [String] = []
+    //        guard let unwrappedGameInstanceId = gameInstanceId else { return }
+    //        let workerGroup = DispatchGroup()
+    //        workerGroup.enter()
+    //
+    //        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").getData{ (error, snapshot) in
+    //            if snapshot.exists(){
+    //                let unwrappedCategories = snapshot.value as? [String] ?? []
+    //                categories = unwrappedCategories
+    //                print("categories in db: \(categories)")
+    //                workerGroup.leave()
+    //            }
+    //        }
+    //
+    //        workerGroup.notify(queue: DispatchQueue.main) {
+    //            self.currentCategories = categories
+    //        }
+    //    }
+    
+    func updateGameStatus(status: String){
+        guard let unwrappedGameInstanceId = gameInstanceId else { return }
+        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/GameStatus").setValue(status)
+    }
+    
+    func updateCategories(syncWorkerGroup: DispatchGroup){
+        guard let unwrappedGameInstanceId = gameInstanceId else { return }
+        let unwrappedCurrentCategories = currentCategories ?? []
+        currentCategories = unwrappedCurrentCategories + selectedCategories
+        
+        print("all categories: \(currentCategories)")
+        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/Categories").setValue(currentCategories)
+        syncWorkerGroup.leave()
+        
     }
     
     func loadCategories() {
-        delegate?.categoriesDidLoad(categories)
+        self.ref.child("Categories").getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            } else if snapshot.exists() {
+                guard let categoriesDict = snapshot.value as? NSDictionary else { return }
+                self.categories = categoriesDict.allKeys as? [String] ?? []
+                self.categories.sort()
+            }
+            DispatchQueue.main.async {
+                self.delegate?.categoriesDidLoad(self.categories)
+            }
+        }
     }
     
     func selectCategory(_ category: String) {
@@ -119,4 +238,26 @@ class GameModel {
         delegate?.selectedCategoriesDidChange(selectedCategories)
     }
     
+    func removePlayer(_ playerId: String) {
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        self.ref.child("User").child(playerId).child("Game").observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                guard var gameInstanceIds = snapshot.value as? [String] else { return }
+                if let index = gameInstanceIds.firstIndex(of: unwrappedInstanceId) {
+                    gameInstanceIds.remove(at: index)
+                }
+                self.ref.child("User").child(playerId).child("Game").setValue(gameInstanceIds)
+            }
+        }
+    }
+    
+    func destroy() {
+        guard let unwrappedInstanceId = gameInstanceId else { return }
+        for playerId in playerIds {
+            removePlayer(playerId)
+        }
+        ref.child("GameInstance").child(unwrappedInstanceId).removeValue()
+    }
+    
 }
+

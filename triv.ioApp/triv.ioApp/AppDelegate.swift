@@ -14,7 +14,60 @@ import FBSDKCoreKit
 //@main
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-            
+    
+    var ref: DatabaseReference!
+    // universal link functions
+//    func presentProperViewController(_ gameID: gameIstanceID) {
+//      let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//      guard
+//        let categoryVC = storyboard
+//          .instantiateViewController(withIdentifier: "CategorySelectionViewController")
+//            as? CategorySelectionViewController,
+//
+//        let navigationVC = storyboard
+//          .instantiateViewController(withIdentifier: "NavigationController")
+//            as? UINavigationController
+//      else { return }
+//
+//        categoryVC.item = computer
+//      navigationVC.modalPresentationStyle = .formSheet
+//      navigationVC.pushViewController(categoryVC, animated: true)
+//    }
+    
+
+//    func application(
+//      _ application: UIApplication,
+//      continue userActivity: NSUserActivity,
+//      restorationHandler: @escaping ([UIUserActivityRestoring]?
+//    ) -> Void) -> Bool {
+//        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+//            let incomingURL = userActivity.webpageURL,
+//            let components = URLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+//            let gameID = components.queryItems?.first(where: {$0.name == "id"} )?.value else {
+//            return false
+//        }
+//        //Set up homeVC
+//        guard Auth.auth().currentUser != nil,
+//            let navigationController = UIApplication.shared.windows.first?.rootViewController as? UINavigationController else {
+//            return false
+//        }
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        guard let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController") as? HomeViewController else {
+//            assertionFailure("cannot instantiate homeViewController")
+//            return false
+//        }
+//
+//        //Set up joinGameVC and fill in the code from the link
+//        guard let joinGameViaCodeViewController = storyboard.instantiateViewController(identifier: "joinGameViaCodeViewController") as? JoinGameViaCodeViewController else {
+//            assertionFailure("cannot instantiate joinGameViaCodeViewController")
+//            return false
+//        }
+//        joinGameViaCodeViewController.gameCodeTextFieldOutlet.text = gameID
+//        navigationController.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
+//        return true
+//    }
+    
     
     // MARK: - Google Sign In
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
@@ -135,4 +188,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
 }
       
-

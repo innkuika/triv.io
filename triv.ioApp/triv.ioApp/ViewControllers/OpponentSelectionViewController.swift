@@ -11,6 +11,8 @@ import FirebaseDatabase
 
 class OpponentSelectionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var randomMatchButtonOutlet: UIButton!
+    @IBOutlet weak var shareGameLinkButtonOutlet: UIButton!
     @IBOutlet weak var friendsTableView: UITableView!
     
     // Passed in from CategorySelectionViewController
@@ -22,6 +24,8 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        styleSmallButton(button: shareGameLinkButtonOutlet)
+        styleSmallButton(button: randomMatchButtonOutlet)
 
         guard let user = Auth.auth().currentUser else {
             assertionFailure("Unable to get current logged in user")
@@ -66,9 +70,9 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
                                     avatar_number: userDict["AvatarNumber"] as? Int
                                 ))
                                 accessSem.signal()
-                                
-                                waitSem.signal()
                             }
+                            
+                            waitSem.signal()
                         }
                     }
                 }
@@ -90,14 +94,13 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath) as? FriendTableViewCell ?? FriendTableViewCell(style: .default, reuseIdentifier: "friendCell")
         
-        let fname = friends[indexPath.row]?.name ?? "guest"
+        let fname = friends[indexPath.row]?.name ?? "Guest"
         let fuid = friends[indexPath.row]?.id ?? ""
         let avatarNumber = friends[indexPath.row]?.avatar_number ?? 1
         
         cell.usernameLabel.text = fname
         cell.uidLabel.text = "ID: \(fuid)"
         
-        // TODO: Replace default image with player avatar
         cell.avatarImageView.image = UIImage(named: "Robot Avatars_\(avatarNumber).png")
         
         cell.usernameLabel.textColor = UIColor.white
@@ -124,11 +127,52 @@ class OpponentSelectionViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO
+        guard let friendUid = friends[indexPath.row]?.id else { return }
+        
+        guard let unwrappedGameInstanceId = self.gameInstance?.gameInstanceId else { return }
+        self.gameInstance?.userGameInstanceUpdate(userId: friendUid, gameInstanceId: unwrappedGameInstanceId)
+        
+        // update playerIds, players in game instance, set current turn to new player
+        gameInstance?.addNewPlayer(newPlayerId: friendUid)
+        
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return
+        }
+        gameInstance?.setCurrentTurn(playerId: user.uid)
+        
+        // update game status to active
+        self.gameInstance?.updateGameStatus(status: "active")
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
+            assertionFailure("cannot instantiate spinWheelViewController")
+            return
+        }
+        let viewControllers = [spinWheelViewController]
+        
+        // pass game instance to spinWheelViewController
+        spinWheelViewController.gameInstance = self.gameInstance
+        self.navigationController?.setViewControllers(viewControllers, animated: true)
     }
     
     // MARK: -UI action handlers
     @IBAction func shareLinkButtonPress() {
+        // set game status to pending
+        guard let unwrappedGameInstanceId = gameInstance?.gameInstanceId else { return }
+        self.ref.child("GameInstance/\(unwrappedGameInstanceId)/GameStatus").setValue("pending")
+        // navigate to pendingMessageViewController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let pendingMessageViewController = storyboard.instantiateViewController(identifier: "pendingMessageViewController") as? PendingMessageViewController else {
+            assertionFailure("cannot instantiate pendingMessageViewController")
+            return
+        }
+        guard let unwrappedGameId = gameInstance?.gameInstanceId else { return }
+        pendingMessageViewController.displayMessage = pendingMessageShareGameLink(gameLink: unwrappedGameId)
+        pendingMessageViewController.gameInstanceId = unwrappedGameInstanceId
+        pendingMessageViewController.displayCopyGameCodeButton = true
+        
+        navigationController?.pushViewController(pendingMessageViewController, animated: true)
     }
     
     @IBAction func randomMatchButtonPress() {

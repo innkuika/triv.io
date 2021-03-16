@@ -10,7 +10,7 @@ import FirebaseDatabase
 import FirebaseAuth
 
 class CategorySelectionViewController: UIViewController, GameModelUpdates, UITableViewDataSource, UITableViewDelegate {
-
+    
     @IBOutlet weak var categoryLabel1: UILabel!
     @IBOutlet weak var categoryLabel2: UILabel!
     @IBOutlet weak var categoryLabel3: UILabel!
@@ -24,15 +24,18 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         renderUI()
         
         gameInstance?.delegate = self
         categoriesTableView.dataSource = self
         categoriesTableView.delegate = self
         gameInstance?.loadCategories()
+        print("finished init")
     }
     
     func renderUI() {
+        print("render UI")
         styleButton(button: startButton)
         styleSectionLabel(label: categoryLabel1)
         styleSectionLabel(label: categoryLabel2)
@@ -79,21 +82,29 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell") ?? UITableViewCell(style: .default, reuseIdentifier: "categoryCell")
+        
         cell.textLabel?.text = categories[indexPath.row]
         cell.imageView?.image = UIImage(systemName: "plus.circle")
-        cell.imageView?.tintColor = UIColor.white
-        cell.textLabel?.textColor = UIColor.white
+        
+        if gameInstance?.currentCategories?.contains(categories[indexPath.row]) ?? false {
+            cell.imageView?.tintColor = UIColor.gray
+            cell.textLabel?.textColor = UIColor.gray
+            cell.isUserInteractionEnabled = false
+        } else {
+            cell.imageView?.tintColor = UIColor.white
+            cell.textLabel?.textColor = UIColor.white
+            cell.isUserInteractionEnabled = true
+        }
+        
         cell.backgroundColor = trivioBackgroundColor
         
         // style selected Cell
         let backgroundView = UIView()
         backgroundView.backgroundColor = trivioBlue
         cell.selectedBackgroundView = backgroundView
-
+        
         return cell
     }
-    
-    
     
     // MARK: -UITableViewDelegate implementation
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -102,6 +113,7 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
         }
         return indexPath
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         gameInstance?.selectCategory(categories[indexPath.row])
     }
@@ -109,24 +121,66 @@ class CategorySelectionViewController: UIViewController, GameModelUpdates, UITab
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         gameInstance?.deselectCategory(categories[indexPath.row])
     }
-
+    
     // MARK: -UI action handlers
     @IBAction func cancelButtonPress(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
-    }
-    @IBAction func startButtonPress() {
-        // push selected categories to database
-        gameInstance?.updateCategories()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let opponentSelectionViewController = storyboard.instantiateViewController(identifier: "opponentSelectionViewController") as? OpponentSelectionViewController else {
-            assertionFailure("cannot instantiate opponentSelectionViewController")
+        guard let gameInstance = gameInstance else {
+            navigationController?.popViewController(animated: true)
             return
         }
-        let viewControllers = [opponentSelectionViewController]
-        // pass game instance to opponentSelectionViewController
-        opponentSelectionViewController.gameInstance = gameInstance
-        navigationController?.setViewControllers(viewControllers, animated: true)
+        if gameInstance.playerIds.count < 2 {
+            gameInstance.destroy()
+        }
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func startButtonPress() {
+        let categorySelectionWorkerGroup = DispatchGroup()
+        categorySelectionWorkerGroup.enter()
+        // push selected categories to database
+        gameInstance?.updateCategories(syncWorkerGroup: categorySelectionWorkerGroup)
+        
+        categorySelectionWorkerGroup.notify(queue: DispatchQueue.main) {
+            // if there are two players, go straight to the spinWheelView
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if self.gameInstance?.currentCategories?.count == 6 {
+                if self.gameInstance?.gameStatus == "pending" {
+                    // update user's game
+                    guard let user = Auth.auth().currentUser else {
+                        assertionFailure("Unable to get current logged in user")
+                        return
+                    }
+                    
+                    guard let unwrappedGameInstanceId = self.gameInstance?.gameInstanceId else { return }
+                    self.gameInstance?.userGameInstanceUpdate(userId: user.uid, gameInstanceId: unwrappedGameInstanceId)
+                    
+                    // update playerIds, players in game instance, set current turn to new player
+                    self.gameInstance?.addNewPlayer(newPlayerId: user.uid)
+                    
+                    // update game status to active
+                    self.gameInstance?.updateGameStatus(status: "active")
+                }
+                
+                guard let spinWheelViewController = storyboard.instantiateViewController(identifier: "spinWheelViewController") as? SpinWheelViewController else {
+                    assertionFailure("cannot instantiate spinWheelViewController")
+                    return
+                }
+                let viewControllers = [spinWheelViewController]
+                // pass game instance to spinWheelViewController
+                spinWheelViewController.gameInstance = self.gameInstance
+                self.navigationController?.setViewControllers(viewControllers, animated: true)
+            }
+            else {
+                guard let opponentSelectionViewController = storyboard.instantiateViewController(identifier: "opponentSelectionViewController") as? OpponentSelectionViewController else {
+                    assertionFailure("cannot instantiate opponentSelectionViewController")
+                    return
+                }
+                let viewControllers = [opponentSelectionViewController]
+                // pass game instance to opponentSelectionViewController
+                opponentSelectionViewController.gameInstance = self.gameInstance
+                self.navigationController?.setViewControllers(viewControllers, animated: true)
+            }
+        }
     }
     
 }

@@ -7,6 +7,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -24,7 +25,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //            annotation: [UIApplication.OpenURLOptionsKey.annotation]
 //        )
 //    }
+    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
 
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL,
+            let components = URLComponents(url: incomingURL, resolvingAgainstBaseURL: true),
+            let gameID = components.queryItems?.first(where: {$0.name == "id"} )?.value else {
+            return
+        }
+        //Set up homeVC
+        guard Auth.auth().currentUser != nil,
+              let navigationController = window?.rootViewController as? UINavigationController else {
+            return
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController") as? HomeViewController else {
+            assertionFailure("cannot instantiate homeViewController")
+            return
+        }
+  
+        //Set up joinGameVC and fill in the code from the link
+        guard let joinGameViaCodeViewController = storyboard.instantiateViewController(identifier: "joinGameViaCodeViewController") as? JoinGameViaCodeViewController else {
+            assertionFailure("cannot instantiate joinGameViaCodeViewController")
+            return
+        }
+        
+        joinGameViaCodeViewController.prefillGameId = gameID
+        navigationController.setViewControllers([homeViewController, joinGameViaCodeViewController], animated: true)
+        
+        return
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
