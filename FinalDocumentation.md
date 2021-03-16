@@ -27,12 +27,14 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 ### Manprit Heer
 
 ### Roberto Lozano
+* Had been working on getting Push Notifications working through Apple's APN system however ran into troubles especially with debugging given a developer account is needed for running on physical device
+* Was also working on setting up cloud messaging through Firebase to send remote notification based off of database triggers.
 
 ### Jessica Ma 
- * Retrieve list of categories from the database, fix game setup flow when opponent is selected from friend list: https://github.com/ECS189E/project-w21-triv-io/commit/bc354f33ea265924afdb665d2a6ca72fcd6a1941
- * Add share sheet for universal link, remove game instance when game setup is cancelled: https://github.com/ECS189E/project-w21-triv-io/commit/a55022557b2614eb4c7aebcea8f820ce13c594d4
+* Retrieve list of categories from the database, fix game setup flow when opponent is selected from friend list: https://github.com/ECS189E/project-w21-triv-io/commit/bc354f33ea265924afdb665d2a6ca72fcd6a1941
+* Add share sheet for universal link, remove game instance when game setup is cancelled: https://github.com/ECS189E/project-w21-triv-io/commit/a55022557b2614eb4c7aebcea8f820ce13c594d4
 
-## Overall contributions to app by project member
+## Overall contributions to app
 
 ### Donald Lieu 
 * Helped connect project to database
@@ -56,7 +58,27 @@ https://trello.com/invite/b/uw1VUGxd/fdb6db55e8f6a15071acdb3c56b4b708/trivio-app
 * Helped setup APN/Apple identifiers for notification, login with Apple, Universal link features and helped testing
 
 ### Manprit Heer
+* Schema design for Firebase
+* Helped connect models to database
+* Universal link setup
+* App website (playtrivio.com) and UL file
 
 ### Roberto Lozano
+* Authenticate Log-In System
+   * Login screen UI
+   * Google, Facebook, and Apple login/authentication
+   * Connecting logged in users to database
+* Notification System
+   *  Firestore Cloud Messaging
+   *  Cloud Functions to send notifications on database change
 
 ### Jessica Ma 
+* Category selection – CategorySelectionViewController (each player must select 3 categories of questions to be added to the game)
+* Displaying the user's games on their home screen – HomeViewController
+    * Table view UI
+    * Retrieving the player data that is displayed inside each cell
+* Friend system:
+    * Displaying the user's list of friends – FriendListViewController, OpponentSelectionViewController
+    * Sending friend requests to other users
+    * Receiving and accepting/declining friend requests
+    * Update to game logic that allows a user to start a game with a player on their friend list

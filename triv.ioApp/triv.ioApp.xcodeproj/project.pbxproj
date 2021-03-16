@@ -14,6 +14,9 @@
 		2C99252625F17D0B000BE67F /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C99252525F17D0B000BE67F /* FriendListViewController.swift */; };
 		2CA142F725E1EAAE0066E410 /* CategorySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */; };
 		2CD402E425F4320D007B7100 /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD402E325F4320D007B7100 /* FriendTableViewCell.swift */; };
+		4409819425F89C3800E09A36 /* CQCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4409819325F89C3800E09A36 /* CQCreationViewController.swift */; };
+		44507207260153CE00CDE285 /* QuestionSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44507206260153CE00CDE285 /* QuestionSubmissionViewController.swift */; };
+		447DD98326005D3300FD2C6B /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447DD98226005D3300FD2C6B /* CategoryModel.swift */; };
 		44A5745425DF65760053E990 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745325DF65760053E990 /* HomeViewController.swift */; };
 		44A5745E25DF7C070053E990 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5745D25DF7C070053E990 /* UserModel.swift */; };
 		44A5746625DF7CB90053E990 /* UserProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A5746525DF7CB90053E990 /* UserProtocol.swift */; };
@@ -76,6 +79,9 @@
 		2C99252525F17D0B000BE67F /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
 		2CA142F525E1EAAE0066E410 /* CategorySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionViewController.swift; sourceTree = "<group>"; };
 		2CD402E325F4320D007B7100 /* FriendTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		4409819325F89C3800E09A36 /* CQCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CQCreationViewController.swift; sourceTree = "<group>"; };
+		44507206260153CE00CDE285 /* QuestionSubmissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSubmissionViewController.swift; sourceTree = "<group>"; };
+		447DD98226005D3300FD2C6B /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		44A5745325DF65760053E990 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		44A5745D25DF7C070053E990 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		44A5746525DF7CB90053E990 /* UserProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProtocol.swift; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 				2C686B6225F2009600671310 /* OpponentSelectionViewController.swift */,
 				49FADC9425F6F0B4008EF923 /* PendingMessageViewController.swift */,
 				49BA84CC25F82F5E002A0235 /* JoinGameViaCodeViewController.swift */,
+				4409819325F89C3800E09A36 /* CQCreationViewController.swift */,
+				44507206260153CE00CDE285 /* QuestionSubmissionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 				44A5745D25DF7C070053E990 /* UserModel.swift */,
 				44A5749E25DF90C80053E990 /* BotUser.swift */,
 				49A7687B25E9F1280068A130 /* PlayerModel.swift */,
+				447DD98226005D3300FD2C6B /* CategoryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -568,6 +577,7 @@
 				44D9657725E379980030382A /* QuestionViewController.swift in Sources */,
 				44A5746C25DF7D5A0053E990 /* UserModelMock.swift in Sources */,
 				49CA93DC25E58E54001038F5 /* utility.swift in Sources */,
+				447DD98326005D3300FD2C6B /* CategoryModel.swift in Sources */,
 				8287C42C25D78EF200729808 /* triv_ioApp.xcdatamodeld in Sources */,
 				2C99252625F17D0B000BE67F /* FriendListViewController.swift in Sources */,
 				44A5745E25DF7C070053E990 /* UserModel.swift in Sources */,
@@ -578,6 +588,7 @@
 				44A5748A25DF862B0053E990 /* GameStateProtocol.swift in Sources */,
 				49A7687C25E9F1280068A130 /* PlayerModel.swift in Sources */,
 				49BA84CD25F82F5E002A0235 /* JoinGameViaCodeViewController.swift in Sources */,
+				44507207260153CE00CDE285 /* QuestionSubmissionViewController.swift in Sources */,
 				44D9658025E379D60030382A /* GameModel.swift in Sources */,
 				2C589C0425F989A300AFB576 /* GameInstanceTableViewCell.swift in Sources */,
 				44A5747D25DF83620053E990 /* GameInstanceProtocol.swift in Sources */,
@@ -587,6 +598,7 @@
 				44A5749A25DF8ACE0053E990 /* QuestionProtocol.swift in Sources */,
 				44A5749225DF8A400053E990 /* CategoryProtocol.swift in Sources */,
 				8287C42225D78EF100729808 /* AppDelegate.swift in Sources */,
+				4409819425F89C3800E09A36 /* CQCreationViewController.swift in Sources */,
 				8287C42425D78EF100729808 /* SceneDelegate.swift in Sources */,
 				49162F8825F021390018A88F /* UserPreferenceViewController.swift in Sources */,
 				44DE40BD25EF80000000CBAC /* LeaderboardViewController.swift in Sources */,
@@ -771,7 +783,7 @@
 				CODE_SIGN_ENTITLEMENTS = triv.ioApp/triv.ioApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = GJ6462NS4Q;
+				DEVELOPMENT_TEAM = 7HF46BS5MM;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -794,7 +806,7 @@
 				CODE_SIGN_ENTITLEMENTS = triv.ioApp/triv.ioApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = GJ6462NS4Q;
+				DEVELOPMENT_TEAM = 7HF46BS5MM;
 				INFOPLIST_FILE = triv.ioApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (

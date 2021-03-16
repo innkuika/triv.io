@@ -58,7 +58,6 @@ class LeaderboardViewController: UIViewController, UITableViewDataSource {
                         name: resultDict["Name"] as? String,
                         streak_score: resultDict["Streak"] as? Int,
                         id: childSnapshot.key,
-                        database: 0,
                         avatar_number: resultDict["AvatarNumber"] as? Int
                     )
                 }.reversed()
