@@ -39,6 +39,16 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: -UI action handlers
+    
+    @IBAction func addAQuestionButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let cqCreationViewController = storyboard.instantiateViewController(identifier: "cqCreationViewController") as? CQCreationViewController else {
+            assertionFailure("cannot instantiate cqCreationViewController")
+            return
+        }
+        navigationController?.pushViewController(cqCreationViewController, animated: true)
+    }
+    
     @IBAction func startGameButtonPress() {
         // create new game instance
         guard let user = Auth.auth().currentUser else {
