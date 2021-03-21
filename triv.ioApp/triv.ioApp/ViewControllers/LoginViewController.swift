@@ -8,7 +8,6 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-import FBSDKLoginKit
 import FirebaseAuth
 import FirebaseDatabase
 import CryptoKit
@@ -16,12 +15,9 @@ import AuthenticationServices
 
 
 
-class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
-    
-    
+class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     @IBOutlet weak var logoOutlet: UIImageView!
     @IBOutlet weak var GoogleButtonOutlet: GIDSignInButton!
-    let FaceBookButton = FBLoginButton()
     @IBOutlet weak var errorDescription: UILabel!
     var ref: DatabaseReference!
 //    let AppleButton = ASAuthorizationAppleIDButton()
@@ -34,15 +30,7 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
         
-        FaceBookButton.delegate = self
-        FaceBookButton.permissions = ["public_profile", "email"]
-        
         renderUI()
-        
-        
-        if let token = AccessToken.current, !token.isExpired {
-            //fireBaseFaceBookLogin(accessToken: token.tokenString)
-        }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
         if Auth.auth().currentUser != nil {
@@ -62,10 +50,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
 //        AppleButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.70)
 //        view.addSubview(AppleButton)
         
-        FaceBookButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
-        FaceBookButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.80)
-        
-        view.addSubview(FaceBookButton)
         GoogleButtonOutlet.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
         GoogleButtonOutlet.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.9)
         
@@ -79,47 +63,6 @@ class LoginViewController: UIViewController, LoginButtonDelegate, ASAuthorizatio
         errorDescription.textColor = UIColor.white
         
         navigationItem.hidesBackButton = true
-    }
-    
-    // MARK: - Facebook
-    //Facebook Login Button Pressed
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        
-        guard let tokenString = AccessToken.current?.tokenString else {
-            return
-        }
-        fireBaseFaceBookLogin(accessToken: tokenString)
-        
-        return
-    }
-    
-    //Facebook Logout Button Pressed
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        return
-    }
-    
-    //Authenticate Facebook with Firebase
-    func fireBaseFaceBookLogin(accessToken: String) {
-        //        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
-        
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print("Unsuccessful Authentication \(error)")
-                print(error.localizedDescription)
-                self.errorDescription.text = error.localizedDescription
-                
-                let loginManager = LoginManager()
-                loginManager.logOut()
-                return
-            }
-            NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
-            
-        }
     }
     
     //MARK: - Apple Authentication
