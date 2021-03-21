@@ -33,7 +33,7 @@
 		44D9658025E379D60030382A /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D9657E25E379D60030382A /* GameModel.swift */; };
 		44DE40BD25EF80000000CBAC /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DE40BC25EF80000000CBAC /* LeaderboardViewController.swift */; };
 		49162F8825F021390018A88F /* UserPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49162F8725F021390018A88F /* UserPreferenceViewController.swift */; };
-		491963A626072A0A003AE531 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491963A526072A0A003AE531 /* GoogleService-Info.plist */; };
+		491963AE2607323A003AE531 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 491963AD2607323A003AE531 /* GoogleService-Info.plist */; };
 		49A7687C25E9F1280068A130 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7687B25E9F1280068A130 /* PlayerModel.swift */; };
 		49A7688725EB7FFD0068A130 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A7688625EB7FFD0068A130 /* ResultViewController.swift */; };
 		49BA84CD25F82F5E002A0235 /* JoinGameViaCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BA84CC25F82F5E002A0235 /* JoinGameViaCodeViewController.swift */; };
@@ -98,7 +98,7 @@
 		44D9657E25E379D60030382A /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		44DE40BC25EF80000000CBAC /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		49162F8725F021390018A88F /* UserPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferenceViewController.swift; sourceTree = "<group>"; };
-		491963A526072A0A003AE531 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		491963AD2607323A003AE531 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		49A7687B25E9F1280068A130 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		49A7688625EB7FFD0068A130 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		49BA84CC25F82F5E002A0235 /* JoinGameViaCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGameViaCodeViewController.swift; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		8287C42025D78EF100729808 /* triv.ioApp */ = {
 			isa = PBXGroup;
 			children = (
-				491963A526072A0A003AE531 /* GoogleService-Info.plist */,
+				491963AD2607323A003AE531 /* GoogleService-Info.plist */,
 				5D985AED25EF100600AD8CA2 /* triv.ioApp.entitlements */,
 				44A5745C25DF7BF40053E990 /* Models */,
 				44A5745225DF654C0053E990 /* Protocols */,
@@ -406,7 +406,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8287C43125D78EF500729808 /* LaunchScreen.storyboard in Resources */,
-				491963A626072A0A003AE531 /* GoogleService-Info.plist in Resources */,
+				491963AE2607323A003AE531 /* GoogleService-Info.plist in Resources */,
 				8287C42E25D78EF500729808 /* Assets.xcassets in Resources */,
 				8287C42925D78EF200729808 /* Main.storyboard in Resources */,
 			);

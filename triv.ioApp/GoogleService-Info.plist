@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>247326619681-j0hpn65vdt201dn2s4gi076396ugc1os.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.247326619681-j0hpn65vdt201dn2s4gi076396ugc1os</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBMyg241si0FIWRnTfVnljWw9HyK2B2PCk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>247326619681</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>UCD20.triv-io</string>
+	<key>PROJECT_ID</key>
+	<string>ucd-trivio</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ucd-trivio.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:247326619681:ios:05c1aa3b62cc5c0f204b60</string>
+	<key>DATABASE_URL</key>
+	<string>https://ucd-trivio-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
