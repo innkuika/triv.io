@@ -20,16 +20,13 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, 
     @IBOutlet weak var GoogleButtonOutlet: GIDSignInButton!
     @IBOutlet weak var errorDescription: UILabel!
     var ref: DatabaseReference!
-//    let AppleButton = ASAuthorizationAppleIDButton()
+    let AppleButton = ASAuthorizationAppleIDButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
         
-        setUpSignInButton()
-        
         GIDSignIn.sharedInstance()?.presentingViewController = self
-        
         renderUI()
         
         NotificationCenter.default.addObserver(self, selector: #selector(didSignIn), name: NSNotification.Name("SuccessfulSignInNotification"), object: nil)
@@ -46,9 +43,10 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, 
         let frameWidth = view.frame.width
         let frameHeight = view.frame.height
         
-//        AppleButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
-//        AppleButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.70)
-//        view.addSubview(AppleButton)
+        AppleButton.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
+        AppleButton.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.80)
+        AppleButton.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
+        view.addSubview(AppleButton)
         
         GoogleButtonOutlet.frame = CGRect(x: 0, y: 0, width: frameWidth * 0.7, height: 40)
         GoogleButtonOutlet.center = CGPoint(x: frameWidth * 0.5, y: frameHeight * 0.9)
@@ -65,36 +63,60 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, 
         navigationItem.hidesBackButton = true
     }
     
-    //MARK: - Apple Authentication
-    
-    func setUpSignInButton() {
-        //        let button = ASAuthorizationAppleIDButton()
-//        AppleButton.addTarget(self, action: #selector(handleSignInWithAppleTapped), for: .touchUpInside)
-        //        button.center = view.center
-        //        view.addSubview(button)
+    //MARK: - Change VC after successful login
+    @objc func didSignIn()  {
+        guard let user = Auth.auth().currentUser else {
+            assertionFailure("Unable to get current logged in user")
+            return
+        }
+        
+        print("user signed in")
+        self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
+            if let error = error {
+                print("Error getting data \(error)")
+            }
+            else if snapshot.exists() {
+                print("Got data \(snapshot.value!)")
+            }
+            else {
+                print("No data available")
+                // if user doesn't exist, create new user and push to database
+                // FIXME: try to access user name
+                self.ref.child("User").child(user.uid).setValue(["Name": "Guest", "Streak": 0, "AvatarNumber": 1])
+            }
+        }
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController")
+        guard let navC = self.navigationController else {
+            assertionFailure("couldn't find nav")
+            return
+        }
+        navC.setViewControllers([homeViewController], animated: true)
     }
     
+    
+    //MARK: - Handle Apple Login
     @objc func handleSignInWithAppleTapped() {
-        performSignIn()
+        performAppleSignIn()
     }
     
+    @available(iOS 13, *)
+    func startSignInWithAppleFlow() {
+        let nonce = randomNonceString()
+        currentNonce = nonce
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+        request.nonce = sha256(nonce)
+        
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
     
-    //    @available(iOS 13, *)
-    //    func startSignInWithAppleFlow() {
-    //      let nonce = randomNonceString()
-    //      currentNonce = nonce
-    //      let appleIDProvider = ASAuthorizationAppleIDProvider()
-    //      let request = appleIDProvider.createRequest()
-    //      request.requestedScopes = [.fullName, .email]
-    //      request.nonce = sha256(nonce)
-    //
-    //      let authorizationController = ASAuthorizationController(authorizationRequests: [request])
-    //      authorizationController.delegate = self
-    //      authorizationController.presentationContextProvider = self
-    //      authorizationController.performRequests()
-    //    }
-    
-    func performSignIn() {
+    func performAppleSignIn() {
         let request = createAppleIdRequest()
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         
@@ -173,78 +195,41 @@ class LoginViewController: UIViewController, ASAuthorizationControllerDelegate, 
         return self.view.window!
     }
     
-    //Protocol for ASAuthorizationControllerPresentationContextProviding
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            guard let nonce = currentNonce else{
-                fatalError("Invalid state: A login callback was received, but no login request was sent")
+            guard let nonce = currentNonce else {
+                fatalError("Invalid state: A login callback was received, but no login request was sent.")
             }
-            guard let appleIDToken = appleIDCredential.identityToken else{
-                print("Unable to retrieve identity token")
+            guard let appleIDToken = appleIDCredential.identityToken else {
+                print("Unable to fetch identity token")
                 return
             }
-            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else{
-                print("Unable to retrive idTokenString \(appleIDToken.debugDescription)")
+            guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+                print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-            
-            Auth.auth().signIn(with: credential) { (authDataResult, error) in
-                //                if let user = authDataResult?.user {
-                //                    print("Signed in as \(user.uid), email: \(user.email ?? "email error")")
-                //
-                //                    NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
-                //                }
-                if let errorVar = error {
+            // Initialize a Firebase credential.
+            let credential = OAuthProvider.credential(withProviderID: "apple.com",
+                                                      idToken: idTokenString,
+                                                      rawNonce: nonce)
+            // Sign in with Firebase.
+            Auth.auth().signIn(with: credential) { (authResult, error) in
+                if (error != nil) {
                     // Error. If error.code == .MissingOrInvalidNonce, make sure
                     // you're sending the SHA256-hashed nonce as a hex string with
                     // your request to Apple.
-                    print(errorVar.localizedDescription)
+                    print(error?.localizedDescription)
                     return
                 }
                 // User is signed in to Firebase with Apple.
-                // ...
-                NotificationCenter.default.post(name: Notification.Name("SuccessfulSignInNotification"), object: nil, userInfo: nil)
+                print("logged in with Apple")
+                self.didSignIn()
             }
         }
     }
     
-    
-    
-    
-    
-    
-    
-    //MARK: - Change VC after successful login
-    @objc func didSignIn()  {
-        guard let user = Auth.auth().currentUser else {
-            assertionFailure("Unable to get current logged in user")
-            return
-        }
-        
-        print("user signed in")
-        self.ref.child("User/\(user.uid)").getData { (error, snapshot) in
-            if let error = error {
-                print("Error getting data \(error)")
-            }
-            else if snapshot.exists() {
-                print("Got data \(snapshot.value!)")
-            }
-            else {
-                print("No data available")
-                // if user doesn't exist, create new user and push to database
-                // FIXME: try to access user name
-                self.ref.child("User").child(user.uid).setValue(["Name": "Guest", "Streak": 0, "AvatarNumber": 1])
-            }
-        }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(identifier: "homeViewController")
-        guard let navC = self.navigationController else {
-            assertionFailure("couldn't find nav")
-            return
-        }
-        navC.setViewControllers([homeViewController], animated: true)
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        // Handle error.
+        print("Sign in with Apple errored: \(error)")
     }
 }
