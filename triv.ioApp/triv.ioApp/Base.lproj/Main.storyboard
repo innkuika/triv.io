@@ -563,14 +563,14 @@
                                     <action selector="userPreferenceButtonPressed:" destination="mth-ET-o9K" eventType="touchUpInside" id="sLd-v9-ihj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW6-1z-57w">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pW6-1z-57w">
                                 <rect key="frame" x="64" y="764" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.016299951819999998" green="1" blue="0.49009621139999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="VXq-ka-TTr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Add a Question">
+                                <state key="normal" title="Add a Question (Coming soon)">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
